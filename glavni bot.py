@@ -1,196 +1,100 @@
-# ==========================================
-# NEXUS OS // PRODAJNI TERMINAL V3.0
-# Autor: Dušan Štiglic
-# ==========================================
-
 import os
-import sys
 import time
-import json
-import datetime
+import sys
+import random
 
-FAJL_ZA_SAJT = "prodaja.json"
-FAJL_BAZA = "baza_kupaca.json"
-DIR_FAKTURA = "fakture"
+# Komanda za napredne RGB boje u Windows terminalu
+os.system('color')
 
-# Kreiranje foldera za fakture ako ne postoji
-if not os.path.exists(DIR_FAKTURA):
-    os.makedirs(DIR_FAKTURA)
+def animacija_kucanja(tekst, brzina=0.03):
+    """Pravi onaj hakerski efekat kucanja slovo po slovo"""
+    for slovo in tekst:
+        sys.stdout.write(slovo)
+        sys.stdout.flush()
+        time.sleep(brzina)
+    print()
 
-PAKETI = {
-    "1": {
-        "naziv": "Core Modul",
-        "cena_num": 29,
-        "cena": "29€",
-        "opis": "Osnovno rešenje za stabilan start sa čistom web arhitekturom i Git repo-om."
-    },
-    "2": {
-        "naziv": "Elite System",
-        "cena_num": 69,
-        "cena": "69€",
-        "opis": "Cyberpunk dizajn, stakleni efekti, napredne metrike i ugrađeni AI asistent."
-    },
-    "3": {
-        "naziv": "Enterprise VIP",
-        "cena_num": 149,
-        "cena": "149€",
-        "opis": "Potpuno prilagođen kod, baze podataka, enkripcija i 24/7 VIP podrška."
-    }
-}
-
-def ucitaj_bazu():
-    if os.path.exists(FAJL_BAZA):
-        try:
-            with open(FAJL_BAZA, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except:
-            return []
-    return []
-
-def sacuvaj_bazu(baza):
-    with open(FAJL_BAZA, "w", encoding="utf-8") as f:
-        json.dump(baza, f, ensure_ascii=False, indent=4)
-
-def generisi_fakturu(transakcija):
-    ime_fajla = f"{DIR_FAKTURA}/Faktura_ID_{transakcija['id']}.txt"
-    sadrzaj = f"""==================================================
-           NEXUS OS // POTVRDA O KUPOVINI
-==================================================
- ID Transakcije: #{transakcija['id']}
- Datum i vreme:  {transakcija['vreme']}
- Kupljeni paket: {transakcija['poslednji_kupac']}
- Cena:           {transakcija['cena']}
- Status:         {transakcija['status']}
---------------------------------------------------
- Glavni Inženjer / Autor: Dušan Štiglic
- Podrška i kontakt: Službeni NEXUS Core Sistem
-==================================================
- Hvala na poverenju! Vaš sistem je uspešno isporučen.
-"""
-    with open(ime_fajla, "w", encoding="utf-8") as f:
-        f.write(sadrzaj)
-    return ime_fajla
-
-def prikazi_meni():
-    print("\n" + "="*55)
-    print(" ⚡ NEXUS OS // PRODAJNI TERMINAL (PRODUKCIJA)")
-    print(" Autor: Dušan Štiglic")
-    print("="*55)
-    print("Izaberi opciju:")
-    print(" [1] Katalog paketa i cena")
-    print(" [2] Naplati, isporuči i sinhronizuj sajt")
-    print(" [3] Pregled finansija i baze kupaca")
-    print(" [4] Generisi izveštaj o prodaji")
-    print(" [5] Izlaz iz sistema")
-    print("="*55)
-
-def main():
-    print("\n[OK] Pokretanje produkcijskog sistema...")
+def boot_sekvenca():
+    """Filmsko učitavanje sistema pri paljenju bota"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n\033[90m[SYS] POKRETANJE NEXUS KERNELA...\033[0m\n")
     time.sleep(0.5)
     
-    while True:
-        prikazi_meni()
-        izbor = input("\nUnesi komandu (1-5): ").strip()
+    moduli = [
+        "Inicijalizacija AI modula za obradu slika",
+        "Uspostavljanje bezbedne konekcije sa serverom",
+        "Učitavanje baze klijenata i ključeva",
+        "Kalibracija vizuelnog interfejsa"
+    ]
+    
+    for modul in moduli:
+        sys.stdout.write(f"\033[38;2;0;255;204m[*]\033[0m \033[97m{modul}...\033[0m")
+        sys.stdout.flush()
+        time.sleep(random.uniform(0.3, 0.8))
+        print(" \033[32m[OK]\033[0m")
         
-        if izbor == "1":
-            print("\n--- KATALOG PAKETA ZA PRODAJU ---")
-            for kljuc, p in PAKETI.items():
-                print(f"[{kljuc}] {p['naziv']} -> {p['cena']}")
-                print(f"    Opis: {p['opis']}")
-            print("-" * 40)
-            
-        elif izbor == "2":
-            print("\n--- MODUL ZA NAPLATU I FAKTURISANJE ---")
-            for kljuc, p in PAKETI.items():
-                print(f" [{kljuc}] {p['naziv']} ({p['cena']})")
-            
-            paket_izbor = input("\nUnesi broj paketa koji klijent kupuje (1-3): ").strip()
-            
-            if paket_izbor in PAKETI:
-                p = PAKETI[paket_izbor]
-                vreme_sada = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                
-                baza = ucitaj_bazu()
-                novi_id = len(baza) + 1
-                
-                transakcija = {
-                    "id": novi_id,
-                    "poslednji_kupac": p['naziv'],
-                    "cena": p['cena'],
-                    "cena_num": p['cena_num'],
-                    "status": "Plaćeno & Automatski isporučeno",
-                    "autor": "Dušan Štiglic",
-                    "vreme": vreme_sada
-                }
-                
-                # 1. Sinhronizacija sa sajtom
-                with open(FAJL_ZA_SAJT, "w", encoding="utf-8") as f_json:
-                    json.dump(transakcija, f_json, ensure_ascii=False, indent=4)
-                
-                # 2. Upis u trajnu bazu
-                baza.append(transakcija)
-                sacuvaj_bazu(baza)
-                
-                # 3. Generisanje zvanične fakture
-                putanja_fakture = generisi_fakturu(transakcija)
-                
-                print(f"\n[USPEH] Transakcija #{novi_id} uspešno procesuirana!")
-                print(f"[PROMET] Naplaćen paket: {p['naziv']} ({p['cena']})")
-                print(f"[FAKTURA] Kreiran dokument: {putanja_fakture}")
-                print(f"[SAJT] Status automatski prosleđen na web sajt.")
-                print(f"Autor sistema: Dušan Štiglic.")
-            else:
-                print("\n[GREŠKA] Nepoznat paket. Izaberi opciju od 1 do 3.")
-                
-        elif izbor == "3":
-            baza = ucitaj_bazu()
-            print(f"\n--- FINANSIJSKI IZVEŠTAJ ---")
-            if not baza:
-                print("Nema zabeleženih prodaja.")
-            else:
-                ukupan_promet = sum(t['cena_num'] for t in baza)
-                print(f"Ukupno prodatih paketa: {len(baza)}")
-                print(f"Ukupan prihod: {ukupan_promet}€\n")
-                print("Lista poslednjih transakcija:")
-                for t in baza[-10:]:
-                    print(f" ID #{t['id']} | {t['vreme']} | {t['poslednji_kupac']} - {t['cena']}")
-            print("-" * 40)
-            
-        elif izbor == "4":
-            baza = ucitaj_bazu()
-            ime_izvestaja = "Izvestaj_Prodaje.txt"
-            ukupan_promet = sum(t['cena_num'] for t in baza) if baza else 0
-            
-            with open(ime_izvestaja, "w", encoding="utf-8") as f:
-                f.write(f"NEXUS OS - ZVANIČNI IZVEŠTAJ O PRODAJI\nAutor: Dušan Štiglic\n")
-                f.write(f"Ukupan prihod: {ukupan_promet}€ | Ukupno prodaja: {len(baza)}\n\n")
-                for t in baza:
-                    f.write(f"ID: #{t['id']} | Paket: {t['poslednji_kupac']} | Cena: {t['cena']} | Vreme: {t['vreme']}\n")
-            
-            print(f"\n[USPEH] Izveštaj uspešno sačuvan u fajl '{ime_izvestaja}'!")
-            
-        elif izbor == "5":
-            print("\nGašenje prodajnog terminala. Srećno sa prodajom, majstore!")
-            sys.exit(0)
+    print("\n\033[90mKompajliranje radnog okruženja:\033[0m")
+    for i in range(1, 101, 2):
+        bar = "█" * (i // 5) + "░" * (20 - (i // 5))
+        sys.stdout.write(f"\r\033[38;2;255;0;127m[{bar}] {i}%\033[0m")
+        sys.stdout.flush()
+        time.sleep(0.015)
+        
+    print("\n\n\033[38;2;0;255;204m[USPEH] NEXUS OS JE SPREMAN ZA RAD.\033[0m")
+    time.sleep(1)
+
+def prikazi_interfejs():
+    """Generiše podeljeni ekran sa menijem i metrikama sistema"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+    # Generisanje uverljivih sistemskih metrika
+    cpu = f"{random.randint(12, 45)}%"
+    ram = f"{random.randint(30, 65)}%"
+    ping = f"{random.randint(8, 24)}ms"
+    
+    print("\033[38;2;0;255;204m")
+    print(" ╔════════════════════════════════════════════════════════════════════════════╗")
+    print(" ║  ███╗   ██╗███████╗██╗  ██╗██╗   ██╗███████╗     ██████╗ ███████╗          ║")
+    print(" ║  ████╗  ██║██╔════╝╚██╗██╔╝██║   ██║██╔════╝    ██╔═══██╗██╔════╝          ║")
+    print(" ║  ██╔██╗ ██║█████╗   ╚███╔╝ ██║   ██║███████╗    ██║   ██║███████╗          ║")
+    print(" ║  ██║╚██╗██║██╔══╝   ██╔██╗ ██║   ██║╚════██║    ██║   ██║╚════██║          ║")
+    print(" ║  ██║ ╚████║███████╗██╔╝ ██╗╚██████╔╝███████║    ╚██████╔╝███████║          ║")
+    print(" ║  ╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝     ╚═════╝ ╚══════╝          ║")
+    print(" ╠════════════════════════════════════════════╦═══════════════════════════════╣")
+    print(" ║  \033[97mKONTROLNI MENI:\033[38;2;0;255;204m                           ║  \033[97mSISTEMSKE METRIKE:\033[38;2;0;255;204m           ║")
+    print(" ║                                            ║                               ║")
+    print(f" ║  \033[38;2;0;255;204m[1]\033[0m \033[97mPokreni Elite AI Foto Modul\033[38;2;0;255;204m           ║  \033[90mCPU Upotreba:\033[0m \033[97m{cpu.ljust(5)}\033[38;2;0;255;204m           ║")
+    print(f" ║  \033[38;2;0;255;204m[2]\033[0m \033[97mEvidentiraj prodaju na sajtu\033[38;2;0;255;204m          ║  \033[90mRAM Memorija:\033[0m \033[97m{ram.ljust(5)}\033[38;2;0;255;204m           ║")
+    print(f" ║  \033[38;2;0;255;204m[3]\033[0m \033[97mKonekcija sa bazom klijenata\033[38;2;0;255;204m          ║  \033[90mServer Ping:\033[0m  \033[97m{ping.ljust(5)}\033[38;2;0;255;204m           ║")
+    print(" ║                                            ║  \033[90mNet Status:\033[0m   \033[32mSECURE\033[38;2;0;255;204m         ║")
+    print(" ║  \033[38;2;255;0;127m[4]\033[0m \033[90mIsključi i dekriptuj sistem\033[38;2;0;255;204m           ║  \033[90mAutor:\033[0m        \033[97mDušan Štiglic\033[38;2;0;255;204m  ║")
+    print(" ╚════════════════════════════════════════════╩═══════════════════════════════╝\033[0m")
+
+def glavni_meni():
+    # Pokrećemo boot sekvencu samo jednom pri paljenju
+    boot_sekvenca()
+    
+    while True:
+        prikazi_interfejs()
+        
+        # Oštra, profesionalna komandna linija
+        izbor = input("\n\033[90m  sys@nexus\033[0m:\033[38;2;0;255;204m~\033[0m$ ")
+        
+        if izbor == '4':
+            animacija_kucanja("\n\033[90m  Zatvaranje sigurnosnih protokola i gašenje sistema...\033[0m", 0.04)
+            time.sleep(1)
+            break
+        elif izbor in ['1', '2', '3']:
+            print(f"\n\033[38;2;0;255;204m  [OK] Inicijalizacija modula '{izbor}'...\033[0m")
+            time.sleep(1.5)
         else:
-            print("\n[GREŠKA] Nepoznata komanda.")
+            print("\n\033[38;2;255;0;127m  [!] Komanda nije prepoznata. Odbijeno.\033[0m")
+            time.sleep(1.5)
 
 if __name__ == "__main__":
-    main()
-    import zipfile
-
-def pripremi_isporuku(transakcija):
-    dir_isporuke = "isporuka_klijentima"
-    if not os.path.exists(dir_isporuke):
-        os.makedirs(dir_isporuke)
-        
-    naziv_zipa = f"{dir_isporuke}/NEXUS_Paket_ID_{transakcija['id']}.zip"
-    
-    # Kreiramo zip fajl i unutra ubacujemo podatke za klijenta
-    with zipfile.ZipFile(naziv_zipa, 'w') as zf:
-        # Možeš da upišeš u zip fajl šta god želiš (npr. uputstvo ili sam kod)
-        Uputstvo_tekst = f"Hvala na kupovini paketa {transakcija['poslednji_kupac']}!\nAutor: Dušan Štiglic\nID: #{transakcija['id']}"
-        zf.writestr("Uputstvo_za_instalaciju.txt", Uputstvo_tekst)
-        
-    print(f"[ISPORUKA] Kreiran paket za preuzimanje: {naziv_zipa}")
-    return naziv_zipa
+    try:
+        glavni_meni()
+    except KeyboardInterrupt:
+        # Sakriva ružne greške ako slučajno ugasiš bot preko Ctrl+C
+        print("\n\n\033[38;2;255;0;127m  [!] Nasilno gašenje detektovano. Terminal isključen.\033[0m")
+        sys.exit()
