@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigacija */
         nav {
             display: flex;
             justify-content: space-between;
@@ -59,35 +58,19 @@
             gap: 10px;
         }
 
-        .status-pill {
-            background: rgba(0, 255, 204, 0.1);
-            border: 1px solid var(--border);
-            padding: 6px 16px;
+        .creator-tag {
+            background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(255,0,127,0.15));
+            border: 1px solid var(--accent);
+            padding: 6px 18px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            color: #fff;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0,255,204,0.2);
         }
+        .creator-tag span { color: var(--accent); font-family: 'Orbitron', sans-serif; }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 15px var(--accent); }
-            100% { transform: scale(0.95); opacity: 0.8; }
-        }
-
-        /* Hero sekcija */
         header {
             text-align: center;
             padding: 80px 20px 40px;
@@ -114,7 +97,6 @@
             font-weight: 300;
         }
 
-        /* Glavni sadržaj i Grid */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -256,25 +238,23 @@
         .card.elite .btn-action { border-color: #ff007f; color: #ff007f; }
         .card.elite .btn-action:hover { background: #ff007f; color: #fff; box-shadow: 0 0 20px var(--pink-glow); }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border-top: 1px solid rgba(255,255,255,0.05);
             background: rgba(2,2,5,0.95);
+            line-height: 1.8;
         }
+        footer span { color: var(--accent); font-weight: 600; }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">⚡ NEXUS OS</div>
-        <div class="status-pill">
-            <div class="status-dot"></div>
-            SYSTEM OPERATIONAL
-        </div>
+        <div class="creator-tag">Kreirao: <span>Dušan Štiglic</span></div>
     </nav>
 
     <header>
@@ -330,9 +310,10 @@
 
     <footer>
         <p>&copy; 2026 NEXUS OS Architecture &bull; All Global Rights Reserved</p>
+        <p>Glavni Inženjer & Tvorac Sistema: <span>Dušan Štiglic</span></p>
     </footer>
 
-    <!-- ULTRA ELITE AI CHAT WIDGET -->
+    <!-- AI CHAT WIDGET -->
     <div id="nexus-chat-container" style="position: fixed; bottom: 35px; right: 35px; z-index: 99999; font-family: 'Plus Jakarta Sans', sans-serif;">
         <div id="nexus-chat-box" style="display: none; width: 380px; height: 520px; background: rgba(10, 10, 16, 0.92); color: #fff; border: 1px solid rgba(0,255,204,0.35); border-radius: 20px; flex-direction: column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.85); backdrop-filter: blur(25px);">
             
@@ -341,28 +322,28 @@
                     <div style="width: 9px; height: 9px; background: #00ffcc; border-radius: 50%; box-shadow: 0 0 10px #00ffcc;"></div>
                     <div>
                         <span style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 13px; color: #fff; letter-spacing: 1px;">NEXUS AI CORE</span>
-                        <div style="font-size: 10px; color: #00ffcc; opacity: 0.8; letter-spacing: 0.5px;">ONLINE // v4.2</div>
+                        <div style="font-size: 10px; color: #00ffcc; opacity: 0.8; letter-spacing: 0.5px;">Tvorac: Dušan Štiglic</div>
                     </div>
                 </div>
                 <div style="display: flex; gap: 14px;">
-                    <button onclick="ocistiChat()" title="Resetuj razgovor" style="background: none; border: none; color: #9494ad; cursor: pointer; font-size: 14px; transition: color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#9494ad'">🗑️</button>
-                    <button onclick="toggleChat()" style="background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1;" title="Zatvori">&times;</button>
+                    <button onclick="ocistiChat()" title="Resetuj razgovor" style="background: none; border: none; color: #9494ad; cursor: pointer; font-size: 14px;">🗑️</button>
+                    <button onclick="toggleChat()" style="background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1;">&times;</button>
                 </div>
             </div>
 
             <div id="nexus-chat-messages" style="flex: 1; padding: 18px; overflow-y: auto; font-size: 13.5px; display: flex; flex-direction: column; gap: 14px; background: rgba(5, 5, 8, 0.6);">
                 <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; line-height: 1.5; color: #e0e0f0;">
-                    Pozdrav šefe! Sistem je podignut na elitni nivo. Možeš me pitati za <b>cene</b>, <b>status</b> sistema ili bilo šta drugo!
+                    Pozdrav! Ovaj moćni sistem je kreirao <b>Dušan Štiglic</b>. Kako mogu da pomognem?
                 </div>
             </div>
 
             <div style="padding: 16px; background: rgba(12, 12, 20, 0.95); display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.06);">
-                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu za AI..." style="flex: 1; background: #020205; border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 12px 16px; border-radius: 10px; outline: none; font-size: 13.5px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#00ffcc'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; padding: 0 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Orbitron', sans-serif; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 0 15px rgba(0,255,204,0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">POŠALJI</button>
+                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu..." style="flex: 1; background: #020205; border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 12px 16px; border-radius: 10px; outline: none; font-size: 13.5px;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
+                <button onclick="posaljiPoruku()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; padding: 0 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Orbitron', sans-serif;">POŠALJI</button>
             </div>
         </div>
 
-        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; width: 70px; height: 70px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,255,204,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 30px rgba(0,255,204,0.6)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,255,204,0.4)'">💬</button>
+        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; width: 70px; height: 70px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,255,204,0.4); display: flex; align-items: center; justify-content: center;">💬</button>
     </div>
 
     <script>
@@ -381,7 +362,7 @@
     function ocistiChat() {
         document.getElementById('nexus-chat-messages').innerHTML = `
             <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; color: #e0e0f0;">
-                Memorija uspešno očišćena. Sistem spreman za nove zadatke.
+                Memorija očišćena. Sistem kreirao Dušan Štiglic.
             </div>`;
     }
 
@@ -391,34 +372,25 @@
         if (!tekst) return;
 
         const msgs = document.getElementById('nexus-chat-messages');
-        
         msgs.innerHTML += `<div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">${tekst}</div>`;
         input.value = '';
         msgs.scrollTop = msgs.scrollHeight;
 
-        const typingId = 'typing-' + Date.now();
-        msgs.innerHTML += `<div id="${typingId}" style="background: rgba(18, 18, 30, 0.85); color: #9494ad; padding: 12px 16px; border-radius: 12px; align-self: flex-start; font-style: italic; font-size: 13px;">AI obrađuje upit...</div>`;
-        msgs.scrollTop = msgs.scrollHeight;
-
         setTimeout(() => {
-            document.getElementById(typingId).remove();
-            
-            let odgovor = "Komanda evidentirana u elitnom jezgru sistema.";
+            let odgovor = "Sistem funkcioniše pod nadzorom autora.";
             const t = tekst.toLowerCase();
 
-            if (t.includes('zdravo') || t.includes('cao') || t.includes('pozdrav')) {
-                odgovor = "Pozdrav, majstore! Ovaj dizajn sada izgleda kao softver od 10.000 evra.";
-            } else if (t.includes('status') || t.includes('kako si')) {
-                odgovor = "⚡ Status: Server stabilan, enkripcija aktivna, sve performanse na maksimumu.";
-            } else if (t.includes('cene') || t.includes('paketi') || t.includes('kolko')) {
-                odgovor = "💰 Elitni paketi: Core Modul (29€), Elite System (69€) i Enterprise VIP (149€).";
-            } else if (t.includes('ko si')) {
-                odgovor = "Ja sam NEXUS AI Core, tvoj lični elitni asistent visoke klase.";
+            if (t.includes('ko je pravio') || t.includes('tvorac') || t.includes('autor')) {
+                odgovor = "Ovaj sajt i celokupni NEXUS OS je kreirao i razvio Dušan Štiglic!";
+            } else if (t.includes('zdravo') || t.includes('cao')) {
+                odgovor = "Pozdrav! Autor ovog sistema je Dušan Štiglic.";
+            } else if (t.includes('cene') || t.includes('paketi')) {
+                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€).";
             }
 
             msgs.innerHTML += `<div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">${odgovor}</div>`;
             msgs.scrollTop = msgs.scrollHeight;
-        }, 700);
+        }, 600);
     }
     </script>
 </body>
