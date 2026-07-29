@@ -50,31 +50,24 @@
         <div class="status-badge">⚡ STATUS: ONLINE &bull; LIVE NA MREŽI</div>
     </div>
 
-    <!-- ========================================== -->
-    <!-- NEXUS OS AI CHAT WIDGET (DOGRADJEN I SIGURAN) -->
-    <!-- ========================================== -->
+    <!-- AI CHAT WIDGET -->
     <div id="nexus-chat-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; font-family: 'Segoe UI', sans-serif;">
-        <!-- Chat Prozor -->
         <div id="nexus-chat-box" style="display: none; width: 340px; height: 450px; background: #0c0c12; color: #fff; border: 2px solid #00ffcc; border-radius: 14px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8);">
-            <!-- Zaglavlje chata -->
             <div style="background: #14141f; padding: 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222233;">
                 <span style="font-weight: bold; color: #00ffcc; font-size: 15px;">🤖 NEXUS AI Core</span>
                 <button onclick="toggleChat()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 20px; font-weight: bold;">&times;</button>
             </div>
-            <!-- Poruke -->
             <div id="nexus-chat-messages" style="flex: 1; padding: 14px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px; background: #08080c;">
                 <div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">
                     Pozdrav! Ja sam NEXUS AI. Sistem je spreman i sve komponente rade savršeno.
                 </div>
             </div>
-            <!-- Input polje -->
             <div style="padding: 12px; background: #14141f; display: flex; gap: 8px; border-top: 1px solid #222233;">
                 <input type="text" id="nexus-chat-input" placeholder="Unesi komandu ili poruku..." style="flex: 1; background: #050508; border: 1px solid #33334d; color: #fff; padding: 10px; border-radius: 8px; outline: none; font-size: 14px;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: #00ffcc; color: #000; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#00cca3'" onmouseout="this.style.background='#00ffcc'">Pošalji</button>
+                <button onclick="posaljiPoruku()" style="background: #00ffcc; color: #000; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer;">Pošalji</button>
             </div>
         </div>
-        <!-- Plutajuće dugme -->
-        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; color: #000; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,255,204,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; color: #000; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,255,204,0.5); display: flex; align-items: center; justify-content: center;">💬</button>
     </div>
 
     <script>
@@ -96,33 +89,22 @@
         if (!poruka) return;
 
         const msgs = document.getElementById('nexus-chat-messages');
-        
-        // Prikaz korisnikove poruke
         msgs.innerHTML += `<div style="background: #005f56; color: #fff; padding: 10px 14px; border-radius: 8px; align-self: flex-end; max-width: 85%;">${poruka}</div>`;
         input.value = '';
         msgs.scrollTop = msgs.scrollHeight;
 
-        // Simulacija inteligentnog AI odgovora
         setTimeout(() => {
-            let odgovor = "Komanda primljena. NEXUS OS izvršava zadatak u pozadini.";
+            let odgovor = "Komanda primljena. NEXUS OS izvršava zadatak.";
             const pL = poruka.toLowerCase();
-            
-            if (pL.includes('zdravo') || pL.includes('cao') || pL.includes('pozdrav')) {
-                odgovor = "Pozdrav, majstore! Drago mi je da je NEXUS OS živ i spreman za akciju.";
-            } else if (pL.includes('status') || pL.includes('kako si')) {
-                odgovor = "Sve komponente sistema rade na 100%. GitHub Pages sinhronizovan, AI Core aktivan.";
-            } else if (pL.includes('pomoć') || pL.includes('help')) {
-                odgovor = "Možeš me pitati za 'status', reći 'zdravo', ili zadati bilo koju sistemsku komandu!";
-            } else if (pL.includes('ko si ti')) {
-                odgovor = "Ja sam NEXUS AI, tvoj lični autonomni operativni sistem i virtuelni asistent.";
+            if (pL.includes('zdravo') || pL.includes('cao')) {
+                odgovor = "Pozdrav, majstore! Sve radi besprekorno.";
+            } else if (pL.includes('status')) {
+                odgovor = "Status: Online, sve komponente rade.";
             }
-            
             msgs.innerHTML += `<div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">${odgovor}</div>`;
             msgs.scrollTop = msgs.scrollHeight;
         }, 500);
     }
     </script>
-    <!-- KRAJ AI CHAT WIDGETA -->
-
 </body>
 </html>
