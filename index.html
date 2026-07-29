@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXOS OS // Produkcija & Automatska Isporuka Programa</title>
+    <title>NEXUS OS // Enterprise Core & AI Architecture</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #020205;
-            --surface: rgba(12, 12, 20, 0.75);
-            --surface-hover: rgba(18, 18, 30, 0.85);
-            --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.25);
-            --pink-glow: rgba(255, 0, 127, 0.25);
-            --border: rgba(0, 255, 204, 0.2);
+            --bg-deep: #05050A;
+            --surface: rgba(15, 15, 25, 0.8);
+            --surface-hover: rgba(25, 25, 40, 0.9);
+            --accent: #00ffff;
+            --accent-glow: rgba(0, 255, 255, 0.3);
+            --pink: #ff007f;
+            --pink-glow: rgba(255, 0, 127, 0.3);
+            --border: rgba(0, 255, 255, 0.15);
             --text-main: #ffffff;
             --text-muted: #9494ad;
         }
@@ -23,249 +24,254 @@
         body {
             background-color: var(--bg-deep);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(0, 255, 204, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(255, 0, 127, 0.06) 0%, transparent 45%);
+                radial-gradient(circle at 10% 10%, rgba(0, 255, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(255, 0, 127, 0.05) 0%, transparent 40%);
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            letter-spacing: 0.3px;
         }
 
+        /* --- ZAGLAVLJE & NAVIGACIJA --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(2, 2, 5, 0.8);
-            backdrop-filter: blur(20px);
+            padding: 15px 5%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo {
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand-name {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
             font-size: 1.5rem;
             letter-spacing: 2px;
-            color: var(--accent);
-            text-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .creator-tag {
-            background: linear-gradient(135deg, rgba(0,255,204,0.15), rgba(255,0,127,0.15));
-            border: 1px solid var(--accent);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
             color: #fff;
-            letter-spacing: 1px;
-            box-shadow: 0 0 15px rgba(0,255,204,0.2);
         }
-        .creator-tag span { color: var(--accent); font-family: 'Orbitron', sans-serif; }
+        .brand-name span { color: var(--accent); }
 
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* --- GLAVNI DEO --- */
         header {
             text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 900px;
+            padding: 60px 20px 40px;
+            max-width: 800px;
             margin: 0 auto;
         }
-
         header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.8rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 20%, var(--accent) 100%);
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #fff, var(--accent), #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(0,255,204,0.2);
         }
+        header p { color: var(--text-muted); font-size: 1.1rem; font-weight: 300; }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            line-height: 1.6;
-            font-weight: 300;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; flex: 1; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            flex: 1;
-            width: 100%;
-        }
-
-        /* LIVE STATUS TRAKA */
+        /* --- LIVE STATUS BAR --- */
         .live-status-bar {
-            background: rgba(0, 255, 204, 0.05);
-            border: 1px solid rgba(0, 255, 204, 0.25);
-            border-radius: 12px;
-            padding: 16px 25px;
+            background: rgba(0, 255, 255, 0.04);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 12px 25px;
             margin-bottom: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #e0e0f0;
-            box-shadow: 0 0 20px rgba(0,255,204,0.1);
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px rgba(0,255,255,0.1);
         }
-        .live-status-bar b { color: var(--accent); font-family: 'Orbitron', sans-serif; }
+        .live-status-bar b { color: var(--accent); }
 
+        /* --- METRIKE (Vizuelizacija) --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .metric-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        .metric-value { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--accent); margin-bottom: 5px; }
+        .metric-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- KARTICE PAKETA (Redizajnirane) --- */
         .section-header {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
             gap: 15px;
             color: #fff;
+            text-transform: uppercase;
         }
-        .section-header span { color: var(--accent); }
+        .section-header span { color: var(--pink); font-size: 2rem; line-height: 0; }
 
-        .grid {
+        .package-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
-            margin-bottom: 60px;
         }
-
-        .card {
+        .pkg-card {
             background: var(--surface);
-            backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 40px 35px;
+            padding: 40px;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
         }
-
-        .card:hover {
-            transform: translateY(-8px);
+        .pkg-card:hover {
             border-color: var(--accent);
-            box-shadow: 0 30px 60px var(--accent-glow);
-            background: var(--surface-hover);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transform: translateY(-5px);
         }
+        .pkg-card.elite {
+            border-color: var(--pink);
+            background: linear-gradient(180deg, rgba(255, 0, 127, 0.05) 0%, rgba(15, 15, 25, 0.8) 100%);
+        }
+        .pkg-card.elite:hover { box-shadow: 0 15px 40px var(--pink-glow); }
 
-        .card.elite {
-            border-color: rgba(255, 0, 127, 0.4);
-            background: linear-gradient(180deg, rgba(255,0,127,0.06) 0%, rgba(12,12,20,0.85) 100%);
-        }
-        .card.elite:hover {
-            border-color: #ff007f;
-            box-shadow: 0 30px 60px var(--pink-glow);
-        }
-
-        .card-badge {
+        .pkg-badge {
             position: absolute;
-            top: -12px;
+            top: -15px;
             right: 30px;
             background: var(--accent);
-            color: #020205;
+            color: #05050A;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
+            font-weight: 900;
+            padding: 6px 15px;
+            border-radius: 50px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .card.elite .card-badge { background: #ff007f; color: #fff; }
+        .pkg-card.elite .pkg-badge { background: var(--pink); color: #fff; }
 
-        .card h3 {
+        .pkg-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; color: #fff; margin-bottom: 10px; }
+        .pkg-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; flex: 1; }
+        .pkg-price {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        .price-box {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 900;
+            font-size: 3rem;
             color: var(--accent);
             margin-bottom: 25px;
-            display: flex;
-            align-items: baseline;
-            gap: 5px;
         }
-        .price-box span { font-size: 1rem; color: var(--text-muted); font-weight: 400; font-family: 'Plus Jakarta Sans', sans-serif; }
-        .card.elite .price-box { color: #ff007f; }
+        .pkg-price span { font-size: 1rem; color: var(--text-muted); font-family: 'Plus Jakarta Sans', sans-serif; }
+        .pkg-card.elite .pkg-price { color: var(--pink); }
 
-        .features {
-            list-style: none;
-            margin-bottom: 30px;
-            flex: 1;
-        }
-        .features li {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .features li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-        .card.elite .features li::before { color: #ff007f; }
-
-        .btn-action {
+        .btn-order {
             width: 100%;
             background: transparent;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
             color: var(--accent);
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            padding: 14px;
+            font-size: 0.9rem;
+            padding: 18px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             letter-spacing: 1px;
-            font-size: 0.9rem;
         }
-        .btn-action:hover {
+        .btn-order:hover {
             background: var(--accent);
-            color: #020205;
+            color: #05050A;
             box-shadow: 0 0 20px var(--accent-glow);
         }
-        .card.elite .btn-action { border-color: #ff007f; color: #ff007f; }
-        .card.elite .btn-action:hover { background: #ff007f; color: #fff; box-shadow: 0 0 20px var(--pink-glow); }
+        .pkg-card.elite .btn-order { border-color: var(--pink); color: var(--pink); }
+        .pkg-card.elite .btn-order:hover { background: var(--pink); color: #fff; box-shadow: 0 0 20px var(--pink-glow); }
 
+        /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            background: rgba(2,2,5,0.95);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            background: rgba(5, 5, 10, 0.95);
+            margin-top: auto;
+        }
+        footer b { color: var(--accent); }
+        
+        /* --- AI CHAT WIDGET --- */
+        #nexus-chat-container { position: fixed; bottom: 35px; right: 35px; z-index: 99999; font-family: 'Plus Jakarta Sans', sans-serif; }
+        #nexus-chat-box {
+            display: none; width: 390px; height: 550px; background: rgba(12, 12, 20, 0.95); color: #fff;
+            border: 1px solid var(--border); border-radius: 20px; flex-direction: column; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+        }
+        #nexus-chat-messages {
+            flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
+            background: radial-gradient(circle at center, rgba(25, 25, 40, 0.2) 0%, transparent 70%);
+        }
+        #nexus-chat-input {
+            flex: 1; background: #05050A; border: 1px solid rgba(255,255,255,0.1); color: #fff;
+            padding: 12px 16px; border-radius: 10px; outline: none; font-size: 13.5px;
+        }
+        #nexus-chat-toggle {
+            background: linear-gradient(135deg, var(--accent), #00b386); color: #05050A; border: none; width: 70px; height: 70px;
+            border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 10px 30px var(--accent-glow); display: flex;
+            align-items: center; justify-content: center;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">⚡ NEXUS OS</div>
-        <div class="creator-tag">Autor: <span>Dušan Štiglic</span></div>
+        <div class="logo-area">
+            <!-- TVOJA NOVA SLIKA LOGOA -->
+            <img src="logo.png" alt="NEXUS OS Logo" style="height: 55px; filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); object-fit: contain;">
+            
+            <div>
+                <div class="brand-name">NEXUS<span>.OS</span></div>
+            </div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="active">DASHBOARD</a>
+            <a href="#">MODULI</a>
+            <a href="#">PRODAJA</a>
+        </div>
     </nav>
 
     <header>
@@ -275,92 +281,85 @@
 
     <div class="container">
         
-        <!-- LIVE VEZA SA TERMINALOM -->
         <div class="live-status-bar" id="live-banner">
             <div>🟢 <b>SYSTEM LINK:</b> Izaberi paket i preuzmi svoj program direktno sa sajta...</div>
             <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Sistem spreman za prodaju</div>
         </div>
 
+        <!-- METRIKE SISTEMA -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">99.9%</div>
+                <div class="metric-label">UPTIME SISTEMA</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">0.4ms</div>
+                <div class="metric-label">AI LATENCIJA</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">ACTIVE</div>
+                <div class="metric-label">NEXUS MREŽA</div>
+            </div>
+        </div>
+
         <div class="section-header"><span>//</span> ARHITEKTURA I CENE PAKETA</div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>CORE MODULE</h3>
-                <div class="card-desc">Osnovno rešenje za stabilan start na mreži sa punom optimizacijom.</div>
-                <div class="price-box">29€ <span>/ jednokratno</span></div>
-                <ul class="features">
-                    <li>Inicijalizacija čiste arhitekture</li>
-                    <li>Git repozitorijum i brzi deploy</li>
-                    <li>Optimizacija za sve uređaje</li>
-                    <li>Standardna tehnička podrška</li>
-                </ul>
-                <button class="btn-action" onclick="naruciProgramSaSajta('Core Modul', 29)">NARUČI ODMAH</button>
+        <div class="package-grid">
+            <div class="pkg-card">
+                <h3 class="pkg-title">CORE MODULE</h3>
+                <div class="pkg-desc">Osnovno rešenje za stabilan start na mreži sa punom optimizacijom.</div>
+                <div class="pkg-price">29€ <span>/ jednokratno</span></div>
+                <button class="btn-order" onclick="naruciProgramSaSajta('Core Modul', 29)">NARUČI ODMAH</button>
             </div>
 
-            <div class="card elite">
-                <div class="card-badge">PREPORUČENO</div>
-                <h3>ELITE SYSTEM</h3>
-                <div class="card-desc">Kompletan sistem sa staklenim efektima, karticama i ugrađenim AI asistentom.</div>
-                <div class="price-box">69€ <span>/ komplet</span></div>
-                <ul class="features">
-                    <li>Sve karakteristike Core modula</li>
-                    <li>Glassmorphism cyberpunk dizajn</li>
-                    <li>Napredne sistemske metrike</li>
-                    <li>Ugrađeni NEXUS AI Core asistent</li>
-                </ul>
-                <button class="btn-action" onclick="naruciProgramSaSajta('Elite System', 69)">NARUČI ODMAH</button>
+            <div class="pkg-card elite">
+                <div class="pkg-badge">PREPORUČENO</div>
+                <h3 class="pkg-title">ELITE SYSTEM</h3>
+                <div class="pkg-desc">Kompletan sistem sa staklenim efektima, karticama i ugrađenim AI asistentom.</div>
+                <div class="pkg-price">69€ <span>/ komplet</span></div>
+                <button class="btn-order" onclick="naruciProgramSaSajta('Elite System', 69)">NARUČI ODMAH</button>
             </div>
 
-            <div class="card">
-                <h3>ENTERPRISE VIP</h3>
-                <div class="card-desc">Maksimalne performanse, custom skripte, baze podataka i višekorisnički pristup.</div>
-                <div class="price-box">149€ <span>/ custom</span></div>
-                <ul class="features">
-                    <li>Potpuno prilagođen kod i baze</li>
-                    <li>Napredna sigurnost i enkripcija</li>
-                    <li>Autonomne pozadinske skripte</li>
-                    <li>24/7 VIP inženjerska podrška</li>
-                </ul>
-                <button class="btn-action" onclick="naruciProgramSaSajta('Enterprise VIP', 149)">NARUČI ODMAH</button>
+            <div class="pkg-card">
+                <h3 class="pkg-title">ENTERPRISE VIP</h3>
+                <div class="pkg-desc">Maksimalne performanse, custom skripte, baze podataka i višekorisnički pristup.</div>
+                <div class="pkg-price">149€ <span>/ custom</span></div>
+                <button class="btn-order" onclick="naruciProgramSaSajta('Enterprise VIP', 149)">NARUČI ODMAH</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 NEXUS OS Architecture &bull; Kreirao: Dušan Štiglic &bull; All Rights Reserved</p>
+        <p>&copy; 2026 NEXUS OS Architecture &bull; KREIRAO: <b>DUŠAN ŠTIGLIC</b> &bull; Sva prava zadržana</p>
     </footer>
 
     <!-- AI CHAT WIDGET -->
-    <div id="nexus-chat-container" style="position: fixed; bottom: 35px; right: 35px; z-index: 99999; font-family: 'Plus Jakarta Sans', sans-serif;">
-        <div id="nexus-chat-box" style="display: none; width: 380px; height: 520px; background: rgba(10, 10, 16, 0.92); color: #fff; border: 1px solid rgba(0,255,204,0.35); border-radius: 20px; flex-direction: column; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.85); backdrop-filter: blur(25px);">
-            
-            <div style="background: rgba(15, 15, 25, 0.95); padding: 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06);">
+    <div id="nexus-chat-container">
+        <div id="nexus-chat-box">
+            <div style="background: rgba(15, 15, 25, 0.95); padding: 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 255, 255, 0.15);">
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 9px; height: 9px; background: #00ffcc; border-radius: 50%; box-shadow: 0 0 10px #00ffcc;"></div>
+                    <div style="width: 10px; height: 10px; background: #00ffff; border-radius: 50%; box-shadow: 0 0 10px #00ffff;"></div>
                     <div>
-                        <span style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 13px; color: #fff; letter-spacing: 1px;">NEXUS AI CORE</span>
-                        <div style="font-size: 10px; color: #00ffcc; opacity: 0.8; letter-spacing: 0.5px;">Autor: Dušan Štiglic</div>
+                        <div style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 14px; color: #fff; letter-spacing: 1px;">NEXUS AI CORE</div>
+                        <div style="font-size: 10px; color: #00ffff; opacity: 0.8; letter-spacing: 0.5px;">Autor: Dušan Štiglic</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 14px;">
-                    <button onclick="ocistiChat()" title="Resetuj razgovor" style="background: none; border: none; color: #9494ad; cursor: pointer; font-size: 14px;">🗑️</button>
-                    <button onclick="toggleChat()" style="background: none; border: none; color: #fff; font-size: 22px; cursor: pointer; line-height: 1;">&times;</button>
+                <button onclick="toggleChat()" style="background: none; border: none; color: #fff; font-size: 24px; cursor: pointer;">&times;</button>
+            </div>
+            
+            <div id="nexus-chat-messages">
+                <div style="background: rgba(25, 25, 40, 0.8); border: 1px solid rgba(0,255,255,0.15); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffff; color: #e0e0f0; font-size: 13.5px; line-height: 1.5;">
+                    Pozdrav! Ovaj elitni sistem je razvio <b>Dušan Štiglic</b>. Naruči program preko dugmadi na sajtu ili pitaj šta god želiš!
                 </div>
             </div>
 
-            <div id="nexus-chat-messages" style="flex: 1; padding: 18px; overflow-y: auto; font-size: 13.5px; display: flex; flex-direction: column; gap: 14px; background: rgba(5, 5, 8, 0.6);">
-                <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; line-height: 1.5; color: #e0e0f0;">
-                    Pozdrav! Ovaj moćni sistem je razvio <b>Dušan Štiglic</b>. Naruči program preko dugmadi na sajtu ili pitaj šta god želiš!
-                </div>
-            </div>
-
-            <div style="padding: 16px; background: rgba(12, 12, 20, 0.95); display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.06);">
-                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu..." style="flex: 1; background: #020205; border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 12px 16px; border-radius: 10px; outline: none; font-size: 13.5px;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; padding: 0 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Orbitron', sans-serif;">POŠALJI</button>
+            <div style="padding: 15px; background: rgba(15, 15, 25, 0.95); display: flex; gap: 10px; border-top: 1px solid rgba(0,255,255,0.15);">
+                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu..." onkeypress="if(event.key === 'Enter') posaljiPoruku();">
+                <button onclick="posaljiPoruku()" style="background: var(--accent); color: #05050A; border: none; padding: 0 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Orbitron', sans-serif;">POŠALJI</button>
             </div>
         </div>
 
-        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: linear-gradient(135deg, #00ffcc, #00b386); color: #020205; border: none; width: 70px; height: 70px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 10px 30px rgba(0,255,204,0.4); display: flex; align-items: center; justify-content: center;">💬</button>
+        <button id="nexus-chat-toggle" onclick="toggleChat()">💬</button>
     </div>
 
     <script>
@@ -373,7 +372,7 @@
                     const transId = podaci.id ? `#${podaci.id}` : `#PROD-01`;
                     document.getElementById('live-banner').innerHTML = `
                         <div>⚡ <b>POSLEDNJA ISPORUKA:</b> ${podaci.poslednji_kupac} (${podaci.cena})</div>
-                        <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID ${transId} | ${podaci.status || 'Isporučeno'} [${podaci.vreme || ''}]</div>
+                        <div id="live-detalji" style="font-size: 0.85rem; color: #00ffff;">ID ${transId} | ${podaci.status || 'Isporučeno'} [${podaci.vreme || ''}]</div>
                     `;
                 }
             }
@@ -382,14 +381,13 @@
     setInterval(proveriLiveTransakcije, 3000);
     proveriLiveTransakcije();
 
-    // STABILNA ISPORUKA IZVRŠNOG PROGRAMA (.PY FAJL)
     function naruciProgramSaSajta(nazivPaketa, cenaPaketa) {
         const vremeSada = new Date().toISOString().slice(0, 19).replace('T', ' ');
         const idTransakcije = Math.floor(Math.random() * 9000) + 1000;
 
         document.getElementById('live-banner').innerHTML = `
             <div>⚡ <b>PROGRAM ISPORUČEN KLIJENTU:</b> ${nazivPaketa} (${cenaPaketa}€)</div>
-            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: Izvršni modul uspešno preuzet [${vremeSada}]</div>
+            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffff;">ID #${idTransakcije} | Status: Izvršni modul uspešno preuzet [${vremeSada}]</div>
         `;
 
         const pythonSkripta = `# ==========================================
@@ -401,7 +399,6 @@
 # ==========================================
 
 import time
-import sys
 
 print("Inicijalizacija sistema za: ${nazivPaketa}...")
 time.sleep(1)
@@ -423,8 +420,8 @@ input("Pritisnite ENTER za izlaz...")
 
         const msgs = document.getElementById('nexus-chat-messages');
         msgs.innerHTML += `
-            <div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">Naručio sam: ${nazivPaketa}</div>
-            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">[USPEŠNA ISPORUKA] Vaš programski fajl (**NEXUS_...py**) je uspešno preuzet na uređaj i spreman za pokretanje! Autor: Dušan Štiglic.</div>
+            <div style="background: rgba(0, 255, 255, 0.1); border: 1px solid rgba(0, 255, 255, 0.2); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%; font-size: 13.5px;">Naručio sam: ${nazivPaketa}</div>
+            <div style="background: rgba(25, 25, 40, 0.8); border: 1px solid rgba(0,255,255,0.15); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffff; max-width: 85%; line-height: 1.5; font-size: 13.5px;">[USPEŠNA ISPORUKA] Vaš programski fajl je uspešno preuzet na uređaj i spreman za pokretanje! Autor: Dušan Štiglic.</div>
         `;
         msgs.scrollTop = msgs.scrollHeight;
     }
@@ -441,20 +438,13 @@ input("Pritisnite ENTER za izlaz...")
         }
     }
 
-    function ocistiChat() {
-        document.getElementById('nexus-chat-messages').innerHTML = `
-            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; color: #e0e0f0;">
-                Memorija očišćena. Autor: Dušan Štiglic.
-            </div>`;
-    }
-
     function posaljiPoruku() {
         const input = document.getElementById('nexus-chat-input');
         const tekst = input.value.trim();
         if (!tekst) return;
 
         const msgs = document.getElementById('nexus-chat-messages');
-        msgs.innerHTML += `<div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">${tekst}</div>`;
+        msgs.innerHTML += `<div style="background: rgba(0, 255, 255, 0.1); border: 1px solid rgba(0, 255, 255, 0.2); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%; font-size: 13.5px;">${tekst}</div>`;
         input.value = '';
         msgs.scrollTop = msgs.scrollHeight;
 
@@ -462,13 +452,13 @@ input("Pritisnite ENTER za izlaz...")
             let odgovor = "Komanda evidentirana u sistemu.";
             const t = tekst.toLowerCase();
 
-            if (t.includes('ko je pravio') || t.includes('tvorac') || t.includes('autor')) {
+            if (t.includes('ko je') || t.includes('tvorac') || t.includes('autor')) {
                 odgovor = "Ovaj sajt i celokupni NEXUS OS sistem je kreirao i razvio Dušan Štiglic!";
             } else if (t.includes('cene') || t.includes('paketi')) {
-                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€). Možeš ih naručiti direktno klikom na dugme!";
+                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€).";
             }
 
-            msgs.innerHTML += `<div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">${odgovor}</div>`;
+            msgs.innerHTML += `<div style="background: rgba(25, 25, 40, 0.8); border: 1px solid rgba(0,255,255,0.15); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffff; max-width: 85%; line-height: 1.5; font-size: 13.5px;">${odgovor}</div>`;
             msgs.scrollTop = msgs.scrollHeight;
         }, 600);
     }
