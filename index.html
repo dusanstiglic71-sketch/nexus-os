@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS OS // Enterprise Command Center</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Stiglic Studioć // Elite Video Production & Editing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep: #030307;
-            --surface: rgba(13, 13, 22, 0.75);
+            --bg-obsidian: #030307;
+            --surface-glass: rgba(13, 13, 22, 0.75);
             --surface-hover: rgba(20, 20, 35, 0.9);
-            --accent: #00ffcc;
-            --accent-glow: rgba(0, 255, 204, 0.25);
-            --pink: #ff007f;
-            --pink-glow: rgba(255, 0, 127, 0.25);
-            --border: rgba(0, 255, 204, 0.2);
-            --text-main: #ffffff;
-            --text-muted: #9494ad;
+            --accent-cyan: #00ffcc;
+            --accent-cyan-glow: rgba(0, 255, 204, 0.25);
+            --accent-pink: #ff007f;
+            --accent-pink-glow: rgba(255, 0, 127, 0.25);
+            --border-glow: rgba(0, 255, 204, 0.2);
+            --text-main: #f3f3f8;
+            --text-muted: #8c8cbe;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: var(--bg-obsidian);
             background-image: 
                 radial-gradient(circle at 10% 10%, rgba(0, 255, 204, 0.06) 0%, transparent 45%),
                 radial-gradient(circle at 90% 90%, rgba(255, 0, 127, 0.05) 0%, transparent 45%);
@@ -34,77 +34,85 @@
             overflow-x: hidden;
         }
 
-        /* --- ZAGLAVLJE & NAVIGACIJA --- */
+        /* --- SKUPA TOP NAVIGACIJA --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 18px 6%;
             background: rgba(3, 3, 7, 0.9);
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        .logo-area {
+        .brand-group {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 14px;
         }
 
-        .brand-name {
+        .brand-logo-box {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, rgba(0,255,204,0.1), rgba(255,0,127,0.1));
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px var(--accent-cyan-glow);
+            font-size: 1.2rem;
+        }
+
+        .brand-title {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 1.4rem;
+            font-size: 1.35rem;
             letter-spacing: 2px;
             color: #fff;
         }
-        .brand-name span { color: var(--accent); }
+        .brand-title span { color: var(--accent-cyan); text-shadow: 0 0 12px var(--accent-cyan-glow); }
 
         .nav-links {
             display: flex;
             gap: 30px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
         }
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
             transition: all 0.3s ease;
-            position: relative;
             cursor: pointer;
             padding: 5px 0;
+            position: relative;
         }
         .nav-links a:hover, .nav-links a.active {
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent-glow);
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan-glow);
         }
         .nav-links a.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
+            bottom: -2px; left: 0; width: 100%; height: 2px;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
         }
 
-        /* --- SEKCIJE (TAB SISTEM) --- */
+        /* --- TAB SISTEM --- */
         .tab-content {
             display: none;
             flex: 1;
             animation: fadeIn 0.4s ease-in-out;
         }
-        .tab-content.active {
-            display: block;
-        }
+        .tab-content.active { display: block; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -116,14 +124,15 @@
         }
         header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             margin-bottom: 15px;
-            background: linear-gradient(135deg, #fff 20%, var(--accent) 100%);
+            background: linear-gradient(135deg, #fff 20%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
-        header p { color: var(--text-muted); font-size: 1.1rem; font-weight: 300; }
+        header p { color: var(--text-muted); font-size: 1.05rem; font-weight: 300; line-height: 1.6; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 20px 20px 60px; }
 
@@ -131,7 +140,7 @@
         .live-status-bar {
             background: rgba(0, 255, 204, 0.04);
             border: 1px solid rgba(0, 255, 204, 0.2);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 16px 25px;
             margin-bottom: 40px;
             display: flex;
@@ -140,11 +149,11 @@
             font-size: 0.9rem;
             color: #e0e0f0;
             font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 0 20px rgba(0,255,204,0.08);
+            box-shadow: 0 0 20px rgba(0,255,204,0.06);
         }
-        .live-status-bar b { color: var(--accent); }
+        .live-status-bar b { color: var(--accent-cyan); }
 
-        /* --- METRIKE --- */
+        /* --- METRIKE / STATS --- */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,29 +161,28 @@
             margin-bottom: 40px;
         }
         .metric-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--surface-glass);
+            border: 1px solid var(--border-glow);
             border-radius: 18px;
             padding: 30px;
             text-align: center;
             backdrop-filter: blur(15px);
         }
-        .metric-value { font-family: 'Orbitron', sans-serif; font-size: 2.8rem; color: var(--accent); margin-bottom: 8px; }
+        .metric-value { font-family: 'Orbitron', sans-serif; font-size: 2.6rem; color: var(--accent-cyan); margin-bottom: 8px; }
         .metric-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; }
 
-        /* --- KARTICE / MODULI --- */
+        /* --- KARTICE / USLUGE MONTAŽE --- */
         .section-header {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
             gap: 15px;
             color: #fff;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .section-header span { color: var(--accent); }
+        .section-header span { color: var(--accent-cyan); }
 
         .package-grid {
             display: grid;
@@ -182,19 +190,19 @@
             gap: 30px;
         }
         .pkg-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--surface-glass);
+            border: 1px solid var(--border-glow);
             border-radius: 20px;
             padding: 40px;
             position: relative;
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(15px);
         }
         .pkg-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px var(--accent-glow);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px var(--accent-cyan-glow);
             transform: translateY(-5px);
             background: var(--surface-hover);
         }
@@ -202,43 +210,42 @@
             border-color: rgba(255, 0, 127, 0.4);
             background: linear-gradient(180deg, rgba(255, 0, 127, 0.05) 0%, rgba(13, 13, 22, 0.85) 100%);
         }
-        .pkg-card.elite:hover { border-color: var(--pink); box-shadow: 0 20px 40px var(--pink-glow); }
+        .pkg-card.elite:hover { border-color: var(--accent-pink); box-shadow: 0 20px 40px var(--accent-pink-glow); }
 
         .pkg-badge {
             position: absolute;
-            top: -14px;
-            right: 30px;
-            background: var(--accent);
+            top: -14px; right: 30px;
+            background: var(--accent-cyan);
             color: #030307;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 900;
             padding: 5px 14px;
             border-radius: 20px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
-        .pkg-card.elite .pkg-badge { background: var(--pink); color: #fff; }
+        .pkg-card.elite .pkg-badge { background: var(--accent-pink); color: #fff; }
 
-        .pkg-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; color: #fff; margin-bottom: 12px; }
+        .pkg-title { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; color: #fff; margin-bottom: 12px; }
         .pkg-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; flex: 1; line-height: 1.5; }
         .pkg-price {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
-            color: var(--accent);
+            font-size: 2.6rem;
+            color: var(--accent-cyan);
             margin-bottom: 25px;
         }
-        .pkg-price span { font-size: 0.95rem; color: var(--text-muted); font-family: 'Plus Jakarta Sans', sans-serif; }
-        .pkg-card.elite .pkg-price { color: var(--pink); }
+        .pkg-price span { font-size: 0.9rem; color: var(--text-muted); font-family: 'Plus Jakarta Sans', sans-serif; }
+        .pkg-card.elite .pkg-price { color: var(--accent-pink); }
 
         .btn-order {
             width: 100%;
             background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             padding: 16px;
             border-radius: 12px;
             cursor: pointer;
@@ -246,27 +253,27 @@
             letter-spacing: 1px;
         }
         .btn-order:hover {
-            background: var(--accent);
+            background: var(--accent-cyan);
             color: #030307;
-            box-shadow: 0 0 20px var(--accent-glow);
+            box-shadow: 0 0 20px var(--accent-cyan-glow);
         }
-        .pkg-card.elite .btn-order { border-color: var(--pink); color: var(--pink); }
-        .pkg-card.elite .btn-order:hover { background: var(--pink); color: #fff; box-shadow: 0 0 20px var(--pink-glow); }
+        .pkg-card.elite .btn-order { border-color: var(--accent-pink); color: var(--accent-pink); }
+        .pkg-card.elite .btn-order:hover { background: var(--accent-pink); color: #fff; box-shadow: 0 0 20px var(--accent-pink-glow); }
 
-        /* --- PRODAJA TAB STILOVI --- */
+        /* --- PORTAL ZA NARUDŽBINE / KLIJENTE --- */
         .sales-panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            background: var(--surface-glass);
+            border: 1px solid var(--border-glow);
             border-radius: 20px;
             padding: 40px;
             max-width: 700px;
-            margin: 40px auto;
+            margin: 0 auto;
             backdrop-filter: blur(20px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
         .sales-panel h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 25px;
             color: #fff;
         }
@@ -284,13 +291,13 @@
             transition: all 0.3s ease;
         }
         .form-control:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-cyan-glow);
         }
         .form-label {
             display: block;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 8px;
             letter-spacing: 1px;
@@ -306,295 +313,147 @@
             background: rgba(3, 3, 7, 0.95);
             margin-top: auto;
         }
-        footer b { color: var(--accent); font-family: 'Orbitron', sans-serif; }
-
-        /* --- AI CHAT WIDGET --- */
-        #nexus-chat-container { position: fixed; bottom: 35px; right: 35px; z-index: 99999; font-family: 'Plus Jakarta Sans', sans-serif; }
-        #nexus-chat-box {
-            display: none; width: 390px; height: 550px; background: rgba(13, 13, 22, 0.95); color: #fff;
-            border: 1px solid var(--border); border-radius: 20px; flex-direction: column; overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8); backdrop-filter: blur(25px);
-        }
-        #nexus-chat-messages {
-            flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px;
-            background: rgba(3, 3, 7, 0.4);
-        }
-        #nexus-chat-input {
-            flex: 1; background: #030307; border: 1px solid rgba(255,255,255,0.1); color: #fff;
-            padding: 12px 16px; border-radius: 10px; outline: none; font-size: 13.5px;
-        }
-        #nexus-chat-toggle {
-            background: linear-gradient(135deg, var(--accent), #00b386); color: #030307; border: none; width: 70px; height: 70px;
-            border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 10px 30px var(--accent-glow); display: flex;
-            align-items: center; justify-content: center;
-        }
+        footer b { color: var(--accent-cyan); font-family: 'Orbitron', sans-serif; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo-area">
-            <img src="logo.png" alt="NEXUS OS Logo" style="height: 50px; filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); object-fit: contain;">
-            <div class="brand-name">NEXUS<span>.OS</span></div>
+        <div class="brand-group">
+            <div class="brand-logo-box">🎬</div>
+            <div class="brand-title">STIGLIC<span>.STUDIOĆ</span></div>
         </div>
         
         <div class="nav-links">
             <a onclick="promeniTab('dashboard')" id="nav-dashboard" class="active">DASHBOARD</a>
-            <a onclick="promeniTab('moduli')" id="nav-moduli">MODULI</a>
-            <a onclick="promeniTab('prodaja')" id="nav-prodaja">PRODAJA</a>
+            <a onclick="promeniTab('moduli')" id="nav-moduli">PAKETI MONTAŽE</a>
+            <a onclick="promeniTab('prodaja')" id="nav-prodaja">Naruči Video</a>
         </div>
     </nav>
 
     <!-- ==================== TAB 1: DASHBOARD ==================== -->
     <div id="tab-dashboard" class="tab-content active">
         <header>
-            <h1>ENTERPRISE CORE</h1>
-            <p>Vrhunska arhitektura sledeće generacije. Autonomni sistemi, elitni interfejsi i napredna veštačka inteligencija dizajnirani bez kompromisa.</p>
+            <h1>ELITE VIDEO PRODUCTION</h1>
+            <p>Vrhunska post-produkcija, brza montaža, filmska kolor korekcija i vizuelni efekti bez kompromisa. Dobrodošli u zvanični kontrolni centar.</p>
         </header>
 
         <div class="container">
             <div class="live-status-bar" id="live-banner">
-                <div>🟢 <b>SYSTEM LINK:</b> Izaberi paket i preuzmi svoj program direktno sa sajta...</div>
-                <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Sistem spreman za prodaju</div>
+                <div>⚡ <b>STUDIO STATUS:</b> Spremno za nove projekte i montažu video materijala...</div>
+                <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Rendering Core Aktivan</div>
             </div>
 
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-value">99.9%</div>
-                    <div class="metric-label">UPTIME SISTEMA</div>
+                    <div class="metric-value">4K / 8K</div>
+                    <div class="metric-label">REZOLUCIJA OBRADE</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">0.4ms</div>
-                    <div class="metric-label">AI LATENCIJA</div>
+                    <div class="metric-value">24h</div>
+                    <div class="metric-label">PROSEČNO VREME ISPORUKE</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">ACTIVE</div>
-                    <div class="metric-label">NEXUS MREŽA</div>
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">KLIJENTSKO ZADOVOLJSTVO</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== TAB 2: MODULI ==================== -->
+    <!-- ==================== TAB 2: MODULI / PAKETI ==================== -->
     <div id="tab-moduli" class="tab-content">
         <header>
-            <h1>SISTEMSKI MODULI</h1>
-            <p>Pregled svih dostupnih modula, licenci i konfiguracija visoke tehnologije.</p>
+            <h1>USLUGE I PAKETI MONTAŽE</h1>
+            <p>Izaberi profesionalni format za svoj YouTube, TikTok, Reels ili promotivni video materijal.</p>
         </header>
 
         <div class="container">
-            <div class="section-header"><span>//</span> DOSTUPNE ARHITEKTURE I CENE</div>
+            <div class="section-header"><span>//</span> FORMATI I CENE PRODUKCIJE</div>
 
             <div class="package-grid">
                 <div class="pkg-card">
-                    <h3 class="pkg-title">CORE MODULE</h3>
-                    <div class="pkg-desc">Osnovno rešenje za stabilan start na mreži sa punom optimizacijom.</div>
-                    <div class="pkg-price">29€ <span>/ jednokratno</span></div>
-                    <button class="btn-order" onclick="naruciProgramSaSajta('Core Modul', 29)">NARUČI ODMAH</button>
+                    <h3 class="pkg-title">SHORT-FORM (Reels / TikTok)</h3>
+                    <div class="pkg-desc">Dinamična vertikalna montaža, brzi rezovi, zvučni efekti, animirani titlovi i hook efekti.</div>
+                    <div class="pkg-price">25€ <span>/ video</span></div>
+                    <button class="btn-order" onclick="naruciMontazu('Short-Form Video', '25€')">REZERVIŠI TERMIN</button>
                 </div>
 
                 <div class="pkg-card elite">
-                    <div class="pkg-badge">PREPORUČENO</div>
-                    <h3 class="pkg-title">ELITE SYSTEM</h3>
-                    <div class="pkg-desc">Kompletan sistem sa staklenim efektima, karticama i ugrađenim AI asistentom.</div>
-                    <div class="pkg-price">69€ <span>/ komplet</span></div>
-                    <button class="btn-order" onclick="naruciProgramSaSajta('Elite System', 69)">NARUČI ODMAH</button>
+                    <div class="pkg-badge">NAJTRAŽENIJE</div>
+                    <h3 class="pkg-title">YOUTUBE MASTERCLASS</h3>
+                    <div class="pkg-desc">Kompletna montaža dugih formata, sound design, kolor korekcija i napredne vizuelne animacije.</div>
+                    <div class="pkg-price">85€ <span>/ epizoda</span></div>
+                    <button class="btn-order" onclick="naruciMontazu('YouTube Masterclass', '85€')">REZERVIŠI TERMIN</button>
                 </div>
 
                 <div class="pkg-card">
-                    <h3 class="pkg-title">ENTERPRISE VIP</h3>
-                    <div class="pkg-desc">Maksimalne performanse, custom skripte, baze podataka i višekorisnički pristup.</div>
-                    <div class="pkg-price">149€ <span>/ custom</span></div>
-                    <button class="btn-order" onclick="naruciProgramSaSajta('Enterprise VIP', 149)">NARUČI ODMAH</button>
+                    <h3 class="pkg-title">COMMERCIAL VIP</h3>
+                    <div class="pkg-desc">Komercijalni promo spotovi za brendove, filmski look, vrhunski VFX i unikatni zvučni dizajn.</div>
+                    <div class="pkg-price">200€ <span>/ projekat</span></div>
+                    <button class="btn-order" onclick="naruciMontazu('Commercial VIP', '200€')">REZERVIŠI TERMIN</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ==================== TAB 3: PRODAJA ==================== -->
+    <!-- ==================== TAB 3: PRODAJA / NARUDŽBINE ==================== -->
     <div id="tab-prodaja" class="tab-content">
         <header>
-            <h1>PORTAL ZA PRODAJU</h1>
-            <p>Upravljanje transakcijama i direktno evidentiranje isporuka u realnom vremenu.</p>
+            <h1>PORTAL ZA NARUDŽBINE</h1>
+            <p>Pošalji zahtev za montažu, unesi detalje o svom projektu i pokreni produkciju odmah.</p>
         </header>
 
         <div class="container">
             <div class="sales-panel">
-                <h2>⚡ EVIDENCIJA NOVE TRANSAKCIJE</h2>
+                <h2>🎬 ZAKAZIVANJE VIDEO PROJEKTA</h2>
                 
                 <div class="form-group">
-                    <label class="form-label">IME KLIJENTA</label>
-                    <input type="text" id="input-kupac" class="form-control" placeholder="Unesi puno ime klijenta...">
+                    <label class="form-label">VAŠE IME ILI BREND</label>
+                    <input type="text" id="input-kupac" class="form-control" placeholder="Unesite ime...">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">IZABRANI PAKET & CENA</label>
-                    <input type="text" id="input-paket" class="form-control" placeholder="Npr. Elite System (69€)">
+                    <label class="form-label">VRSTA USLUGE / PAKET</label>
+                    <input type="text" id="input-paket" class="form-control" placeholder="Npr. YouTube Masterclass (85€)">
                 </div>
 
-                <button class="btn-order" style="background: var(--accent); color: #030307; font-weight: 900;" onclick="evidentirajProdajuSaPortala()">ZABELEŽI I AŽURIRAJ SAJT</button>
+                <button class="btn-order" style="background: var(--accent-cyan); color: #030307; font-weight: 900;" onclick="evidentirajNarudzbinu()">POŠALJI ZAHTEV ZA MONTAŽU</button>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 NEXUS OS Architecture &bull; KREIRAO: <b>DUŠAN ŠTIGLIC</b> &bull; Sva prava zadržana</p>
+        <p>&copy; 2026 Stiglic Studioć &bull; Glavni Inženjer & Producent: <b>Dušan Štiglic</b> &bull; Sva prava zadržana</p>
     </footer>
 
-    <!-- AI CHAT WIDGET -->
-    <div id="nexus-chat-container">
-        <div id="nexus-chat-box">
-            <div style="background: rgba(13, 13, 22, 0.95); padding: 18px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 255, 204, 0.2);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 10px; height: 10px; background: #00ffcc; border-radius: 50%; box-shadow: 0 0 10px #00ffcc;"></div>
-                    <div>
-                        <div style="font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 14px; color: #fff; letter-spacing: 1px;">NEXUS AI CORE</div>
-                        <div style="font-size: 10px; color: #00ffcc; opacity: 0.8; letter-spacing: 0.5px;">Autor: Dušan Štiglic</div>
-                    </div>
-                </div>
-                <button onclick="toggleChat()" style="background: none; border: none; color: #fff; font-size: 24px; cursor: pointer;">&times;</button>
-            </div>
-            
-            <div id="nexus-chat-messages">
-                <div style="background: rgba(20, 20, 35, 0.8); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; color: #e0e0f0; font-size: 13.5px; line-height: 1.5;">
-                    Pozdrav! Prebacuj se slobodno između Dashboard-a, Modula i Prodaje gore u meniju. Autor sistema: <b>Dušan Štiglic</b>.
-                </div>
-            </div>
-
-            <div style="padding: 15px; background: rgba(13, 13, 22, 0.95); display: flex; gap: 10px; border-top: 1px solid rgba(0,255,204,0.2);">
-                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu..." onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: var(--accent); color: #030307; border: none; padding: 0 18px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 13px; font-family: 'Orbitron', sans-serif;">POŠALJI</button>
-            </div>
-        </div>
-
-        <button id="nexus-chat-toggle" onclick="toggleChat()">💬</button>
-    </div>
-
     <script>
-    // SISTEM ZA TABOVE (DASHBOARD / MODULI / PRODAJA)
     function promeniTab(tabNaziv) {
-        // Sakrij sve tabove
-        const tabovi = document.querySelectorAll('.tab-content');
-        tabovi.forEach(t => t.classList.remove('active'));
-
-        // Ukloni aktivnu klasu sa svih linkova u meniju
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
 
-        // Prikaži željeni tab i aktiviraj dugme
         document.getElementById('tab-' + tabNaziv).classList.add('active');
         document.getElementById('nav-' + tabNaziv).classList.add('active');
-
-        // Vrati skrol na vrh stranice
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // LIVE TRANSAKCIJE I ISPORUKA
-    async function proveriLiveTransakcije() {
-        try {
-            const odgovor = await fetch('prodaja.json');
-            if (odgovor.ok) {
-                const podaci = await odgovor.json();
-                if(podaci && podaci.poslednji_kupac) {
-                    const transId = podaci.id ? `#${podaci.id}` : `#PROD-01`;
-                    document.getElementById('live-banner').innerHTML = `
-                        <div>⚡ <b>POSLEDNJA ISPORUKA:</b> ${podaci.poslednji_kupac} (${podaci.cena})</div>
-                        <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID ${transId} | ${podaci.status || 'Isporučeno'} [${podaci.vreme || ''}]</div>
-                    `;
-                }
-            }
-        } catch (e) {}
-    }
-    setInterval(proveriLiveTransakcije, 3000);
-    proveriLiveTransakcije();
-
-    function naruciProgramSaSajta(nazivPaketa, cenaPaketa) {
-        izvršiIsporuku(nazivPaketa, cenaPaketa);
+    function naruciMontazu(nazivPaketa, cenaPaketa) {
+        document.getElementById('input-paket').value = `${nazivPaketa} (${cenaPaketa})`;
+        promeniTab('prodaja');
     }
 
-    function evidentirajProdajuSaPortala() {
-        const kupac = document.getElementById('input-kupac').value;
+    function evidentirajNarudzbinu() {
+        const klijent = document.getElementById('input-kupac').value;
         const paket = document.getElementById('input-paket').value;
-        
-        if(kupac && paket) {
-            izvršiIsporuku(paket, "Custom", kupac);
+
+        if(klijent && paket) {
+            alert(`[USPEH] Projekat uspešno evidentiran za: ${klijent}!\nPaket: ${paket}\nDušan Štiglic će vas uskoro kontaktirati radi preuzimanja materijala.`);
             document.getElementById('input-kupac').value = '';
             document.getElementById('input-paket').value = '';
-            promeniTab('dashboard'); // Vrati ga na dashboard da vidi live status
+            promeniTab('dashboard');
         } else {
-            alert("[GREŠKA] Morate popuniti sva polja u portalu za prodaju.");
+            alert("[GREŠKA] Molimo popunite sva polja pre slanja zahteva.");
         }
-    }
-
-    function izvršiIsporuku(nazivPaketa, cenaPaketa, customKupac = null) {
-        const vremeSada = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        const idTransakcije = Math.floor(Math.random() * 9000) + 1000;
-        const kupacIme = customKupac || "Klijent #" + idTransakcije;
-
-        document.getElementById('live-banner').innerHTML = `
-            <div>⚡ <b>PROGRAM ISPORUČEN KLIJENTU:</b> ${kupacIme} - ${nazivPaketa}</div>
-            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: Uspešno preuzet [${vremeSada}]</div>
-        `;
-
-        const pythonSkripta = `# ==========================================
-# NEXOS OS // IZVRŠNI MODUL PROGRAMA
-# Kupac: ${kupacIme}
-# Kupljeni paket: ${nazivPaketa} (${cenaPaketa})
-# Licenca ID: #${idTransakcije}
-# Vreme isporuke: ${vremeSada}
-# Autor / Inženjer: Dušan Štiglic
-# ==========================================
-
-import time
-
-print("Inicijalizacija sistema za: ${nazivPaketa}...")
-time.sleep(1)
-print("[OK] Svi sigurnosni moduli i baze uspešno učitani.")
-print("Hvala na poverenju! Vaš program je spreman za rad.")
-input("Pritisnite ENTER za izlaz...")
-`;
-
-        const blob = new Blob([pythonSkripta], { type: 'text/plain;charset=utf-8' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `NEXUS_${nazivPaketa.replace(/\s+/g, '_')}_ID_${idTransakcije}.py`;
-        link.click();
-    }
-
-    function toggleChat() {
-        const box = document.getElementById('nexus-chat-box');
-        const btn = document.getElementById('nexus-chat-toggle');
-        if (box.style.display === 'none' || box.style.display === '') {
-            box.style.display = 'flex';
-            btn.style.display = 'none';
-        } else {
-            box.style.display = 'none';
-            btn.style.display = 'flex';
-        }
-    }
-
-    function posaljiPoruku() {
-        const input = document.getElementById('nexus-chat-input');
-        const tekst = input.value.trim();
-        if (!tekst) return;
-
-        const msgs = document.getElementById('nexus-chat-messages');
-        msgs.innerHTML += `<div style="background: rgba(0, 255, 204, 0.1); border: 1px solid rgba(0, 255, 204, 0.2); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%; font-size: 13.5px;">${tekst}</div>`;
-        input.value = '';
-        msgs.scrollTop = msgs.scrollHeight;
-
-        setTimeout(() => {
-            let odgovor = "Komanda evidentirana u sistemu.";
-            const t = tekst.toLowerCase();
-
-            if (t.includes('ko je') || t.includes('tvorac') || t.includes('autor')) {
-                odgovor = "Ovaj sajt i celokupni NEXUS OS sistem je kreirao i razvio Dušan Štiglic!";
-            } else if (t.includes('cene') || t.includes('paketi')) {
-                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€). Možeš ih naći u sekciji MODULI!";
-            }
-
-            msgs.innerHTML += `<div style="background: rgba(20, 20, 35, 0.8); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5; font-size: 13.5px;">${odgovor}</div>`;
-            msgs.scrollTop = msgs.scrollHeight;
-        }, 600);
     }
     </script>
 </body>
