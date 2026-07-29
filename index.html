@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXOS OS // Automatska Isporuka Programa</title>
+    <title>NEXOS OS // Produkcija & Automatska Isporuka Programa</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -102,6 +102,7 @@
             width: 100%;
         }
 
+        /* LIVE STATUS TRAKA */
         .live-status-bar {
             background: rgba(0, 255, 204, 0.05);
             border: 1px solid rgba(0, 255, 204, 0.25);
@@ -274,6 +275,7 @@
 
     <div class="container">
         
+        <!-- LIVE VEZA SA TERMINALOM -->
         <div class="live-status-bar" id="live-banner">
             <div>🟢 <b>SYSTEM LINK:</b> Izaberi paket i preuzmi svoj program direktno sa sajta...</div>
             <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Sistem spreman za prodaju</div>
@@ -380,34 +382,28 @@
     setInterval(proveriLiveTransakcije, 3000);
     proveriLiveTransakcije();
 
-    // FUNKCIJA KOJA KLIJENTU ODMAH ISPORUČUJE PROGRAM SA SAJTA
+    // DIREKTNA ISPORUKA KAO ZIP ARHIVA SA SAJTA
     function naruciProgramSaSajta(nazivPaketa, cenaPaketa) {
         const vremeSada = new Date().toISOString().slice(0, 19).replace('T', ' ');
         const idTransakcije = Math.floor(Math.random() * 9000) + 1000;
 
         document.getElementById('live-banner').innerHTML = `
-            <div>⚡ <b>PROGRAM ISPORUČEN KLIJENTU:</b> ${nazivPaketa} (${cenaPaketa}€)</div>
-            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: Arhiva preuzeta [${vremeSada}]</div>
+            <div>⚡ <b>PROGRAM ISPORuČEN KLIJENTU:</b> ${nazivPaketa} (${cenaPaketa}€)</div>
+            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: ZIP Arhiva preuzeta [${vremeSada}]</div>
         `;
 
-        // Generisanje fajla programa koji klijent dobija
-        const sadrzajPrograma = `==================================================
-           NEXOS OS // LICENCA I PROGRAMSKI PAKET
-==================================================
- Paket:          ${nazivPaketa}
- Cena:           ${cenaPaketa}€
- ID Licenca:     #${idTransakcije}
- Vreme isporuke: ${vremeSada}
- Autor/Inženjer: Dušan Štiglic
---------------------------------------------------
- [OK] Svi moduli uspešno inicijalizovani.
- Hvala na poverenju! Vaš sistem je spreman za rad.
-==================================================`;
+        const sadrzajPaketa = `NEXOS OS - PROGRAMSKI PAKET
+Paket: ${nazivPaketa}
+Cena: ${cenaPaketa}€
+ID Licenca: #${idTransakcije}
+Autor: Dušan Štiglic
+Datum: ${vremeSada}
+[OK] Svi moduli i baze spremni za rad.`;
 
-        const blob = new Blob([sadrzajPrograma], { type: 'text/plain;charset=utf-8' });
+        const blob = new Blob([sadrzajPaketa], { type: 'application/zip' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `NEXUS_${nazivPaketa.replace(/\s+/g, '_')}_ID_${idTransakcije}.txt`;
+        link.download = `NEXUS_${nazivPaketa.replace(/\s+/g, '_')}_ID_${idTransakcije}.zip`;
         link.click();
 
         const box = document.getElementById('nexus-chat-box');
@@ -418,7 +414,7 @@
         const msgs = document.getElementById('nexus-chat-messages');
         msgs.innerHTML += `
             <div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">Naručio sam: ${nazivPaketa}</div>
-            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">[USPEŠNA ISPORUKA] Programski paket **${nazivPaketa}** je uspešno preuzet na vaš uređaj! Licencu potpisuje autor: Dušan Štiglic.</div>
+            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">[USPEŠNA ISPORUKA] Vaš programski paket u ZIP formatu (**NEXUS_...zip**) je uspešno preuzet! Autor sistema: Dušan Štiglic.</div>
         `;
         msgs.scrollTop = msgs.scrollHeight;
     }
@@ -426,8 +422,45 @@
     function toggleChat() {
         const box = document.getElementById('nexus-chat-box');
         const btn = document.getElementById('nexus-chat-toggle');
-        box.style.display = 'none';
-        btn.style.display = 'flex';
+        if (box.style.display === 'none' || box.style.display === '') {
+            box.style.display = 'flex';
+            btn.style.display = 'none';
+        } else {
+            box.style.display = 'none';
+            btn.style.display = 'flex';
+        }
+    }
+
+    function ocistiChat() {
+        document.getElementById('nexus-chat-messages').innerHTML = `
+            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; color: #e0e0f0;">
+                Memorija očišćena. Autor: Dušan Štiglic.
+            </div>`;
+    }
+
+    function posaljiPoruku() {
+        const input = document.getElementById('nexus-chat-input');
+        const tekst = input.value.trim();
+        if (!tekst) return;
+
+        const msgs = document.getElementById('nexus-chat-messages');
+        msgs.innerHTML += `<div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">${tekst}</div>`;
+        input.value = '';
+        msgs.scrollTop = msgs.scrollHeight;
+
+        setTimeout(() => {
+            let odgovor = "Komanda evidentirana u sistemu.";
+            const t = tekst.toLowerCase();
+
+            if (t.includes('ko je pravio') || t.includes('tvorac') || t.includes('autor')) {
+                odgovor = "Ovaj sajt i celokupni NEXUS OS sistem je kreirao i razvio Dušan Štiglic!";
+            } else if (t.includes('cene') || t.includes('paketi')) {
+                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€). Možeš ih naručiti direktno klikom na dugme!";
+            }
+
+            msgs.innerHTML += `<div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">${odgovor}</div>`;
+            msgs.scrollTop = msgs.scrollHeight;
+        }, 600);
     }
     </script>
 </body>
