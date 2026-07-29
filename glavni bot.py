@@ -29,6 +29,8 @@ TEXT_MUTED = "#94a3b8"
 FAJL_KLJUCA = "kljuc.key"
 FAJL_SEFA = "tajni_sef.xlsx"
 CONFIG_FAJL = "config.json"
+FAJL_PRODAJE = "nexus_prodaja.xlsx"
+FAJL_ZA_SAJT = "prodaja.json"
 
 # --- INICIJALIZACIJA SIGURNOSTI ---
 def ucitaj_ili_kreiraj_kljuc():
@@ -54,12 +56,12 @@ def bot_kaze(tekst):
 def moderni_alert(naslov, tekst):
     alert = ctk.CTkToplevel()
     alert.title(naslov)
-    alert.geometry("500x350")
+    alert.geometry("540x400")
     alert.configure(fg_color=BG_COLOR)
     alert.attributes("-topmost", True)
     
     ctk.CTkLabel(alert, text=naslov, font=ctk.CTkFont(size=20, weight="bold"), text_color=ACCENT_COLOR).pack(pady=(20, 10))
-    t_box = ctk.CTkTextbox(alert, width=450, height=200, fg_color=CARD_COLOR, text_color=TEXT_MAIN, font=ctk.CTkFont(size=14))
+    t_box = ctk.CTkTextbox(alert, width=480, height=230, fg_color=CARD_COLOR, text_color=TEXT_MAIN, font=ctk.CTkFont(size=13))
     t_box.pack(padx=20, pady=5)
     t_box.insert("0.0", tekst)
     t_box.configure(state="disabled")
@@ -70,13 +72,13 @@ def moderni_unos(naslov, tekst):
     return dialog.get_input()
 
 # --- LOGIN SISTEM ---
-korisnik_ime = "Dušan"
+korisnik_ime = "Dušan Štiglic"
 korisnik_pin = "1234"
 
 try:
     with open(CONFIG_FAJL, "r") as f:
         podaci = json.load(f)
-        korisnik_ime = podaci.get("ime", "Dušan")
+        korisnik_ime = podaci.get("ime", "Dušan Štiglic")
         korisnik_pin = podaci.get("pin", "1234")
 except: pass
 
@@ -86,8 +88,8 @@ login_app.title("NEXUS OS - Autentifikacija")
 login_app.geometry("380x450")
 login_app.configure(fg_color=BG_COLOR)
 
-ctk.CTkLabel(login_app, text=f"Sistem spreman, {korisnik_ime}", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=(60, 5))
-ctk.CTkLabel(login_app, text="Unesite Master PIN", text_color=TEXT_MUTED).pack(pady=(0, 40))
+ctk.CTkLabel(login_app, text=f"Sistem spreman,\n{korisnik_ime}", font=ctk.CTkFont(size=20, weight="bold"), justify="center").pack(pady=(50, 5))
+ctk.CTkLabel(login_app, text="Unesite Master PIN", text_color=TEXT_MUTED).pack(pady=(0, 30))
 
 unos_pin = ctk.CTkEntry(login_app, placeholder_text="••••", show="*", width=220, height=50, font=ctk.CTkFont(size=24, weight="bold"), justify="center", fg_color=CARD_COLOR, border_width=0)
 unos_pin.pack(pady=20)
@@ -111,8 +113,8 @@ if not pin_odobren: exit()
 
 # --- GLAVNI SISTEM ---
 root = ctk.CTk()
-root.title("NEXUS OS - V5.0 Expansion")
-root.geometry("900x750")
+root.title("NEXUS OS - V5.0 Enterprise Core")
+root.geometry("950x780")
 root.configure(fg_color=BG_COLOR)
 
 def pozovi_u_pozadini(funkcija, *args):
@@ -123,7 +125,7 @@ def opcija_kalistenika():
     if not zgibovi: return
     propadanja = moderni_unos("Trening", "Broj propadanja:")
     sklekovi = moderni_unos("Trening", "Broj sklekova:")
-    moderni_alert("Trening Upisan", f"Uspisano:\nZgibovi: {zgibovi}\nPropadanja: {propadanja}\nSklekovi: {sklekovi}\n\nMišići su napumpani. Vreme je za šejk!")
+    moderni_alert("Trening Upisan", f"Upisano:\nZgibovi: {zgibovi}\nPropadanja: {propadanja}\nSklekovi: {sklekovi}\n\nMišići su napumpani. Vreme je za šejk!")
 
 # SEZONA I BAKŠIŠ
 def opcija_sezona():
@@ -146,6 +148,78 @@ def opcija_sezona():
     izvestaj += f"💵 Današnji bakšiš: {baksis} €\n"
     izvestaj += f"💰 UKUPNO ZARAĐENO NA BIFEU: {ukupno} €\n\nSamo jako, sezona se bliži kraju!"
     moderni_alert("Sezonski Trezor", izvestaj)
+
+# --- SISTEM NAPLATE, AUTOMATSKE ISPORUKE I POVEZIVANJA SA SAJTOM ---
+def opcija_paketi():
+    prozor_paketi = ctk.CTkToplevel(root)
+    prozor_paketi.title("NEXUS OS - Modul za Naplatu i Sajt Sinhronizaciju")
+    prozor_paketi.geometry("520x550")
+    prozor_paketi.configure(fg_color=BG_COLOR)
+    prozor_paketi.attributes("-topmost", True)
+    
+    ctk.CTkLabel(prozor_paketi, text="🛒 NAPLATA I WEB SINHRONIZACIJA", font=ctk.CTkFont(size=20, weight="bold"), text_color=ACCENT_COLOR).pack(pady=(20, 5))
+    ctk.CTkLabel(prozor_paketi, text="Autor: Dušan Štiglic | Automatski šalje podatke na sajt", text_color=TEXT_MUTED).pack(pady=(0, 15))
+    
+    info_tekst = (
+        "[1] CORE MODUL (29€)\n"
+        "    -> Osnovna optimizacija i Git repo.\n\n"
+        "[2] ELITE SYSTEM (69€) [PREPORUČENO]\n"
+        "    -> Cyberpunk dizajn, metrike i AI bot.\n\n"
+        "[3] ENTERPRISE VIP (149€)\n"
+        "    -> Custom kod, baze i 24/7 VIP podrška."
+    )
+    
+    t_box = ctk.CTkTextbox(prozor_paketi, width=460, height=200, fg_color=CARD_COLOR, text_color=TEXT_MAIN, font=ctk.CTkFont(size=13))
+    t_box.pack(padx=20, pady=5)
+    t_box.insert("0.0", info_tekst)
+    t_box.configure(state="disabled")
+    
+    ctk.CTkLabel(prozor_paketi, text="Unesi broj paketa za naplatu (1, 2 ili 3):", text_color=TEXT_MAIN).pack(pady=(15, 5))
+    unos_izbora = ctk.CTkEntry(prozor_paketi, placeholder_text="npr. 2", width=200, height=35, justify="center", fg_color=CARD_COLOR, border_width=0)
+    unos_izbora.pack(pady=5)
+    
+    def izvrsi_naplatu_i_sinhronizaciju():
+        izbor = unos_izbora.get().strip()
+        paketi_info = {
+            "1": {"naziv": "Core Modul", "cena": 29, "isporuka": "Generisan Core ZIP paket sa čistom web arhitekturom."},
+            "2": {"naziv": "Elite System", "cena": 69, "isporuka": "Generisan Elite sistem sa staklenim efektima i AI botom."},
+            "3": {"naziv": "Enterprise VIP", "cena": 149, "isporuka": "Aktiviran VIP pristup bazama i custom skriptama."}
+        }
+        
+        if izbor in paketi_info:
+            p = paketi_info[izbor]
+            datum = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+            
+            # 1. Upis u Excel evidenciju prodaje
+            df_novi = pd.DataFrame([{"Datum": datum, "Paket": p["naziv"], "Cena (€)": p["cena"], "Status": "Plaćeno & Ioručeno"}])
+            baza = pd.concat([pd.read_excel(FAJL_PRODAJE), df_novi], ignore_index=True) if os.path.exists(FAJL_PRODAJE) else df_novi
+            baza.to_excel(FAJL_PRODAJE, index=False)
+            
+            # 2. Generisanje JSON fajla za automatsko čitanje na web sajtu
+            podaci_za_sajt = {
+                "poslednji_kupac": p["naziv"],
+                "cena": f"{p['cena']}€",
+                "status": "Aktivirano & Ioručeno",
+                "autor": "Dušan Štiglic",
+                "vreme": datum
+            }
+            with open(FAJL_ZA_SAJT, "w", encoding="utf-8") as f_json:
+                json.dump(podaci_za_sajt, f_json, ensure_ascii=False, indent=4)
+            
+            rezultat_poruka = (
+                f"✅ UPLATA USPEŠNO OBRADJENA!\n\n"
+                f"📦 Paket: {p['naziv']} ({p['cena']}€)\n"
+                f"🌐 Status: Podaci automatski poslati na sajt (prodaja.json)\n\n"
+                f"🚀 ISPORUKA:\n{p['isporuka']}\n\n"
+                f"Sistem registrovao pod nadzorom: Dušan Štiglic."
+            )
+            bot_kaze(f"Uplata za {p['naziv']} je uspešno izvršena i poslata na sajt.")
+            moderni_alert("Uspešna Sinhronizacija", rezultat_poruka)
+            prozor_paketi.destroy()
+        else:
+            moderni_alert("Greška", "Unesi validan broj paketa (1, 2 ili 3).")
+
+    ctk.CTkButton(prozor_paketi, text="Naplati, isporuči i pošalji na sajt", width=260, height=40, fg_color="#10b981", hover_color="#059669", command=izvrsi_naplatu_i_sinhronizaciju).pack(pady=15)
 
 # GROBARSKI RADAR
 def task_vesti():
@@ -244,9 +318,9 @@ keyboard.add_hotkey('ctrl+shift+x', panik_mod)
 
 # --- UI KREIRANJE ---
 header_frame = ctk.CTkFrame(root, fg_color="transparent")
-header_frame.pack(fill="x", padx=40, pady=(30, 10))
+header_frame.pack(fill="x", padx=40, pady=(25, 10))
 vreme_tekst = datetime.datetime.now().strftime("%d. %b %Y.")
-ctk.CTkLabel(header_frame, text=f"Komandni Centar V5", font=ctk.CTkFont(size=32, weight="bold")).pack(anchor="w")
+ctk.CTkLabel(header_frame, text=f"Komandni Centar V5 // Dušan Štiglic", font=ctk.CTkFont(size=28, weight="bold")).pack(anchor="w")
 ctk.CTkLabel(header_frame, text=f"Sistem Online | {vreme_tekst} | Panik taster: Ctrl+Shift+X", text_color=TEXT_MUTED).pack(anchor="w")
 
 grid_frame = ctk.CTkFrame(root, fg_color="transparent")
@@ -267,15 +341,16 @@ grid_frame.grid_columnconfigure((0, 1, 2), weight=1)
 
 # Red 1
 napravi_karticu(grid_frame, "⏳", "Sezona", "Prati smene, bakšiš i dane do povratka.", opcija_sezona, 0, 0, naglaseno=True)
-napravi_karticu(grid_frame, "🏋️", "Trening", "Snimi zgibove, propadanja, sklekove.", opcija_kalistenika, 0, 1)
-napravi_karticu(grid_frame, "📱", "Mreže", "Pregledi i skokovi na TikToku.", opcija_mreze, 0, 2)
+napravi_karticu(grid_frame, "🛒", "Naplata & Sajt", "Naplati paket i pošalji podatke na web sajt.", opcija_paketi, 0, 1, naglaseno=True)
+napravi_karticu(grid_frame, "🏋️", "Trening", "Snimi zgibove, propadanja, sklekove.", opcija_kalistenika, 0, 2)
 
 # Red 2
-napravi_karticu(grid_frame, "⚽", "Partizan", "Crno-beli radar za uživo vesti.", opcija_vesti, 1, 0)
-napravi_karticu(grid_frame, "🔐", "Sef", "Kriptovane šifre u bazi.", otvori_sef, 1, 1)
-napravi_karticu(grid_frame, "💰", "Berza", "Skeniraj tržište kriptovaluta.", opcija_kurs, 1, 2)
+napravi_karticu(grid_frame, "📱", "Mreže", "Pregledi i skokovi na TikToku.", opcija_mreze, 1, 0)
+napravi_karticu(grid_frame, "⚽", "Partizan", "Crno-beli radar za uživo vesti.", opcija_vesti, 1, 1)
+napravi_karticu(grid_frame, "🔐", "Sef", "Kriptovane šifre u bazi.", otvori_sef, 1, 2)
 
-# Red 3 (Sistemski alati)
-napravi_karticu(grid_frame, "🧹", "Boost OS", "Očisti đubre i ubrzaj laptop.", optimizuj_laptop, 2, 0)
+# Red 3 (Sistemski alati i berza)
+napravi_karticu(grid_frame, "💰", "Berza", "Skeniraj tržište kriptovaluta.", opcija_kurs, 2, 0)
+napravi_karticu(grid_frame, "🧹", "Boost OS", "Očisti đubre i ubrzaj laptop.", optimizuj_laptop, 2, 1)
 
 root.mainloop()

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS OS // Elite Enterprise Core</title>
+    <title>NEXUS OS // Elite Enterprise Core & Live Link</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -235,6 +235,21 @@
         .card.elite .btn-action { border-color: #ff007f; color: #ff007f; }
         .card.elite .btn-action:hover { background: #ff007f; color: #fff; box-shadow: 0 0 20px var(--pink-glow); }
 
+        /* LIVE STATUS SA SISTEMA */
+        .live-status-bar {
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 12px;
+            padding: 15px 25px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: #e0e0f0;
+        }
+        .live-status-bar b { color: var(--accent); font-family: 'Orbitron', sans-serif; }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -254,10 +269,17 @@
 
     <header>
         <h1>ENTERPRISE CORE</h1>
-        <p>Vrhunska arhitektura sledeće generacije. Autonomni sistemi, elitni interfejsi i napredna veštačka inteligencija kreirani bez kompromisa.</p>
+        <p>Vrhunska arhitektura sledeće generacije. Autonomni sistemi, elitni interfejsi i napredna veštačka inteligencija dizajnirani bez kompromisa.</p>
     </header>
 
     <div class="container">
+        
+        <!-- LIVE VEZA SA PYTHON SISTEMOM -->
+        <div class="live-status-bar" id="live-banner">
+            <div>🟢 <b>SYSTEM LINK:</b> Uspostavljena veza sa Python bazom naplate...</div>
+            <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Čekanje transakcije</div>
+        </div>
+
         <div class="section-header"><span>//</span> ARHITEKTURA I CENE PAKETA</div>
 
         <div class="grid">
@@ -304,7 +326,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 NEXUS OS Architecture &bull; All Global Rights Reserved</p>
+        <p>&copy; 2026 NEXUS OS Architecture &bull; Kreirao: Dušan Štiglic &bull; All Rights Reserved</p>
     </footer>
 
     <!-- AI CHAT WIDGET -->
@@ -327,7 +349,7 @@
 
             <div id="nexus-chat-messages" style="flex: 1; padding: 18px; overflow-y: auto; font-size: 13.5px; display: flex; flex-direction: column; gap: 14px; background: rgba(5, 5, 8, 0.6);">
                 <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); padding: 14px; border-radius: 12px; border-left: 3px solid #00ffcc; line-height: 1.5; color: #e0e0f0;">
-                    Pozdrav! Sistem je kreirao <b>Dušan Štiglic</b>. Izaberi neki od paketa gore klikom na dugme ili me pitaj šta god želiš!
+                    Pozdrav! Ovaj moćni sistem je kreirao <b>Dušan Štiglic</b>. Izaberi paket ili pitaj šta god želiš!
                 </div>
             </div>
 
@@ -341,6 +363,24 @@
     </div>
 
     <script>
+    // AUTOMATSKO POVEZIVANJE SA PYTHON SISTEMOM (prodaja.json)
+    async function proveriLiveTransakcije() {
+        try {
+            const odgovor = await fetch('prodaja.json');
+            if (odgovor.ok) {
+                const podaci = await odgovor.json();
+                document.getElementById('live-banner').innerHTML = `
+                    <div>⚡ <b>POSLEDNJA ISPORUKA:</b> ${podaci.poslednji_kupac} (${podaci.cena})</div>
+                    <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">Status: ${podaci.status} [${podaci.vreme}]</div>
+                `;
+            }
+        } catch (e) {
+            // Čeka prvu transakciju iz Pythona
+        }
+    }
+    setInterval(proveriLiveTransakcije, 3000);
+    proveriLiveTransakcije();
+
     function toggleChat() {
         const box = document.getElementById('nexus-chat-box');
         const btn = document.getElementById('nexus-chat-toggle');
@@ -371,7 +411,7 @@
         msgs.scrollTop = msgs.scrollHeight;
 
         setTimeout(() => {
-            let odgovor = `Odličan izbor! Paket **${nazivPaketa}** je zabeležen u sistemu autora Dušana Štiglica. Uskoro pokrećemo instalaciju!`;
+            let odgovor = `Odličan izbor! Paket **${nazivPaketa}** je zabeležen. Pokreni Python komandni centar da izvršiš naplatu i automatsku isporuku!`;
             msgs.innerHTML += `<div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">${odgovor}</div>`;
             msgs.scrollTop = msgs.scrollHeight;
         }, 600);
@@ -394,9 +434,7 @@
             if (t.includes('ko je pravio') || t.includes('tvorac') || t.includes('autor')) {
                 odgovor = "Ovaj sajt i celokupni NEXUS OS je kreirao i razvio Dušan Štiglic!";
             } else if (t.includes('cene') || t.includes('paketi')) {
-                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€). Izaberi neki klikom na dugme iznad!";
-            } else {
-                odgovor = "Primio sam poruku! Sistem radi stabilno pod nadzorom autora Dušana Štiglica.";
+                odgovor = "U ponudi su Core Modul (29€), Elite System (69€) i Enterprise VIP (149€).";
             }
 
             msgs.innerHTML += `<div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">${odgovor}</div>`;
