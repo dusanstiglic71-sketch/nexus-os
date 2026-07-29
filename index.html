@@ -3,127 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXUS OS | Glavni Dashboard i Cenovnik</title>
+    <title>NEXOS OS | Cenovnik</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            background-color: #0b0b0f;
-            color: #00ffcc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: #121216;
-            border-bottom: 1px solid #00ffcc;
-            padding: 25px;
-            text-align: center;
-        }
-        header h1 { font-size: 2.5rem; text-shadow: 0 0 10px rgba(0,255,204,0.4); }
-        header p { color: #888; margin-top: 5px; }
-        .main-content {
-            flex: 1;
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        h2 { margin-bottom: 20px; font-size: 1.8rem; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .card, .pricing-card {
-            background: #121216;
-            border: 1px solid #00ffcc;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 0 15px rgba(0,255,204,0.1);
-            transition: transform 0.2s;
-        }
-        .card:hover, .pricing-card:hover { transform: translateY(-3px); }
-        .card h3, .pricing-card h3 { margin-bottom: 10px; color: #fff; font-size: 1.2rem; }
-        .card p, .pricing-card p { color: #888; font-size: 0.95rem; }
-        .price { font-size: 1.8rem; font-weight: bold; color: #00ffcc; margin: 15px 0; }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #121216;
-            border-top: 1px solid #222;
-            color: #666;
-            font-size: 0.9rem;
-        }
+        body { background-color: #0b0b0f; color: #00ffcc; font-family: sans-serif; padding: 30px; }
+        h1, h2 { text-align: center; margin-bottom: 20px; }
+        .grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .box { background: #121216; border: 2px solid #00ffcc; padding: 25px; border-radius: 12px; width: 280px; text-align: center; box-shadow: 0 0 15px rgba(0,255,204,0.2); }
+        .price { font-size: 2rem; font-weight: bold; color: #fff; margin: 15px 0; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>NEXUS OS</h1>
-        <p>Centralni komandni centar sistema i usluge</p>
-    </header>
+    <h1>NEXUS OS - USLUGE I CENE</h1>
+    <h2>Izaberi svoj paket</h2>
 
-    <div class="main-content">
-        <h2>Sistemski pregled</h2>
-        <div class="grid-cards">
-            <div class="card">
-                <h3>⚡ Status Servera</h3>
-                <p>Sve komponente rade stabilno. GitHub Pages veza je aktivna i sinhronizovana.</p>
-            </div>
-            <div class="card">
-                <h3>🤖 AI Asistent</h3>
-                <p>Veštačka inteligencija je integrisana i spremna za interakciju preko chat prozora.</p>
-            </div>
-            <div class="card">
-                <h3>📂 Repozitorijum</h3>
-                <p>Kod je bezbedno smešten, praćen kroz git i optimizovan za rad.</p>
-            </div>
+    <div class="grid">
+        <div class="box">
+            <h3>Osnovni Paket</h3>
+            <div class="price">29€</div>
+            <p>Osnovna stranica, git setup i stabilna veza.</p>
         </div>
-
-        <h2>Usluge i Cenovnik</h2>
-        <div class="grid-cards">
-            <div class="pricing-card">
-                <h3>Osnovni Paket</h3>
-                <div class="price">29€</div>
-                <p>Postavljanje osnovne stranice, git inicijalizacija i osnovna podrška sistema.</p>
-            </div>
-            <div class="pricing-card">
-                <h3>Pro Sistem</h3>
-                <div class="price">69€</div>
-                <p>Kompletan NEXUS OS interfejs, napredne kartice, custom dizajn i integracija bota.</p>
-            </div>
-            <div class="pricing-card">
-                <h3>Enterprise</h3>
-                <div class="price">149€</div>
-                <p>Potpuno prilagođeno rešenje sa autonomnim skriptama, bazama podataka i VIP podrškom.</p>
-            </div>
+        <div class="box" style="border-color: #ff007f;">
+            <h3>Pro Sistem</h3>
+            <div class="price" style="color: #ff007f;">69€</div>
+            <p>Ceo interfejs, kartice, dizajn i AI bot.</p>
+        </div>
+        <div class="box">
+            <h3>Enterprise</h3>
+            <div class="price">149€</div>
+            <p>Napredne skripte, baze i VIP podrška.</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 NEXUS OS &bull; Sva prava zadržana</p>
-    </footer>
-
-    <!-- NEXUS OS AI CHAT WIDGET -->
-    <div id="nexus-chat-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; font-family: 'Segoe UI', sans-serif;">
-        <div id="nexus-chat-box" style="display: none; width: 340px; height: 450px; background: #0c0c12; color: #fff; border: 2px solid #00ffcc; border-radius: 14px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8);">
-            <div style="background: #14141f; padding: 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222233;">
-                <span style="font-weight: bold; color: #00ffcc; font-size: 15px;">🤖 NEXUS AI Core</span>
-                <button onclick="toggleChat()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 20px; font-weight: bold;">&times;</button>
+    <!-- AI CHAT WIDGET -->
+    <div id="nexus-chat-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999;">
+        <div id="nexus-chat-box" style="display: none; width: 320px; height: 400px; background: #121216; color: #fff; border: 2px solid #00ffcc; border-radius: 12px; flex-direction: column; overflow: hidden;">
+            <div style="background: #1a1a24; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: bold; color: #00ffcc;">🤖 NEXUS AI</span>
+                <button onclick="toggleChat()" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer;">&times;</button>
             </div>
-            <div id="nexus-chat-messages" style="flex: 1; padding: 14px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px; background: #08080c;">
-                <div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">
-                    Pozdrav! Vratili smo cenovnik i pakete. Kako mogu da pomognem?
-                </div>
+            <div id="nexus-chat-messages" style="flex: 1; padding: 10px; overflow-y: auto; font-size: 14px;">
+                <div style="background: #1a1a24; padding: 8px; border-radius: 6px;">Tu su cene, majstore! Kako ide?</div>
             </div>
-            <div style="padding: 12px; background: #14141f; display: flex; gap: 8px; border-top: 1px solid #222233;">
-                <input type="text" id="nexus-chat-input" placeholder="Unesi poruku..." style="flex: 1; background: #050508; border: 1px solid #33334d; color: #fff; padding: 10px; border-radius: 8px; outline: none; font-size: 14px;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: #00ffcc; color: #000; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer;">Pošalji</button>
+            <div style="padding: 10px; background: #1a1a24; display: flex; gap: 5px;">
+                <input type="text" id="nexus-chat-input" placeholder="Poruka..." style="flex:1; background:#0b0b0f; border:1px solid #333; color:#fff; padding:6px; border-radius:4px; outline:none;">
+                <button onclick="posaljiPoruku()" style="background:#00ffcc; border:none; padding:6px 12px; font-weight:bold; cursor:pointer;">Pošalji</button>
             </div>
         </div>
-        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; color: #000; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,255,204,0.5); display: flex; align-items: center; justify-content: center;">💬</button>
+        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 26px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,255,204,0.4);">💬</button>
     </div>
 
     <script>
@@ -138,28 +66,12 @@
             btn.style.display = 'flex';
         }
     }
-
     function posaljiPoruku() {
         const input = document.getElementById('nexus-chat-input');
-        const poruka = input.value.trim();
-        if (!poruka) return;
-
+        if (!input.value.trim()) return;
         const msgs = document.getElementById('nexus-chat-messages');
-        msgs.innerHTML += `<div style="background: #005f56; color: #fff; padding: 10px 14px; border-radius: 8px; align-self: flex-end; max-width: 85%;">${poruka}</div>`;
+        msgs.innerHTML += `<div style="background: #005f56; padding: 6px; border-radius: 4px; margin-top:5px;">${input.value}</div>`;
         input.value = '';
-        msgs.scrollTop = msgs.scrollHeight;
-
-        setTimeout(() => {
-            let odgovor = "Sistem je zabeležio komandu.";
-            const pL = poruka.toLowerCase();
-            if (pL.includes('cena') || pL.includes('paketi')) {
-                odgovor = "Imamo tri paketa u ponudi: Osnovni (29€), Pro (69€) i Enterprise (149€)!";
-            } else if (pL.includes('zdravo') || pL.includes('cao')) {
-                odgovor = "Ćao majstore! Cenovnik i sve funkcije su tu.";
-            }
-            msgs.innerHTML += `<div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">${odgovor}</div>`;
-            msgs.scrollTop = msgs.scrollHeight;
-        }, 500);
     }
     </script>
 </body>
