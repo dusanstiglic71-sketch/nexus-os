@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS OS // The Undisputed Productivity & Security Ecosystem</title>
+    <style>
+        :root {
+            --bg-color: #060913;
+            --card-color: #0f172a;
+            --card-hover: #1e293b;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            background-color: #020617;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        header {
+            text-align: center;
+            padding: 90px 20px 50px 20px;
+            background: radial-gradient(circle at center, #1e1b4b 0%, #060913 70%);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        header h1 span {
+            color: var(--accent-color);
+            text-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .cta-btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.7);
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        /* GRID MODULA */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            border: 1px solid #1e293b;
+            border-radius: 18px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .card .icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* TABELA POREĐENJA (BEZ KONKURENCIJE) */
+        .comparison {
+            margin: 90px 0;
+            background-color: var(--card-color);
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            padding: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        th {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        td {
+            color: var(--text-muted);
+        }
+
+        td.highlight {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        td.bad {
+            color: #ef4444;
+        }
+
+        /* PRICING */
+        .pricing-section {
+            background: linear-gradient(135deg, #0f172a 0%, #31104a 100%);
+            border: 2px solid #7c3aed;
+            border-radius: 24px;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 80px 0;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .pricing-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #a855f7;
+            margin: 25px 0;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .price span {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-muted);
+            border-top: 1px solid #1e293b;
+            margin-top: 60px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div>NEXUS OS // Elite Ecosystem V5.0</div>
+        <div class="status-badge">
+            <div class="pulse"></div>
+            100% SECURE & OPERATIONAL
+        </div>
+    </div>
+
+    <header>
+        <h1>NEXUS <span>OS</span></h1>
+        <p>Jedini operativni sistem na tržištu kreiran za ljude koji drže kontrolu nad svojim treningom, biznisom, smenama i bezbednošću na jednom mestu.</p>
+        <a href="#pricing" class="cta-btn">Zauzmi Svoju Licencu</a>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Zašto Je NEXUS OS Klasa Za Sebe?</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="icon">⏳</div>
+                <h3>Sezonski Trezor</h3>
+                <p>Precizno praćenje smena, unosa bakšiša u realnom vremenu i automatsko odbrojavanje do slobode i povratka kući.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🏋️</div>
+                <h3>Napredni Fitnes Modul</h3>
+                <p>Evidentiranje kalistenike (zgibovi, sklekovi, propadanja) uz pametne sistemske preporuke za oporavak i šejkove.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Neuralna Analitika Mreža</h3>
+                <p>Unos pregleda za TikTok i Instagram sa automatskim renderovanjem moćnih tamnih grafikon-analitika.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">⚽</div>
+                <h3>Grobarski Radar</h3>
+                <p>Ekskluzivni satelitski feed vesti i uživo praćenje dešavanja vezanih isključivo za vaš omiljeni klub.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔐</div>
+                <h3>Enkriptovani Vault</h3>
+                <p>Vojni nivo zaštite i šifrovanja lozinki i osetljivih podataka. Vaši podaci ostaju strogo na vašem disku.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🧹</div>
+                <h3>Core Override (Boost)</h3>
+                <p>Jednim klikom čisti sistemsko đubre, prazni korpu, briše keš memoriju i dovodi laptop domaksimalnih performansi.</p>
+            </div>
+        </div>
+
+        <!-- TABELA: MI VS OSTALI -->
+        <div class="comparison">
+            <h2 class="section-title" style="margin-bottom: 20px;">Direktno Poređenje</h2>
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 30px;">Pogledajte zašto profesionalci napuštaju klasične aplikacije i prelaze na NEXUS.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Funkcionalnost</th>
+                        <th>Obične Aplikacije</th>
+                        <th>NEXUS OS Elite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mesečna pretplata</td>
+                        <td class="bad">Da (Skupo i besmisleno)</td>
+                        <td class="highlight">Ne (Doživotna licenca)</td>
+                    </tr>
+                    <tr>
+                        <td>Prilagođeno sezonskom radu i bakšišu</td>
+                        <td class="bad">Ne postoji</td>
+                        <td class="highlight">Ugrađeno u srus sistem</td>
+                    </tr>
+                    <tr>
+                        <td>Sistemsko čišćenje računara jednim klikom</td>
+                        <td class="bad">Zahteva treći softver</td>
+                        <td class="highlight">Native Boost Modul</td>
+                    </tr>
+                    <tr>
+                        <td>Hakerski Cyberpunk dizajn</td>
+                        <td class="bad">Dosadno i jednolično</td>
+                        <td class="highlight">Vrhunski UI / UX</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PRICING -->
+        <div class="pricing-section" id="pricing">
+            <h2>Postani Vlasnik Sistema</h2>
+            <p>Nema mesečnih pretplata, nema skrivenih troškova. Jedan .exe fajl, puna kontrola.</p>
+            <div class="price">19€ <span>/ doživotni pristup</span></div>
+            <a href="mailto:prodaja@nexusos.internal" class="cta-btn">Naruči Svoj Primerak Odmah</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 NEXUS OS. Sva prava zadržana. Proizvod namenjen liderima.</p>
+    </footer>
+
+</body>
+</html>
