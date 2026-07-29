@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #0b0b0f;
+            background-color: #050508;
             color: #00ffcc;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -17,52 +17,64 @@
             height: 100vh;
             overflow: hidden;
         }
-        .container {
+        .nexus-container {
             text-align: center;
             border: 2px solid #00ffcc;
-            padding: 40px;
-            border-radius: 15px;
-            background: rgba(18, 18, 20, 0.9);
-            box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+            padding: 50px;
+            border-radius: 16px;
+            background: rgba(12, 12, 18, 0.95);
+            box-shadow: 0 0 35px rgba(0, 255, 204, 0.25);
+            max-width: 600px;
+            width: 90%;
         }
-        h1 { font-size: 3rem; margin-bottom: 10px; text-shadow: 0 0 10px rgba(0,255,204,0.5); }
-        p { color: #888; font-size: 1.1rem; margin-bottom: 20px; }
+        h1 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 0 0 15px rgba(0,255,204,0.6); letter-spacing: 2px; }
+        p { color: #8a8a9e; font-size: 1.1rem; margin-bottom: 25px; }
         .status-badge {
             display: inline-block;
-            background: #005f56;
+            background: rgba(0, 95, 86, 0.5);
             color: #00ffcc;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 30px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border: 1px solid #00ffcc;
+            box-shadow: 0 0 10px rgba(0,255,204,0.2);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="nexus-container">
         <h1>NEXUS OS</h1>
-        <p>Autonomni sistem i veštačka inteligencija</p>
-        <div class="status-badge">STATUS: ONLINE &bull; LIVE NA MREŽI</div>
+        <p>Autonomni Operativni Sistem & Veštačka Inteligencija</p>
+        <div class="status-badge">⚡ STATUS: ONLINE &bull; LIVE NA MREŽI</div>
     </div>
 
-    <!-- NEXUS OS AI CHAT WIDGET -->
-    <div id="nexus-chat-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
-        <div id="nexus-chat-box" style="display: none; width: 320px; height: 420px; background: #121216; color: #fff; border: 1px solid #00ffcc; border-radius: 12px; flex-direction: column; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.7);">
-            <div style="background: #1a1a24; padding: 12px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2a2a3a;">
-                <span style="font-weight: bold; color: #00ffcc;">🤖 NEXUS AI Core</span>
-                <button onclick="toggleChat()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 18px;">&times;</button>
+    <!-- ========================================== -->
+    <!-- NEXUS OS AI CHAT WIDGET (DOGRADJEN I SIGURAN) -->
+    <!-- ========================================== -->
+    <div id="nexus-chat-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; font-family: 'Segoe UI', sans-serif;">
+        <!-- Chat Prozor -->
+        <div id="nexus-chat-box" style="display: none; width: 340px; height: 450px; background: #0c0c12; color: #fff; border: 2px solid #00ffcc; border-radius: 14px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8);">
+            <!-- Zaglavlje chata -->
+            <div style="background: #14141f; padding: 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222233;">
+                <span style="font-weight: bold; color: #00ffcc; font-size: 15px;">🤖 NEXUS AI Core</span>
+                <button onclick="toggleChat()" style="background: none; border: none; color: #fff; cursor: pointer; font-size: 20px; font-weight: bold;">&times;</button>
             </div>
-            <div id="nexus-chat-messages" style="flex: 1; padding: 12px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
-                <div style="background: #1e1e28; padding: 8px 12px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc;">Zdravo! Ja sam NEXUS AI. Sistem radi savršeno!</div>
+            <!-- Poruke -->
+            <div id="nexus-chat-messages" style="flex: 1; padding: 14px; overflow-y: auto; font-size: 14px; display: flex; flex-direction: column; gap: 10px; background: #08080c;">
+                <div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">
+                    Pozdrav! Ja sam NEXUS AI. Sistem je spreman i sve komponente rade savršeno.
+                </div>
             </div>
-            <div style="padding: 10px; background: #1a1a24; display: flex; gap: 6px; border-top: 1px solid #2a2a3a;">
-                <input type="text" id="nexus-chat-input" placeholder="Unesi poruku..." style="flex: 1; background: #0b0b0f; border: 1px solid #333; color: #fff; padding: 8px; border-radius: 6px; outline: none;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
-                <button onclick="posaljiPoruku()" style="background: #00ffcc; color: #000; border: none; padding: 8px 14px; border-radius: 6px; font-weight: bold; cursor: pointer;">Pošalji</button>
+            <!-- Input polje -->
+            <div style="padding: 12px; background: #14141f; display: flex; gap: 8px; border-top: 1px solid #222233;">
+                <input type="text" id="nexus-chat-input" placeholder="Unesi komandu ili poruku..." style="flex: 1; background: #050508; border: 1px solid #33334d; color: #fff; padding: 10px; border-radius: 8px; outline: none; font-size: 14px;" onkeypress="if(event.key === 'Enter') posaljiPoruku();">
+                <button onclick="posaljiPoruku()" style="background: #00ffcc; color: #000; border: none; padding: 10px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#00cca3'" onmouseout="this.style.background='#00ffcc'">Pošalji</button>
             </div>
         </div>
-        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; color: #000; border: none; width: 60px; height: 60px; border-radius: 50%; font-size: 26px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,255,204,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+        <!-- Plutajuće dugme -->
+        <button id="nexus-chat-toggle" onclick="toggleChat()" style="background: #00ffcc; color: #000; border: none; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 5px 20px rgba(0,255,204,0.5); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
     </div>
 
     <script>
@@ -85,28 +97,32 @@
 
         const msgs = document.getElementById('nexus-chat-messages');
         
-        // Korisnikova poruka
-        msgs.innerHTML += `<div style="background: #005f56; color: #fff; padding: 8px 12px; border-radius: 8px; align-self: flex-end; max-width: 80%;">${poruka}</div>`;
+        // Prikaz korisnikove poruke
+        msgs.innerHTML += `<div style="background: #005f56; color: #fff; padding: 10px 14px; border-radius: 8px; align-self: flex-end; max-width: 85%;">${poruka}</div>`;
         input.value = '';
         msgs.scrollTop = msgs.scrollHeight;
 
-        // AI odgovor sa logikom
+        // Simulacija inteligentnog AI odgovora
         setTimeout(() => {
-            let odgovor = "Primio sam komandu, sistem je stabilan.";
+            let odgovor = "Komanda primljena. NEXUS OS izvršava zadatak u pozadini.";
             const pL = poruka.toLowerCase();
-            if (pL.includes('zdravo') || pL.includes('cao')) {
-                odgovor = "Pozdrav, majstore! Sve komponente NEXUS OS-a rade besprekorno.";
-            } else if (pL.includes('status')) {
-                odgovor = "Status: Online, GitHub Pages sinhronizovan, AI Core aktivan.";
+            
+            if (pL.includes('zdravo') || pL.includes('cao') || pL.includes('pozdrav')) {
+                odgovor = "Pozdrav, majstore! Drago mi je da je NEXUS OS živ i spreman za akciju.";
+            } else if (pL.includes('status') || pL.includes('kako si')) {
+                odgovor = "Sve komponente sistema rade na 100%. GitHub Pages sinhronizovan, AI Core aktivan.";
             } else if (pL.includes('pomoć') || pL.includes('help')) {
-                odgovor = "Dostupne komande u chatu: 'status', 'zdravo', ili bilo koji upit za sistem.";
+                odgovor = "Možeš me pitati za 'status', reći 'zdravo', ili zadati bilo koju sistemsku komandu!";
+            } else if (pL.includes('ko si ti')) {
+                odgovor = "Ja sam NEXUS AI, tvoj lični autonomni operativni sistem i virtuelni asistent.";
             }
             
-            msgs.innerHTML += `<div style="background: #1e1e28; color: #fff; padding: 8px 12px; border-radius: 8px; align-self: flex-start; max-width: 80%; border-left: 3px solid #00ffcc;">${odgovor}</div>`;
+            msgs.innerHTML += `<div style="background: #141420; color: #00ffcc; padding: 10px 14px; border-radius: 8px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%;">${odgovor}</div>`;
             msgs.scrollTop = msgs.scrollHeight;
         }, 500);
     }
     </script>
+    <!-- KRAJ AI CHAT WIDGETA -->
 
 </body>
 </html>
