@@ -177,3 +177,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+    import zipfile
+
+def pripremi_isporuku(transakcija):
+    dir_isporuke = "isporuka_klijentima"
+    if not os.path.exists(dir_isporuke):
+        os.makedirs(dir_isporuke)
+        
+    naziv_zipa = f"{dir_isporuke}/NEXUS_Paket_ID_{transakcija['id']}.zip"
+    
+    # Kreiramo zip fajl i unutra ubacujemo podatke za klijenta
+    with zipfile.ZipFile(naziv_zipa, 'w') as zf:
+        # Možeš da upišeš u zip fajl šta god želiš (npr. uputstvo ili sam kod)
+        Uputstvo_tekst = f"Hvala na kupovini paketa {transakcija['poslednji_kupac']}!\nAutor: Dušan Štiglic\nID: #{transakcija['id']}"
+        zf.writestr("Uputstvo_za_instalaciju.txt", Uputstvo_tekst)
+        
+    print(f"[ISPORUKA] Kreiran paket za preuzimanje: {naziv_zipa}")
+    return naziv_zipa
