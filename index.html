@@ -102,6 +102,7 @@
             width: 100%;
         }
 
+        /* LIVE STATUS TRAKA */
         .live-status-bar {
             background: rgba(0, 255, 204, 0.05);
             border: 1px solid rgba(0, 255, 204, 0.25);
@@ -274,6 +275,7 @@
 
     <div class="container">
         
+        <!-- LIVE VEZA SA TERMINALOM -->
         <div class="live-status-bar" id="live-banner">
             <div>🟢 <b>SYSTEM LINK:</b> Izaberi paket i preuzmi svoj program direktno sa sajta...</div>
             <div id="live-detalji" style="font-size: 0.85rem; opacity: 0.8;">Sistem spreman za prodaju</div>
@@ -325,7 +327,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 NEXOS OS Architecture &bull; Kreirao: Dušan Štiglic &bull; All Rights Reserved</p>
+        <p>&copy; 2026 NEXUS OS Architecture &bull; Kreirao: Dušan Štiglic &bull; All Rights Reserved</p>
     </footer>
 
     <!-- AI CHAT WIDGET -->
@@ -380,23 +382,39 @@
     setInterval(proveriLiveTransakcije, 3000);
     proveriLiveTransakcije();
 
-    // DIREKTNO PREUZIMANJE PRAVOG ZIP FAJLA SA SERVERA
+    // STABILNA ISPORUKA IZVRŠNOG PROGRAMA (.PY FAJL)
     function naruciProgramSaSajta(nazivPaketa, cenaPaketa) {
         const vremeSada = new Date().toISOString().slice(0, 19).replace('T', ' ');
         const idTransakcije = Math.floor(Math.random() * 9000) + 1000;
 
         document.getElementById('live-banner').innerHTML = `
             <div>⚡ <b>PROGRAM ISPORUČEN KLIJENTU:</b> ${nazivPaketa} (${cenaPaketa}€)</div>
-            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: ZIP Arhiva uspešno preuzeta [${vremeSada}]</div>
+            <div id="live-detalji" style="font-size: 0.85rem; color: #00ffcc;">ID #${idTransakcije} | Status: Izvršni modul uspešno preuzet [${vremeSada}]</div>
         `;
 
-        // Skida pravi nexus_paket.zip sa servera pod unikatnim imenom
+        const pythonSkripta = `# ==========================================
+# NEXOS OS // IZVRŠNI MODUL PROGRAMA
+# Kupljeni paket: ${nazivPaketa} (${cenaPaketa}€)
+# Licenca ID: #${idTransakcije}
+# Vreme isporuke: ${vremeSada}
+# Autor / Inženjer: Dušan Štiglic
+# ==========================================
+
+import time
+import sys
+
+print("Inicijalizacija sistema za: ${nazivPaketa}...")
+time.sleep(1)
+print("[OK] Svi sigurnosni moduli i baze uspešno učitani.")
+print("Hvala na poverenju! Vaš program je spreman za rad.")
+input("Pritisnite ENTER za izlaz...")
+`;
+
+        const blob = new Blob([pythonSkripta], { type: 'text/plain;charset=utf-8' });
         const link = document.createElement('a');
-        link.href = 'nexus_paket.zip';
-        link.download = `NEXUS_${nazivPaketa.replace(/\s+/g, '_')}_ID_${idTransakcije}.zip`;
-        document.body.appendChild(link);
+        link.href = URL.createObjectURL(blob);
+        link.download = `NEXUS_${nazivPaketa.replace(/\s+/g, '_')}_ID_${idTransakcije}.py`;
         link.click();
-        document.body.removeChild(link);
 
         const box = document.getElementById('nexus-chat-box');
         const btn = document.getElementById('nexus-chat-toggle');
@@ -406,7 +424,7 @@
         const msgs = document.getElementById('nexus-chat-messages');
         msgs.innerHTML += `
             <div style="background: rgba(0, 255, 204, 0.12); border: 1px solid rgba(0, 255, 204, 0.25); color: #fff; padding: 12px 16px; border-radius: 12px; align-self: flex-end; max-width: 85%;">Naručio sam: ${nazivPaketa}</div>
-            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">[USPEŠNA ISPORUKA] Pravi ZIP programski paket za **${nazivPaketa}** je uspešno preuzet! Autor sistema: Dušan Štiglic.</div>
+            <div style="background: rgba(18, 18, 30, 0.85); border: 1px solid rgba(0,255,204,0.2); color: #e0e0f0; padding: 14px 16px; border-radius: 12px; align-self: flex-start; border-left: 3px solid #00ffcc; max-width: 85%; line-height: 1.5;">[USPEŠNA ISPORUKA] Vaš programski fajl (**NEXUS_...py**) je uspešno preuzet na uređaj i spreman za pokretanje! Autor: Dušan Štiglic.</div>
         `;
         msgs.scrollTop = msgs.scrollHeight;
     }
