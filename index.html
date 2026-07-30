@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stiglic Studio | Premium Web Design</title>
-    <!-- Importovanje vrhunskog fonta koji koriste najskuplje agencije -->
+    <!-- Importovanje vrhunskog fonta -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -24,27 +24,39 @@
             overflow-x: hidden;
         }
 
-        /* --- STAKLENA NAVIGACIJA (Glassmorphism) --- */
+        /* --- STAKLENA NAVIGACIJA --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 60px;
-            position: fixed; /* Fiksirano na vrhu */
+            position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.5); /* Poluprovidno */
-            backdrop-filter: blur(12px); /* Efekat mutnog stakla */
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        /* --- ZLATNI LOGO --- */
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
-            color: #ffffff;
             text-decoration: none;
             letter-spacing: -1px;
+            /* Zlatni preliv (Premium Gold Gradient) */
+            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0px 4px 15px rgba(191, 149, 63, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0px 4px 25px rgba(252, 246, 186, 0.4);
         }
 
         .nav-links {
@@ -53,7 +65,7 @@
         }
 
         .nav-links a {
-            color: #a1a1aa; /* Skupa siva */
+            color: #a1a1aa;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -78,7 +90,7 @@
             z-index: -1;
         }
 
-        /* --- HERO SEKCIJA (BRUTALIZAM) --- */
+        /* --- HERO SEKCIJA --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -94,12 +106,11 @@
             font-size: 80px;
             font-weight: 900;
             line-height: 1.1;
-            letter-spacing: -3px; /* Zbijena slova su odlika skupog dizajna */
+            letter-spacing: -3px;
             margin-bottom: 30px;
             max-width: 1000px;
         }
 
-        /* Skupi metalik gradijent za tekst */
         .text-gradient {
             background: linear-gradient(90deg, #a1a1aa, #ffffff, #a1a1aa);
             -webkit-background-clip: text;
@@ -115,7 +126,6 @@
             line-height: 1.5;
         }
 
-        /* Skupa dugmad */
         .btn-primary {
             background-color: #ffffff;
             color: #000000;
@@ -123,7 +133,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 700;
-            border-radius: 50px; /* Skroz zaobljeno */
+            border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.4s ease;
@@ -149,7 +159,7 @@
             text-align: center;
         }
 
-        /* --- KARTICE (ELEGANTNE I TAMNE) --- */
+        /* --- KARTICE --- */
         .grid-kontejner {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -192,7 +202,7 @@
             display: block;
         }
 
-        /* --- KONTAKT FORMA (MINIMALIZAM) --- */
+        /* --- KONTAKT FORMA --- */
         .kontakt-forma {
             max-width: 700px;
             margin: 0 auto;
@@ -250,11 +260,10 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Prilagođavanje za telefone */
         @media (max-width: 768px) {
             .hero h1 { font-size: 50px; }
             nav { padding: 20px; }
-            .nav-links { display: none; /* Sakrivamo meni na malom ekranu za sada */ }
+            .nav-links { display: none; }
         }
     </style>
 </head>
