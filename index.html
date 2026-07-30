@@ -27,15 +27,15 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* --- LOGO PTICA U NAVIGACIJI --- */
+        /* --- LOGO PTICA GORE U NAVIGACIJI --- */
+        .nav-logo-kontejner { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img {
-            height: 40px;
-            width: auto;
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .nav-logo-img:hover {
-            transform: scale(1.1);
-        }
+        .nav-logo-img:hover { transform: scale(1.1); }
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a {
@@ -74,9 +74,9 @@
             font-size: 20px; color: #71717a; font-weight: 300; max-width: 600px; margin-bottom: 40px; line-height: 1.5;
         }
         
-        /* --- GLAVNA SLIKA IDENTITETA --- */
+        /* --- SLIKA PTICE U HERO SEKCIJI --- */
         .hero-identitet-slika {
-            max-width: 900px;
+            max-width: 500px;
             width: 100%;
             border-radius: 20px;
             border: 1px solid rgba(191, 149, 63, 0.3);
@@ -323,9 +323,9 @@
     <div class="glow-orb"></div>
 
     <nav>
-        <!-- Kada imaš logo bez pozadine sačuvan kao logo-ptica.png, samo zameni "identitet.jpg" ispod -->
-        <a href="#">
-            <img src="identitet.jpg" alt="Stiglic Studio Logo" class="nav-logo-img">
+        <!-- GORE U NAVIGACIJI JE ČISTA PTICA (logo-ptica.png) -->
+        <a href="#" class="nav-logo-kontejner">
+            <img src="logo-ptica.png" alt="Stiglic Studio Logo" class="nav-logo-img">
         </a>
         
         <div class="nav-links">
@@ -342,7 +342,8 @@
         <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem, privlače pažnju i donose profit.</p>
         
-        <img src="identitet.jpg" alt="Stiglic Studio Identitet" class="hero-identitet-slika">
+        <!-- I U HERO SEKCIJI JE SADA TA ISTA MOĆNA PTICA (logo-ptica.png) -->
+        <img src="logo-ptica.png" alt="Stiglic Studio Ptica" class="hero-identitet-slika">
 
         <a href="#paketi" class="btn-primary">Pogledaj Cene</a>
     </section>
