@@ -6,6 +6,9 @@
     <title>Stiglic Studio | Premium Web Design</title>
     <link rel="icon" type="image/png" href="ptica-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Biblioteka za automatsko generisanje PDF-a i Konfeta -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -60,7 +63,7 @@
         .nav-logo-img { height: 90px; width: 90px; object-fit: contain; transition: transform 0.3s ease; }
         .nav-logo-img:hover { transform: scale(1.05); }
 
-        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links a {
             color: #a1a1aa; text-decoration: none; font-size: 14px; font-weight: 500;
             text-transform: uppercase; letter-spacing: 1px; transition: 0.4s ease; cursor: pointer;
@@ -364,7 +367,7 @@
 
     <div class="live-korisnici">
         <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display:inline-block; animation: pulse-dot 2s infinite;"></span>
-        <span id="brojKorisnikaLive">3</span> posetioca iz <span id="korisnikLokacija">Srbije</span>
+        <span id="brojKorisnikaLive">3</span> posetioca online
     </div>
 
     <div class="rotirajuca-znacka">
@@ -389,7 +392,7 @@
             <form class="kontakt-forma" id="formaUpit" onsubmit="posaljiFormu(event)">
                 <div class="input-grupa"><input type="text" name="Ime" id="inputIme" placeholder="Kako se zovete?" required></div>
                 <div class="input-grupa"><input type="email" name="Email" placeholder="Vaš email" required></div>
-                <div class="input-grupa"><textarea name="Poruka" placeholder="Koji projekat planiramo?" required></textarea></div>
+                <div class="input-grupa"><textarea name="Poruka" id="inputPoruka" placeholder="Koji projekat planiramo?" required oninput="sacuvajFormu()"></textarea></div>
                 <button type="submit" class="btn-submit">Pošalji Upit</button>
             </form>
         </div>
@@ -455,7 +458,7 @@
 
     <section id="kalkulator" class="sekcija sakriveno">
         <h2 class="sekcija-naslov" onclick="kopirajSekciju('kalkulator')">KALKULATOR PROJEKTA 🔗</h2>
-        <p class="sekcija-opis">Izaberi opcije i saznaj okvirnu cenu i datum završetka za manje od 60 sekundi.</p>
+        <p class="sekcija-opis">Izaberi opcije, preuzmi PDF ponudu ili zakaži izradu za manje od 60 sekundi.</p>
         
         <div class="kalkulator-box">
             <div class="kalkulator-grupa">
@@ -489,9 +492,9 @@
                     <div class="cena-prikaz" id="ukupnaCena">€299</div>
                     <div id="procenaDatuma" style="color: #a1a1aa; font-size: 12px; margin-top: 5px;">Očekivani završetak: Uskoro</div>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn-primary" onclick="kopirajKalkulaciju()" style="padding: 18px 20px; font-size: 13px;" title="Kopiraj proračun">📋 Kopiraj</button>
-                    <button class="btn-primary" onclick="otvoriModal(); playClick();">Zakaži po ovoj ceni</button>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="preuzmiPDF()" style="padding: 18px 25px; font-size: 13px; background: #BF953F; color: #000;" title="Preuzmi PDF ponudu">📄 Preuzmi PDF</button>
+                    <button class="btn-primary" onclick="otvoriModal(); playClick();">Zakaži izradu</button>
                 </div>
             </div>
         </div>
@@ -547,12 +550,12 @@
         <h2 class="sekcija-naslov" style="font-size: 32px; margin-bottom: 10px;">TEHNOLOGIJE KOJE KORISTIMO</h2>
         <p class="sekcija-opis" style="margin-bottom: 30px;">Savremeni alati za maksimalnu brzinu i stabilnost sajta.</p>
         <div class="tech-stack">
-            <div class="tech-item" title="Hiper-brzi hipertekst">HTML5 / CSS3</div>
-            <div class="tech-item" title="Dinamička interakcija">JAVASCRIPT</div>
-            <div class="tech-item" title="Prilagođeno svim ekranima">RESPONSIVE DESIGN</div>
-            <div class="tech-item" title="Vodeći na Google pretrazi">SEO OPTIMIZACIJA</div>
-            <div class="tech-item" title="Vrhunsko vizuelno iskustvo">UI/UX DIZAJN</div>
-            <div class="tech-item" title="Stabilan cloud deployment">GITHUB DEPLOY</div>
+            <div class="tech-item">HTML5 / CSS3</div>
+            <div class="tech-item">JAVASCRIPT</div>
+            <div class="tech-item">RESPONSIVE DESIGN</div>
+            <div class="tech-item">SEO OPTIMIZACIJA</div>
+            <div class="tech-item">UI/UX DIZAJN</div>
+            <div class="tech-item">GITHUB DEPLOY</div>
         </div>
         <div class="server-status-bar">
             <div class="status-dot"></div>
@@ -588,7 +591,7 @@
     </section>
 
     <section id="faq" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">ČESTA PITANJA (<span id="faqBrojac">4</span>)</h2>
+        <h2 class="sekcija-naslov">ČESTA PITANJA</h2>
         <p class="sekcija-opis">Sve što treba da znate pre početka saradnje.</p>
         <div class="faq-kontejner">
             <details onclick="playClick()"><summary>Koliko traje izrada sajta?</summary><div class="faq-odgovor">Za osnovne (Start) pakete potrebno je između 5 i 7 dana. Biznis sajtovi se završavaju za 2 nedelje, dok kompleksnije online prodavnice zahtevaju od 3 do 4 nedelje rada.</div></details>
@@ -659,26 +662,56 @@
                 document.getElementById('brojKorisnikaLive').innerText = r;
             }, 8000);
 
+            // Učitaj zapamćenu formu ako postoji
+            if(localStorage.getItem('stiglicPoruka')) {
+                document.getElementById('inputPoruka').value = localStorage.getItem('stiglicPoruka');
+            }
+
             izracunajCenu();
         });
+
+        function sacuvajFormu() {
+            const val = document.getElementById('inputPoruka').value;
+            localStorage.setItem('stiglicPoruka', val);
+        }
+
+        // Automatsko generisanje i preuzimanje PDF ponude
+        function preuzmiPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const cena = document.getElementById('ukupnaCena').innerText;
+            const datum = document.getElementById('procenaDatuma').innerText;
+
+            doc.setFillColor(5, 5, 5);
+            doc.rect(0, 0, 210, 297, "F");
+
+            doc.setTextColor(191, 149, 63);
+            doc.setFontSize(24);
+            doc.text("STIGLIC STUDIO - ZVANIČNA PONUDA", 20, 30);
+
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(14);
+            doc.text(`Procenjena investicija: ${cena}`, 20, 50);
+            doc.text(`${datum}`, 20, 65);
+            doc.text("Status: Specijalna VIP pogodnost sa uključenim SEO", 20, 80);
+
+            doc.setTextColor(113, 113, 122);
+            doc.setFontSize(10);
+            doc.text("© 2026 Stiglic Studio. Sva prava zadržana. www.stiglicstudio.com", 20, 270);
+
+            doc.save("Stiglic_Studio_Ponuda.pdf");
+            
+            const toast = document.getElementById('toast-poruka');
+            toast.innerText = 'PDF ponuda uspešno preuzeta!';
+            toast.classList.add('prikazi');
+            setTimeout(() => { toast.classList.remove('prikazi'); toast.innerText = 'Kopirano u memoriju!'; }, 2500);
+        }
 
         function kopirajSekciju(id) {
             const url = window.location.href.split('#')[0] + '#' + id;
             navigator.clipboard.writeText(url).then(() => {
                 const toast = document.getElementById('toast-poruka');
                 toast.innerText = 'Link sekcije kopiran!';
-                toast.classList.add('prikazi');
-                setTimeout(() => { toast.classList.remove('prikazi'); toast.innerText = 'Kopirano u memoriju!'; }, 2000);
-            });
-        }
-
-        function kopirajKalkulaciju() {
-            const cena = document.getElementById('ukupnaCena').innerText;
-            const datum = document.getElementById('procenaDatuma').innerText;
-            const tekst = `Stiglic Studio procena: Investicija ${cena}, ${datum}`;
-            navigator.clipboard.writeText(tekst).then(() => {
-                const toast = document.getElementById('toast-poruka');
-                toast.innerText = 'Proračun kopiran!';
                 toast.classList.add('prikazi');
                 setTimeout(() => { toast.classList.remove('prikazi'); toast.innerText = 'Kopirano u memoriju!'; }, 2000);
             });
@@ -709,6 +742,15 @@
         function posaljiFormu(e) {
             e.preventDefault();
             zatvoriModal();
+            localStorage.removeItem('stiglicPoruka');
+            
+            // Konfete vatromet
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
             alert('🎉 Projekat uspešno pokrenut! Stiglic Studio vas kontaktira uskoro.');
         }
 
