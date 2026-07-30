@@ -3,235 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stiglic Studio | Izrada modernih sajtova</title>
+    <title>Stiglic Studio | Premium Web Design</title>
+    <!-- Importovanje vrhunskog fonta koji koriste najskuplje agencije -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* Osnovna podešavanja */
+        /* Osnova */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Da bi skrolovanje na klik bilo glatko */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
-        /* Glavna pozadina */
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #050505; /* Totalno crna luksuzna pozadina */
+            color: #ffffff;
+            overflow-x: hidden;
         }
 
-        /* --- NAVIGACIJA --- */
+        /* --- STAKLENA NAVIGACIJA (Glassmorphism) --- */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
-            background-color: #1e293b;
-            border-bottom: 1px solid #334155;
-            position: sticky; /* Navigacija stoji na vrhu kad skroluješ */
+            padding: 20px 60px;
+            position: fixed; /* Fiksirano na vrhu */
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.5); /* Poluprovidno */
+            backdrop-filter: blur(12px); /* Efekat mutnog stakla */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #38bdf8;
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
         }
 
         .nav-links a {
-            color: #cbd5e1;
+            color: #a1a1aa; /* Skupa siva */
             text-decoration: none;
-            margin-left: 35px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.4s ease;
         }
 
         .nav-links a:hover {
-            color: #38bdf8;
+            color: #ffffff;
         }
 
-        /* --- HERO SEKCIJA --- */
+        /* --- EFEKAT SJAJA U POZADINI --- */
+        .glow-orb {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+        }
+
+        /* --- HERO SEKCIJA (BRUTALIZAM) --- */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 0 20px;
+            animation: fadeUp 1.5s ease forwards;
         }
 
         .hero h1 {
-            font-size: 55px;
-            margin-bottom: 25px;
-            max-width: 800px;
-            line-height: 1.2;
+            font-size: 80px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -3px; /* Zbijena slova su odlika skupog dizajna */
+            margin-bottom: 30px;
+            max-width: 1000px;
         }
 
-        .hero h1 span {
-            color: #38bdf8;
+        /* Skupi metalik gradijent za tekst */
+        .text-gradient {
+            background: linear-gradient(90deg, #a1a1aa, #ffffff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 20px;
-            color: #94a3b8;
-            margin-bottom: 40px;
+            font-size: 22px;
+            color: #71717a;
+            font-weight: 300;
             max-width: 600px;
-            line-height: 1.6;
+            margin-bottom: 50px;
+            line-height: 1.5;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 16px 32px;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
+        /* Skupa dugmad */
         .btn-primary {
-            background-color: #38bdf8;
-            color: #0f172a;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px; /* Skroz zaobljeno */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
         }
 
         .btn-primary:hover {
-            background-color: #0ea5e9;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+            background-color: #a1a1aa;
+            transform: scale(1.05);
         }
 
-        .btn-secondary {
-            background-color: transparent;
-            color: #38bdf8;
-            border: 2px solid #38bdf8;
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(56, 189, 248, 0.1);
-            transform: translateY(-3px);
-        }
-
-        /* --- SEKCIJA USLUGE --- */
-        .usluge-sekcija {
-            padding: 80px 20px;
-            background-color: #0f172a;
-            text-align: center;
-        }
-
-        .usluge-naslov {
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #f8fafc;
-        }
-
-        .usluge-naslov span {
-            color: #38bdf8;
-        }
-
-        .kartice-kontejner {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        /* --- ZAJEDNIČKI NASLOVI SEKCIJA --- */
+        .sekcija {
+            padding: 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .kartica {
-            background-color: #1e293b;
-            padding: 40px 30px;
-            border-radius: 12px;
-            border: 1px solid #334155;
-            transition: all 0.3s ease;
+        .sekcija-naslov {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 60px;
+            text-align: center;
         }
 
-        .kartica:hover {
+        /* --- KARTICE (ELEGANTNE I TAMNE) --- */
+        .grid-kontejner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .premium-kartica {
+            background: rgba(25, 25, 25, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .premium-kartica:hover {
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-10px);
-            border-color: #38bdf8;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            background: rgba(25, 25, 25, 0.6);
         }
 
-        .ikona {
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-
-        .kartica h3 {
+        .premium-kartica h3 {
             font-size: 24px;
+            font-weight: 700;
             margin-bottom: 15px;
-            color: #f8fafc;
+            letter-spacing: -1px;
         }
 
-        .kartica p {
-            color: #94a3b8;
-            line-height: 1.6;
+        .premium-kartica p {
+            color: #71717a;
             font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .broj {
+            font-size: 14px;
+            font-weight: 900;
+            color: #3f3f46;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* --- KONTAKT FORMA (MINIMALIZAM) --- */
+        .kontakt-forma {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .input-grupa {
+            margin-bottom: 30px;
+        }
+
+        .kontakt-forma input, .kontakt-forma textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 300;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .kontakt-forma input:focus, .kontakt-forma textarea:focus {
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .kontakt-forma textarea {
+            min-height: 100px;
+            resize: none;
+        }
+
+        .btn-submit {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.4s;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        /* --- ANIMACIJA --- */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Prilagođavanje za telefone */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 50px; }
+            nav { padding: 20px; }
+            .nav-links { display: none; /* Sakrivamo meni na malom ekranu za sada */ }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigacija na vrhu -->
+    <!-- Pozadinski sjaj -->
+    <div class="glow-orb"></div>
+
+    <!-- Navigacija -->
     <nav>
-        <a href="#" class="logo">Stiglic Studio.</a>
+        <a href="#" class="logo">STIGLIC.</a>
         <div class="nav-links">
-            <a href="#usluge">Usluge</a>
-            <a href="#portfolio">Portfolio</a>
+            <a href="#usluge">Ekspertiza</a>
+            <a href="#radovi">Radovi</a>
             <a href="#kontakt">Kontakt</a>
         </div>
     </nav>
 
-    <!-- Glavni deo sajta (Hero) -->
+    <!-- Hero -->
     <section class="hero">
-        <h1>Digitalizujte vaš biznis uz <span>Stiglic Studio</span></h1>
-        <p>Pravimo moderne, brze i optimizovane web stranice koje donose klijente. Vaš biznis zaslužuje sajt koji kida.</p>
-        
-        <div class="btn-group">
-            <a href="#kontakt" class="btn-primary">Zatraži ponudu</a>
-            <a href="#portfolio" class="btn-secondary">Pogledaj radove</a>
+        <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
+        <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem i donose profit.</p>
+        <a href="#kontakt" class="btn-primary">Započnimo projekat</a>
+    </section>
+
+    <!-- Usluge -->
+    <section id="usluge" class="sekcija">
+        <h2 class="sekcija-naslov">EKSPERTIZA</h2>
+        <div class="grid-kontejner">
+            <div class="premium-kartica">
+                <span class="broj">01 //</span>
+                <h3>Premium Web Dizajn</h3>
+                <p>Estetika koja odvaja vaš brend od konkurencije. Besprekoran, unikatan dizajn prilagođen vašoj viziji.</p>
+            </div>
+            <div class="premium-kartica">
+                <span class="broj">02 //</span>
+                <h3>E-Commerce Sistemi</h3>
+                <p>Robusne, brze i sigurne online prodavnice dizajnirane za maksimalnu konverziju i skaliranje.</p>
+            </div>
+            <div class="premium-kartica">
+                <span class="broj">03 //</span>
+                <h3>Optimizacija & SEO</h3>
+                <p>Sajtovi koji se učitavaju u sekundi i dominiraju Google pretragom. Performanse bez kompromisa.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Sekcija Usluge -->
-    <section id="usluge" class="usluge-sekcija">
-        <h2 class="usluge-naslov">Šta vam <span>nudimo?</span></h2>
-        
-        <div class="kartice-kontejner">
-            
-            <!-- Kartica 1 -->
-            <div class="kartica">
-                <div class="ikona">💻</div>
-                <h3>Prezentacioni Sajtovi</h3>
-                <p>Idealno za lokale, kafiće i zanatlije. Moderni sajtovi od nekoliko stranica koji predstavljaju vaš biznis u najboljem svetlu.</p>
+    <!-- Kontakt -->
+    <section id="kontakt" class="sekcija">
+        <h2 class="sekcija-naslov">BUDIMO U KONTAKTU</h2>
+        <form class="kontakt-forma">
+            <div class="input-grupa">
+                <input type="text" placeholder="Kako se zovete?" required>
             </div>
-
-            <!-- Kartica 2 -->
-            <div class="kartica">
-                <div class="ikona">🛒</div>
-                <h3>Online Prodavnice</h3>
-                <p>Prodajte svoje proizvode 24/7. Sigurna i brza e-commerce rešenja, optimizovana za maksimalnu prodaju.</p>
+            <div class="input-grupa">
+                <input type="email" placeholder="Vaš email naslov" required>
             </div>
-
-            <!-- Kartica 3 -->
-            <div class="kartica">
-                <div class="ikona">🚀</div>
-                <h3>Održavanje i SEO</h3>
-                <p>Brinemo se da vaš sajt uvek radi brzo, bude siguran od napada i da se dobro rangira na Google pretrazi.</p>
+            <div class="input-grupa">
+                <textarea placeholder="Opišite nam vaš projekat..." required></textarea>
             </div>
-
-        </div>
+            <button type="submit" class="btn-submit">Pošalji Upit</button>
+        </form>
     </section>
 
 </body>
