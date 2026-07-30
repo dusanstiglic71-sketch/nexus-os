@@ -193,15 +193,45 @@
         .mreze a:hover { color: #BF953F; }
         .copyright { color: #3f3f46; font-size: 12px; }
 
-        /* MEDIA QUERIES */
-        @media (max-width: 900px) {
-            .paket-istaknut { transform: scale(1); }
+        /* --- WHATSAPP DUGME --- */
+        .whatsapp-dugme {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse-wa 2s infinite;
         }
+        .whatsapp-dugme:hover {
+            transform: scale(1.1);
+            background-color: #1ebe57;
+        }
+        .whatsapp-dugme svg { width: 35px; height: 35px; fill: white; }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 900px) { .paket-istaknut { transform: scale(1); } }
         @media (max-width: 768px) {
             .hero h1 { font-size: 45px; }
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
             .sekcija-naslov { font-size: 36px; }
+            .whatsapp-dugme { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .whatsapp-dugme svg { width: 28px; height: 28px; }
         }
     </style>
 </head>
@@ -226,7 +256,6 @@
         <a href="#paketi" class="btn-primary">Pogledaj Cene</a>
     </section>
 
-    <!-- O NAMA / PRISTUP -->
     <section class="sekcija sakriveno">
         <h2 class="sekcija-naslov">DOKAZAN KVALITET</h2>
         <p class="sekcija-opis">Naš fokus je na performansama i dizajnu koji konvertuje posetioce u kupce. Brojke govore za nas.</p>
@@ -246,7 +275,6 @@
         </div>
     </section>
 
-    <!-- USLUGE -->
     <section id="usluge" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">EKSPERTIZA</h2>
         <p class="sekcija-opis">Sve što je potrebno da vaš biznis dominira u digitalnom svetu.</p>
@@ -269,7 +297,6 @@
         </div>
     </section>
 
-    <!-- PAKETI -->
     <section id="paketi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">IZABERI SVOJ PAKET</h2>
         <p class="sekcija-opis">Transparentne cene, bez skrivenih troškova. Investicija koja se vraća.</p>
@@ -317,7 +344,6 @@
         </div>
     </section>
 
-    <!-- RADOVI -->
     <section id="radovi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ISTAKNUTI RADOVI</h2>
         <p class="sekcija-opis">Zavirite u naš portfolio i uverite se u kvalitet koji isporučujemo.</p>
@@ -346,7 +372,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ČESTA PITANJA</h2>
         <p class="sekcija-opis">Sve što treba da znate pre početka saradnje.</p>
@@ -370,7 +395,6 @@
         </div>
     </section>
 
-    <!-- KONTAKT FORMA (Formspree povezan) -->
     <section id="kontakt" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ZAPOČNIMO PROJEKAT</h2>
         <form class="kontakt-forma" action="https://formspree.io/f/xzdnwlvl" method="POST">
@@ -387,7 +411,6 @@
         </form>
     </section>
 
-    <!-- FOOTER -->
     <footer class="sakriveno">
         <span class="footer-logo">STIGLIC STUDIO.</span>
         <div class="mreze">
@@ -396,6 +419,11 @@
         </div>
         <div class="copyright">© 2026 Stiglic Studio. Sva prava zadržana.</div>
     </footer>
+
+    <!-- ZVANIČNO WHATSAPP DUGME SA PRAVIM BROJEM -->
+    <a href="https://wa.me/381628324011" target="_blank" class="whatsapp-dugme">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.01 2a14.02 14.02 0 0 0-11.83 21.54l-2.02 6a1.03 1.03 0 0 0 1.29 1.28l5.85-2.08A13.98 13.98 0 1 0 16.01 2zm0 25.96a11.95 11.95 0 0 1-6.17-1.7l-.46-.27-3.92 1.4 1.42-3.83-.3-.49A11.97 11.97 0 1 1 16.01 28zm6.54-8.77c-.36-.18-2.12-1.05-2.45-1.17-.32-.12-.56-.18-.8.18-.23.36-.93 1.17-1.14 1.4-.2.23-.42.27-.78.1a9.78 9.78 0 0 1-2.88-1.78 10.77 10.77 0 0 1-2-2.49c-.21-.36-.02-.55.15-.74.16-.16.36-.42.54-.64.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.8-1.92-1.1-2.63-.28-.68-.58-.59-.8-.6h-.69c-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3 0 1.77 1.29 3.48 1.47 3.72.18.24 2.55 3.9 6.18 5.43.87.36 1.53.57 2.07.72.87.24 1.65.21 2.28.12.72-.09 2.12-.87 2.43-1.7.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42z"/></svg>
+    </a>
 
     <!-- JAVASCRIPT ZA ANIMACIJE NA SKROL -->
     <script>
