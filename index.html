@@ -27,18 +27,14 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* --- LOGO SLIKA U NAVIGACIJI --- */
+        /* --- LOGO PTICA U NAVIGACIJI --- */
         .nav-logo-img {
-            height: 45px;
+            height: 40px;
             width: auto;
-            border-radius: 8px;
-            border: 1px solid rgba(191, 149, 63, 0.4);
-            box-shadow: 0 4px 15px rgba(191, 149, 63, 0.2);
             transition: transform 0.3s ease;
         }
         .nav-logo-img:hover {
-            transform: scale(1.05);
-            border-color: #BF953F;
+            transform: scale(1.1);
         }
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
@@ -131,6 +127,18 @@
         .broj { font-size: 14px; font-weight: 900; color: #BF953F; margin-bottom: 20px; display: block; }
         .premium-kartica h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
         .premium-kartica p { color: #71717a; font-size: 16px; line-height: 1.6; }
+
+        /* --- RECENZIJE --- */
+        .recenzije-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .recenzija-kartica {
+            background: #0c0c0c; border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 20px;
+            position: relative; transition: 0.3s;
+        }
+        .recenzija-kartica:hover { border-color: rgba(191, 149, 63, 0.4); transform: translateY(-5px); }
+        .zvezdice { color: #BF953F; font-size: 18px; margin-bottom: 15px; }
+        .recenzija-tekst { color: #d4d4d8; font-size: 16px; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
+        .autor-ime { font-weight: 700; font-size: 16px; color: #ffffff; }
+        .autor-firma { font-size: 13px; color: #71717a; }
 
         /* --- PAKETI --- */
         .paketi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
@@ -274,7 +282,7 @@
         .plutajuce-dugme {
             width: 60px; height: 60px; border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; text-decoration: none;
         }
         .plutajuce-dugme:hover { transform: scale(1.1); }
         .plutajuce-dugme svg { width: 28px; height: 28px; fill: white; }
@@ -282,6 +290,12 @@
         .call-dugme:hover { background-color: #0062cc; }
         .whatsapp-dugme { background-color: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); animation: pulse-wa 2s infinite; }
         .whatsapp-dugme:hover { background-color: #1ebe57; }
+        
+        .top-dugme {
+            background-color: #1a160d; border: 1px solid #BF953F; color: #BF953F;
+            font-size: 20px; font-weight: bold; display: none;
+        }
+        .top-dugme:hover { background-color: #BF953F; color: #000; }
 
         @keyframes pulse-wa {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
@@ -309,7 +323,7 @@
     <div class="glow-orb"></div>
 
     <nav>
-        <!-- UMESTO TEKSTA, SADA JE SLIKA IDENTITETA KAO LOGO GORE LEVO -->
+        <!-- Kada imaš logo bez pozadine sačuvan kao logo-ptica.png, samo zameni "identitet.jpg" ispod -->
         <a href="#">
             <img src="identitet.jpg" alt="Stiglic Studio Logo" class="nav-logo-img">
         </a>
@@ -318,6 +332,7 @@
             <a href="#usluge">Ekspertiza</a>
             <a href="#paketi">Paketi</a>
             <a href="#radovi">Radovi</a>
+            <a href="#recenzije">Utisci</a>
             <a href="#faq">FAQ</a>
         </div>
         <a href="#kontakt" class="btn-nav">Započni Projekat</a>
@@ -327,7 +342,6 @@
         <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem, privlače pažnju i donose profit.</p>
         
-        <!-- GLAVNA SLIKA IDENTITETA U HERO SEKCIJI -->
         <img src="identitet.jpg" alt="Stiglic Studio Identitet" class="hero-identitet-slika">
 
         <a href="#paketi" class="btn-primary">Pogledaj Cene</a>
@@ -417,6 +431,25 @@
         </div>
     </section>
 
+    <section id="recenzije" class="sekcija sakriveno">
+        <h2 class="sekcija-naslov">ŠTA KAŽU KLIJENTI</h2>
+        <p class="sekcija-opis">Utisci onih koji su već unapredili svoje poslovanje sa nama.</p>
+        <div class="recenzije-grid">
+            <div class="recenzija-kartica">
+                <div class="zvezdice">★★★★★</div>
+                <p class="recenzija-tekst">"Sajt je urađen nestvarno brzo, a izgled ostavlja bez daha. Prodaja nam je skočila već u prvoj nedelji nakon puštanja u rad!"</p>
+                <div class="autor-ime">Stefan Petrović</div>
+                <div class="autor-firma">Vlasnik restorana</div>
+            </div>
+            <div class="recenzija-kartica">
+                <div class="zvezdice">★★★★★</div>
+                <p class="recenzija-tekst">"Konačno neko ko razume šta znači moderan dizajn i čist kod. Sve preporuke za saradnju sa Stiglic Studiom!"</p>
+                <div class="autor-ime">Nikola Jovanović</div>
+                <div class="autor-firma">E-commerce osnivač</div>
+            </div>
+        </div>
+    </section>
+
     <section id="radovi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ISTAKNUTI RADOVI</h2>
         <p class="sekcija-opis">Zavirite u naš portfolio i uverite se u kvalitet koji isporučujemo.</p>
@@ -483,6 +516,7 @@
     </footer>
 
     <div class="plutajuci-kontejner">
+        <a href="#" class="plutajuce-dugme top-dugme" id="btn-top" title="Nazad na vrh">↑</a>
         <a href="tel:+381628324011" class="plutajuce-dugme call-dugme" title="Pozovi nas">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         </a>
@@ -497,6 +531,13 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            const btnTop = document.getElementById('btn-top');
+            if (winScroll > 400) {
+                btnTop.style.display = 'flex';
+            } else {
+                btnTop.style.display = 'none';
+            }
         });
 
         function filtriraj(kategorija, dugme) {
