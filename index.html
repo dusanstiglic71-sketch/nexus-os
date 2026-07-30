@@ -12,13 +12,22 @@
         html { scroll-behavior: smooth; }
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; position: relative; }
         
-        /* VIP TAJNI POPUST TRAKA */
+        /* VIP TAJNI POPUST TRAKA SA TAJMEROM */
         .vip-akcija-traka {
             background: linear-gradient(90deg, #BF953F, #FCF6BA, #BF953F);
             color: #000; font-size: 13px; font-weight: 800; text-align: center;
             padding: 8px 20px; position: fixed; top: 0; width: 100%; z-index: 10001;
             text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
             box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
+        }
+
+        /* LIVE KORISNICI U UGLU */
+        .live-korisnici {
+            position: fixed; bottom: 30px; left: 30px; z-index: 998;
+            background: rgba(15, 15, 15, 0.9); border: 1px solid rgba(191, 149, 63, 0.3);
+            padding: 10px 18px; border-radius: 50px; font-size: 12px; font-weight: 600;
+            color: #d4d4d8; backdrop-filter: blur(10px); display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         /* SCROLL PROGRESS TRAKA */
@@ -28,7 +37,7 @@
             transition: width 0.1s ease;
         }
 
-        /* ROTIRAJUĆA ZNAČKA U UGLU */
+        /* ROTIRAJUĆA ZNAČKA */
         .rotirajuca-znacka {
             position: fixed; bottom: 110px; right: 30px; width: 85px; height: 85px;
             z-index: 999; pointer-events: none; animation: rotiranje 12s linear infinite;
@@ -353,17 +362,24 @@
             .cta-baner h2 { font-size: 30px; }
             .kalkulator-box { padding: 25px; }
             .audio-toggle { right: 20px; top: 85px; }
+            .live-korisnici { display: none; }
         }
     </style>
 </head>
 <body>
     
-    <!-- VIP TAJNI POPUST NA VRHU -->
+    <!-- VIP TAJNI POPUST SA TAJMEROM -->
     <div class="vip-akcija-traka" onclick="otvoriModal(); playClick();">
-        ⚡ VIP AKCIJA: Osvoji besplatnu SEO optimizaciju uz bilo koji izabrani paket! Klikni ovde za dogovor. ⚡
+        ⚡ VIP AKCIJA: Osvoji besplatnu SEO optimizaciju! Ističe za: <span id="tajmerCountdown">12:00:00</span> ⚡
     </div>
 
-    <!-- ROTIRAJUĆA ZNAČKA U UGLU -->
+    <!-- LIVE KORISNICI U UGLU -->
+    <div class="live-korisnici">
+        <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display:inline-block; animation: pulse-dot 2s infinite;"></span>
+        <span id="brojKorisnikaLive">3</span> posetioca upravo pregledaju ponudu
+    </div>
+
+    <!-- ROTIRAJUĆA ZNAČKA -->
     <div class="rotirajuca-znacka">
         <svg viewBox="0 0 100 100">
             <path id="curve" fill="transparent" d="M 15, 50 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
@@ -373,10 +389,7 @@
         </svg>
     </div>
 
-    <!-- Toast obaveštenje -->
     <div id="toast-poruka">Kopirano u memoriju!</div>
-
-    <!-- Audio dugme -->
     <button class="audio-toggle" id="audioBtn" onclick="toggleAudio()">Zvuk: ISKLJUČEN</button>
 
     <div id="scroll-progress"></div>
@@ -388,7 +401,7 @@
             <button class="modal-zatvori" onclick="zatvoriModal()">&times;</button>
             <h2 class="sekcija-naslov" style="font-size: 32px; margin-bottom: 20px;">POKRENI PROJEKAT</h2>
             <form class="kontakt-forma" id="formaUpit" onsubmit="posaljiFormu(event)">
-                <div class="input-grupa"><input type="text" name="Ime" placeholder="Kako se zovete?" required></div>
+                <div class="input-grupa"><input type="text" name="Ime" id="inputIme" placeholder="Kako se zovete?" required></div>
                 <div class="input-grupa"><input type="email" name="Email" placeholder="Vaš email" required></div>
                 <div class="input-grupa"><textarea name="Poruka" placeholder="Koji projekat planiramo?" required></textarea></div>
                 <button type="submit" class="btn-submit">Pošalji Upit</button>
@@ -416,14 +429,14 @@
         <h1 id="autoPozdrav">MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem, privlače pažnju i donose profit.</p>
         
-        <img src="ptica-logo.png" alt="Stiglic Studio Ptica" class="hero-identitet-slika">
+        <img src="ptica-logo.png" alt="Stiglic Studio Ptica" class="hero-identitet-slika" onclick="easterEggZvuk()">
 
         <button class="btn-primary" onclick="otvoriModal(); playClick();">Započni Saradnju</button>
     </section>
 
     <!-- BEFORE & AFTER TRANSFORMACIJA SEKCIJA -->
     <section id="transformacija" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">MOĆ REDIZAJNA</h2>
+        <h2 class="sekcija-naslov" onclick="kopirajSekciju('transformacija')">MOĆ REDIZAJNA 🔗</h2>
         <p class="sekcija-opis">Prevuci klizač levo-desno i vidi drastičnu razliku između prosečnog sajta i Stiglic Studio remek-dela.</p>
         
         <div class="comparis-kontejner">
@@ -441,7 +454,7 @@
 
     <!-- EKSKLUZIVNI VIP TERMINAL -->
     <section id="terminal" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">VIP TERMINAL DIJAGNOZA</h2>
+        <h2 class="sekcija-naslov" onclick="kopirajSekciju('terminal')">VIP TERMINAL DIJAGNOZA 🔗</h2>
         <p class="sekcija-opis">Izaberi svoj tip biznisa i pokreni trenutnu analizu performansi.</p>
         
         <div class="vip-terminal">
@@ -458,7 +471,7 @@
 
     <!-- INTERAKTIVNI KALKULATOR CENA -->
     <section id="kalkulator" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">KALKULATOR PROJEKTA</h2>
+        <h2 class="sekcija-naslov" onclick="kopirajSekciju('kalkulator')">KALKULATOR PROJEKTA 🔗</h2>
         <p class="sekcija-opis">Izaberi opcije i saznaj okvirnu cenu za manje od 60 sekundi.</p>
         
         <div class="kalkulator-box">
@@ -618,6 +631,7 @@
             <a href="https://tiktok.com" target="_blank">TikTok</a>
         </div>
         <div class="copyright" style="cursor: pointer;" onclick="kopirajTekst('© 2026 Stiglic Studio. Sva prava zadržana.')" title="Klikni da kopiraš copyright">© 2026 Stiglic Studio. Sva prava zadržana. (Klikni za kopiranje)</div>
+        <div style="color: #3f3f46; font-size: 11px; margin-top: 10px;">SSL Secured • Clean Code Architecture • 100% Verified</div>
     </footer>
 
     <div class="plutajuci-kontejner">
@@ -631,7 +645,7 @@
     </div>
 
     <script>
-        // 1. Automatski pozdrav na osnovu doba dana
+        // Automatski pozdrav, sat i tajmer akcije
         window.addEventListener('DOMContentLoaded', () => {
             const sat = new Date().getHours();
             const h1 = document.getElementById('autoPozdrav');
@@ -641,14 +655,45 @@
             else pozdrav = "DOBRO VEČE, GRADIMO";
             h1.innerHTML = `${pozdrav} <br><span class="text-gradient">DIGITALNO NASLEĐE.</span>`;
 
-            // 8. Real-time sat u footeru
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('vremeStudia').innerText = `Lokalno vreme studia: ${now.toLocaleTimeString('sr-RS')}`;
             }, 1000);
+
+            // Tajmer countdown
+            let sekunde = 36000;
+            setInterval(() => {
+                let h = Math.floor(sekunde / 3600);
+                let m = Math.floor((sekunde % 3600) / 60);
+                let s = sekunde % 60;
+                document.getElementById('tajmerCountdown').innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+                if(sekunde > 0) sekunde--;
+            }, 1000);
+
+            // Simulacija broja posetilaca
+            setInterval(() => {
+                let r = Math.floor(Math.random() * 4) + 2;
+                document.getElementById('brojKorisnikaLive').innerText = r;
+            }, 8000);
         });
 
-        // 6. Exit-intent popup za popust
+        // Kopiranje direktnog linka sekcije
+        function kopirajSekciju(id) {
+            const url = window.location.href.split('#')[0] + '#' + id;
+            navigator.clipboard.writeText(url).then(() => {
+                const toast = document.getElementById('toast-poruka');
+                toast.innerText = 'Link sekcije kopiran!';
+                toast.classList.add('prikazi');
+                setTimeout(() => { toast.classList.remove('prikazi'); toast.innerText = 'Kopirano u memoriju!'; }, 2000);
+            });
+        }
+
+        // Easter egg na logo
+        function easterEggZvuk() {
+            alert('🐦 Stiglic Studio Secret: Kvalitet bez kompromisa!');
+        }
+
+        // Exit-intent popup
         let izasaoPopup = false;
         document.addEventListener('mouseleave', e => {
             if (e.clientY < 10 && !izasaoPopup) {
@@ -657,14 +702,12 @@
             }
         });
 
-        // 1. Konfete na uspešno slanje forme
         function posaljiFormu(e) {
             e.preventDefault();
             zatvoriModal();
             alert('Projekat uspešno pokrenut! Stiglic Studio vas kontaktira uskoro.');
         }
 
-        // Before & After klizač
         function pomeriKlizaC(vrednost) {
             const div = document.getElementById('compPosleDiv');
             const img = document.getElementById('compPreImg');
@@ -673,7 +716,6 @@
             img.style.left = '0';
         }
 
-        // VIP Terminal AI Dijagnoza
         function pokreniDijagnozu(tip, dugme) {
             document.querySelectorAll('.vip-terminal .btn-filter').forEach(btn => btn.classList.remove('aktivno'));
             dugme.classList.add('aktivno');
@@ -682,7 +724,6 @@
             ekran.innerHTML = `> Analiza sektora [${tip}] u toku...\n> Detektovani problemi: Sporo učitavanje, loša konverzija.\n> Preporuka: Mobile-First dizajn sa ispod 1s učitavanja.\n> STATUS: Visok potencijal za profit.`;
         }
 
-        // Zvučni efekti
         let zvukUkljucen = false;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
@@ -708,7 +749,6 @@
             } catch(e) {}
         }
 
-        // Quick Copy
         function kopirajTekst(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const toast = document.getElementById('toast-poruka');
@@ -717,7 +757,6 @@
             });
         }
 
-        // Scroll progress i top dugme
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -729,7 +768,6 @@
             else btnTop.style.display = 'none';
         });
 
-        // Kalkulator
         function izracunajCenu() {
             const tip = parseInt(document.getElementById('tipSajta').value);
             const brzina = parseInt(document.getElementById('brzinaIzrade').value);
@@ -738,11 +776,12 @@
             document.getElementById('ukupnaCena').innerText = '€' + ukupno;
         }
 
-        // Modal kontrole
-        function otvoriModal() { document.getElementById('kontaktModal').style.display = 'flex'; }
+        function otvoriModal() { 
+            document.getElementById('kontaktModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('inputIme').focus(), 100);
+        }
         function zatvoriModal() { document.getElementById('kontaktModal').style.display = 'none'; }
 
-        // Filter radova sa brojačem (5. funkcija)
         function filtriraj(kategorija, dugme, broj) {
             document.querySelectorAll('#radovi .btn-filter').forEach(btn => btn.classList.remove('aktivno'));
             dugme.classList.add('aktivno');
