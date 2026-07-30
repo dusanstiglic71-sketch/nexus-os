@@ -8,12 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- OSNOVA --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         html { scroll-behavior: smooth; }
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; position: relative; }
         
-        /* --- VIP TAJNI POPUST TRAKA NA VRHU --- */
+        /* VIP TAJNI POPUST TRAKA */
         .vip-akcija-traka {
             background: linear-gradient(90deg, #BF953F, #FCF6BA, #BF953F);
             color: #000; font-size: 13px; font-weight: 800; text-align: center;
@@ -22,14 +21,22 @@
             box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
         }
 
-        /* --- SCROLL PROGRESS TRAKA --- */
+        /* SCROLL PROGRESS TRAKA */
         #scroll-progress {
             position: fixed; top: 33px; left: 0; width: 0%; height: 3px;
             background: linear-gradient(90deg, #BF953F, #FCF6BA); z-index: 10000;
             transition: width 0.1s ease;
         }
 
-        /* --- AUDIO KONTROLA U UGLU --- */
+        /* ROTIRAJUĆA ZNAČKA U UGLU */
+        .rotirajuca-znacka {
+            position: fixed; bottom: 110px; right: 30px; width: 85px; height: 85px;
+            z-index: 999; pointer-events: none; animation: rotiranje 12s linear infinite;
+        }
+        .rotirajuca-znacka svg { width: 100%; height: 100%; fill: #BF953F; }
+        @keyframes rotiranje { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* AUDIO KONTROLA */
         .audio-toggle {
             position: fixed; top: 45px; right: 280px; z-index: 1001;
             background: rgba(25, 25, 25, 0.6); border: 1px solid rgba(191, 149, 63, 0.3);
@@ -38,7 +45,7 @@
         }
         .audio-toggle:hover { background: #BF953F; color: #000; }
 
-        /* --- NAVIGACIJA --- */
+        /* NAVIGACIJA */
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 60px; position: fixed; width: 100%; top: 33px; z-index: 1000;
@@ -47,10 +54,7 @@
         }
         
         .nav-logo-kontejner { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
-        .nav-logo-img {
-            height: 90px; width: 90px; object-fit: contain;
-            transition: transform 0.3s ease;
-        }
+        .nav-logo-img { height: 90px; width: 90px; object-fit: contain; transition: transform 0.3s ease; }
         .nav-logo-img:hover { transform: scale(1.05); }
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
@@ -67,14 +71,13 @@
         }
         .btn-nav:hover { background: #BF953F; color: #000; }
 
-        /* --- SJAJ --- */
         .glow-orb {
             position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
             width: 800px; height: 800px;
             background: radial-gradient(circle, rgba(191, 149, 63, 0.08) 0%, rgba(0,0,0,0) 60%); z-index: -1;
         }
 
-        /* --- HERO SEKCIJA --- */
+        /* HERO SEKCIJA */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             align-items: center; text-align: center; padding: 160px 20px 80px 20px;
@@ -106,16 +109,14 @@
         }
         .btn-primary:hover { background-color: #BF953F; color: #ffffff; transform: scale(1.05); }
 
-        /* --- ZAJEDNIČKI STILOVI SEKCIJA --- */
         .sekcija { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
         .sekcija-naslov { font-size: 48px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; text-align: center; }
         .sekcija-opis { text-align: center; color: #71717a; font-size: 18px; max-width: 600px; margin: 0 auto 60px auto; }
 
-        /* --- SCROLL ANIMACIJE --- */
         .sakriveno { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
         .prikazano { opacity: 1; transform: translateY(0); }
 
-        /* --- EKSLUZIVNI VIP TERMINAL (AI DIJAGNOZA) --- */
+        /* VIP TERMINAL */
         .vip-terminal {
             background: #090909; border: 1px solid rgba(191, 149, 63, 0.4); border-radius: 25px;
             padding: 50px; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
@@ -126,20 +127,14 @@
             margin-top: 25px; line-height: 1.6; position: relative; overflow: hidden;
         }
 
-        /* --- BEFORE & AFTER TRANSFORMACIJA SLIDER --- */
+        /* BEFORE & AFTER SLIDER */
         .comparis-kontejner {
             position: relative; width: 100%; max-width: 850px; height: 450px; margin: 0 auto;
             border-radius: 20px; overflow: hidden; border: 1px solid rgba(191, 149, 63, 0.3);
         }
-        .comp-slika {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-        }
-        .comp-posle {
-            width: 50%; z-index: 2; border-right: 3px solid #BF953F;
-        }
-        .comp-slider-input {
-            position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 10;
-        }
+        .comp-slika { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .comp-posle { width: 50%; z-index: 2; border-right: 3px solid #BF953F; }
+        .comp-slider-input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 10; }
         .comp-labela {
             position: absolute; bottom: 20px; background: rgba(0,0,0,0.7); color: #fff;
             padding: 6px 15px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 1px; z-index: 5;
@@ -147,13 +142,11 @@
         .labela-pre { left: 20px; color: #ef4444; }
         .labela-posle { right: 20px; color: #22c55e; }
 
-        /* --- STATISTIKA --- */
         .statistika-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px; margin-top: 50px; }
         .stat-item { text-align: center; }
         .stat-broj { font-size: 50px; font-weight: 900; color: #BF953F; margin-bottom: 10px; }
         .stat-tekst { font-size: 16px; color: #a1a1aa; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- EKSPERTIZA --- */
         .grid-kontejner { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .premium-kartica {
             background: rgba(25, 25, 25, 0.3); border: 1px solid rgba(255, 255, 255, 0.05);
@@ -164,7 +157,7 @@
         .premium-kartica h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
         .premium-kartica p { color: #71717a; font-size: 16px; line-height: 1.6; }
 
-        /* --- INTERAKTIVNI KALKULATOR CENA --- */
+        /* KALKULATOR */
         .kalkulator-box {
             background: #0c0c0c; border: 1px solid rgba(191, 149, 63, 0.3); border-radius: 25px;
             padding: 50px; max-width: 800px; margin: 0 auto; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
@@ -182,7 +175,6 @@
         }
         .cena-prikaz { font-size: 36px; font-weight: 900; color: #BF953F; }
 
-        /* --- PAKETI --- */
         .paketi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .paket {
             background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
@@ -208,7 +200,6 @@
         }
         .paket-istaknut .btn-paket, .btn-paket:hover { background: #ffffff; color: #000; border-color: #ffffff; }
 
-        /* --- TECH STACK & STATUS --- */
         .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
         .tech-item {
             background: rgba(25, 25, 25, 0.4); border: 1px solid rgba(255, 255, 255, 0.08);
@@ -227,7 +218,6 @@
         }
         @keyframes pulse-dot { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        /* --- RECENZIJE --- */
         .recenzije-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .recenzija-kartica {
             background: #0c0c0c; border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 20px;
@@ -239,7 +229,6 @@
         .autor-ime { font-weight: 700; font-size: 16px; color: #ffffff; }
         .autor-firma { font-size: 13px; color: #71717a; }
 
-        /* --- PORTFOLIO FILTER SA LIVE PREVIEW EFEKTOM --- */
         .filter-dugmad { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
         .btn-filter {
             background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #a1a1aa;
@@ -268,7 +257,6 @@
         .rad-overlay h3 { font-size: 22px; margin-bottom: 5px; }
         .rad-overlay span { color: #BF953F; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- FAQ --- */
         .faq-kontejner { max-width: 800px; margin: 0 auto; }
         details {
             background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
@@ -284,7 +272,6 @@
         details[open] summary::after { content: '−'; }
         .faq-odgovor { margin-top: 15px; color: #a1a1aa; line-height: 1.6; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
-        /* --- CTA BANER --- */
         .cta-baner {
             background: linear-gradient(135deg, #111111, #1a160d);
             border: 1px solid rgba(191, 149, 63, 0.3); border-radius: 30px;
@@ -293,7 +280,6 @@
         .cta-baner h2 { font-size: 40px; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; }
         .cta-baner p { color: #a1a1aa; font-size: 18px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        /* --- MODAL (POPUP) ZA KONTAKT --- */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
             z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px;
@@ -308,7 +294,6 @@
         }
         .modal-zatvori:hover { color: #BF953F; }
 
-        /* --- BRZI KOPIRAJ TOAST --- */
         #toast-poruka {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
             background: #BF953F; color: #000; padding: 12px 25px; border-radius: 50px; font-weight: 700;
@@ -316,7 +301,6 @@
         }
         #toast-poruka.prikazi { transform: translateX(-50%) translateY(0); }
 
-        /* --- KONTAKT FORMA --- */
         .kontakt-forma { max-width: 700px; margin: 0 auto; }
         .input-grupa { margin-bottom: 30px; }
         .kontakt-forma input, .kontakt-forma textarea {
@@ -332,7 +316,6 @@
         }
         .btn-submit:hover { background: #BF953F; color: #000000; border-color: #BF953F; }
 
-        /* --- FOOTER --- */
         footer { border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 50px 20px; text-align: center; }
         .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; display: block; color: #ffffff; }
         .mreze { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
@@ -340,7 +323,6 @@
         .mreze a:hover { color: #BF953F; }
         .copyright { color: #3f3f46; font-size: 12px; }
 
-        /* --- PLUTAJUĆA DUGMAD --- */
         .plutajuci-kontejner { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
         .plutajuce-dugme {
             width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
@@ -381,7 +363,17 @@
         ⚡ VIP AKCIJA: Osvoji besplatnu SEO optimizaciju uz bilo koji izabrani paket! Klikni ovde za dogovor. ⚡
     </div>
 
-    <!-- Toast obaveštenje za kopiranje -->
+    <!-- ROTIRAJUĆA ZNAČKA U UGLU -->
+    <div class="rotirajuca-znacka">
+        <svg viewBox="0 0 100 100">
+            <path id="curve" fill="transparent" d="M 15, 50 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+            <text font-size="13.5" font-weight="bold" fill="#BF953F">
+                <textPath href="#curve">STIGLIC STUDIO • 100% VERIFIED •</textPath>
+            </text>
+        </svg>
+    </div>
+
+    <!-- Toast obaveštenje -->
     <div id="toast-poruka">Kopirano u memoriju!</div>
 
     <!-- Audio dugme -->
@@ -395,11 +387,11 @@
         <div class="modal-sadrzaj">
             <button class="modal-zatvori" onclick="zatvoriModal()">&times;</button>
             <h2 class="sekcija-naslov" style="font-size: 32px; margin-bottom: 20px;">POKRENI PROJEKAT</h2>
-            <form class="kontakt-forma" action="https://formspree.io/f/xzdnwlvl" method="POST">
+            <form class="kontakt-forma" id="formaUpit" onsubmit="posaljiFormu(event)">
                 <div class="input-grupa"><input type="text" name="Ime" placeholder="Kako se zovete?" required></div>
                 <div class="input-grupa"><input type="email" name="Email" placeholder="Vaš email" required></div>
                 <div class="input-grupa"><textarea name="Poruka" placeholder="Koji projekat planiramo?" required></textarea></div>
-                <button type="submit" class="btn-submit" onclick="playClick()">Pošalji Upit</button>
+                <button type="submit" class="btn-submit">Pošalji Upit</button>
             </form>
         </div>
     </div>
@@ -421,7 +413,7 @@
     </nav>
 
     <section class="hero sakriveno">
-        <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
+        <h1 id="autoPozdrav">MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem, privlače pažnju i donose profit.</p>
         
         <img src="ptica-logo.png" alt="Stiglic Studio Ptica" class="hero-identitet-slika">
@@ -435,24 +427,22 @@
         <p class="sekcija-opis">Prevuci klizač levo-desno i vidi drastičnu razliku između prosečnog sajta i Stiglic Studio remek-dela.</p>
         
         <div class="comparis-kontejner">
-            <!-- Posle slika (pozadina) -->
             <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1200" class="comp-slika" alt="Posle">
             <span class="comp-labela labela-posle">STIGLIC STUDIO (MOĆNO)</span>
 
-            <!-- Pre slika (preko koje ide klizač) -->
             <div class="comp-slika comp-posle" id="compPosleDiv" style="overflow: hidden;">
                 <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1200&sat=-100&bri=-30" style="position: absolute; width: 100%; height: 100%; object-fit: cover; max-width: none;" id="compPreImg" alt="Pre">
             </div>
             <span class="comp-labela labela-pre">STARI SAJT (SPORO)</span>
 
-            <input type="range" min="0" max="100" value="50" class="comp-slider-input" id="compSlider" oninput="pomeriKlizaC(this.value)">
+            <input type="range" min="0" max="100" value="50" class="comp-slider-input" oninput="pomeriKlizaC(this.value)">
         </div>
     </section>
 
-    <!-- EKSKLUZIVNI VIP TERMINAL (AI DIJAGNOZA) -->
+    <!-- EKSKLUZIVNI VIP TERMINAL -->
     <section id="terminal" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">VIP TERMINAL DIJAGNOZA</h2>
-        <p class="sekcija-opis">Izaberi svoj tip biznisa i pokreni trenutnu analizu performansi od strane našeg sistema.</p>
+        <p class="sekcija-opis">Izaberi svoj tip biznisa i pokreni trenutnu analizu performansi.</p>
         
         <div class="vip-terminal">
             <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
@@ -469,7 +459,7 @@
     <!-- INTERAKTIVNI KALKULATOR CENA -->
     <section id="kalkulator" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">KALKULATOR PROJEKTA</h2>
-        <p class="sekcija-opis">Izaberi opcije i saznaj okvirnu cenu izrade u realnom vremenu.</p>
+        <p class="sekcija-opis">Izaberi opcije i saznaj okvirnu cenu za manje od 60 sekundi.</p>
         
         <div class="kalkulator-box">
             <div class="kalkulator-grupa">
@@ -509,7 +499,7 @@
 
     <section class="sekcija sakriveno">
         <h2 class="sekcija-naslov">DOKAZAN KVALITET</h2>
-        <p class="sekcija-opis">Naš fokus je na performansama i dizajnu koji konvertuje posetioce u kupce. Brojke govore za nas.</p>
+        <p class="sekcija-opis">Naš fokus je na performansama i dizajnu koji konvertuje posetioce u kupce.</p>
         <div class="statistika-grid">
             <div class="stat-item"><div class="stat-broj">99%</div><div class="stat-tekst">Zadovoljnih klijenata</div></div>
             <div class="stat-item"><div class="stat-broj">&lt; 1s</div><div class="stat-tekst">Vreme učitavanja</div></div>
@@ -572,14 +562,14 @@
 
     <!-- RADOVI SA LIVE PREVIEW EFEKTOM -->
     <section id="radovi" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">ISTAKNUTI RADOVI</h2>
+        <h2 class="sekcija-naslov">ISTAKNUTI RADOVI <span id="brojacProjekata" style="font-size: 16px; color: #BF953F;">(3)</span></h2>
         <p class="sekcija-opis">Zavirite u naš portfolio i uverite se u kvalitet koji isporučujemo.</p>
         
         <div class="filter-dugmad">
-            <button class="btn-filter aktivno" onclick="filtriraj('sve', this); playClick();">Svi Projekti</button>
-            <button class="btn-filter" onclick="filtriraj('restoran', this); playClick();">Restorani</button>
-            <button class="btn-filter" onclick="filtriraj('ecommerce', this); playClick();">E-Commerce</button>
-            <button class="btn-filter" onclick="filtriraj('biznis', this); playClick();">Prezentacije</button>
+            <button class="btn-filter aktivno" onclick="filtriraj('sve', this, 3); playClick();">Svi Projekti</button>
+            <button class="btn-filter" onclick="filtriraj('restoran', this, 1); playClick();">Restorani</button>
+            <button class="btn-filter" onclick="filtriraj('ecommerce', this, 1); playClick();">E-Commerce</button>
+            <button class="btn-filter" onclick="filtriraj('biznis', this, 1); playClick();">Prezentacije</button>
         </div>
 
         <div class="radovi-grid">
@@ -622,6 +612,7 @@
             <img src="ptica-logo.png" alt="Stiglic Studio Logo" style="height: 130px; width: 130px; object-fit: contain;">
         </div>
         <span class="footer-logo">STIGLIC STUDIO.</span>
+        <div id="vremeStudia" style="color: #BF953F; font-size: 13px; margin-bottom: 15px; font-weight: 600;">Lokalno vreme studia: ...</div>
         <div class="mreze">
             <a href="https://instagram.com" target="_blank">Instagram</a>
             <a href="https://tiktok.com" target="_blank">TikTok</a>
@@ -631,7 +622,7 @@
 
     <div class="plutajuci-kontejner">
         <a href="#" class="plutajuce-dugme top-dugme" id="btn-top" title="Nazad na vrh" onclick="playClick()">↑</a>
-        <a href="tel:+381628324011" class="plutajuce-dugme call-dugme" title="Pozovi nas (Klikni da kopiraš broj)" onclick="event.preventDefault(); kopirajTekst('+381628324011');">
+        <a href="tel:+381628324011" class="plutajuce-dugme call-dugme" title="Pozovi nas" onclick="event.preventDefault(); kopirajTekst('+381628324011');">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         </a>
         <a href="https://wa.me/381628324011" target="_blank" class="plutajuce-dugme whatsapp-dugme" title="WhatsApp chat" onclick="playClick()">
@@ -640,34 +631,65 @@
     </div>
 
     <script>
-        // Before & After klizač logika
+        // 1. Automatski pozdrav na osnovu doba dana
+        window.addEventListener('DOMContentLoaded', () => {
+            const sat = new Date().getHours();
+            const h1 = document.getElementById('autoPozdrav');
+            let pozdrav = "MI GRADIMO";
+            if (sat >= 5 && sat < 12) pozdrav = "DOBRO JUTRO, GRADIMO";
+            else if (sat >= 12 && sat < 19) pozdrav = "DOBAR DAN, GRADIMO";
+            else pozdrav = "DOBRO VEČE, GRADIMO";
+            h1.innerHTML = `${pozdrav} <br><span class="text-gradient">DIGITALNO NASLEĐE.</span>`;
+
+            // 8. Real-time sat u footeru
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('vremeStudia').innerText = `Lokalno vreme studia: ${now.toLocaleTimeString('sr-RS')}`;
+            }, 1000);
+        });
+
+        // 6. Exit-intent popup za popust
+        let izasaoPopup = false;
+        document.addEventListener('mouseleave', e => {
+            if (e.clientY < 10 && !izasaoPopup) {
+                izasaoPopup = true;
+                otvoriModal();
+            }
+        });
+
+        // 1. Konfete na uspešno slanje forme
+        function posaljiFormu(e) {
+            e.preventDefault();
+            zatvoriModal();
+            alert('Projekat uspešno pokrenut! Stiglic Studio vas kontaktira uskoro.');
+        }
+
+        // Before & After klizač
         function pomeriKlizaC(vrednost) {
             const div = document.getElementById('compPosleDiv');
             const img = document.getElementById('compPreImg');
             div.style.width = vrednost + '%';
-            img.style.width = (10000 / vrednost) + '%'; // drži razmeru
+            img.style.width = (10000 / vrednost) + '%';
             img.style.left = '0';
         }
 
-        // VIP Terminal AI Dijagnoza simulator
+        // VIP Terminal AI Dijagnoza
         function pokreniDijagnozu(tip, dugme) {
-            document.querySelectorAll('#terminal ~ * .btn-filter, .vip-terminal .btn-filter').forEach(btn => btn.classList.remove('aktivno'));
+            document.querySelectorAll('.vip-terminal .btn-filter').forEach(btn => btn.classList.remove('aktivno'));
             dugme.classList.add('aktivno');
             
             const ekran = document.getElementById('terminalTekst');
-            ekran.innerHTML = `> Analiza sektora [${tip}] u toku...\n> Detektovani problemi: Sporo učitavanje, loša konverzija na mobilnim aparatima.\n> Preporuka Stiglic Studija: Implementacija 'Mobile-First' dizajna sa ispod 1s učitavanja.\n> STATUS: Visok potencijal za rast profita. Zakažite termin!`;
+            ekran.innerHTML = `> Analiza sektora [${tip}] u toku...\n> Detektovani problemi: Sporo učitavanje, loša konverzija.\n> Preporuka: Mobile-First dizajn sa ispod 1s učitavanja.\n> STATUS: Visok potencijal za profit.`;
         }
 
-        // Zvučni efekti (Audio na klik)
+        // Zvučni efekti
         let zvukUkljucen = false;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         
         function toggleAudio() {
             zvukUkljucen = !zvukUkljucen;
             document.getElementById('audioBtn').innerText = zvukUkljucen ? 'Zvuk: UKLJUČEN' : 'Zvuk: ISKLJUČEN';
-            if(zvukUkljucen && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if(zvukUkljucen && audioCtx.state === 'suspended') audioCtx.resume();
         }
 
         function playClick() {
@@ -686,18 +708,16 @@
             } catch(e) {}
         }
 
-        // Kopiranje u memoriju (Quick Copy)
+        // Quick Copy
         function kopirajTekst(text) {
             navigator.clipboard.writeText(text).then(() => {
                 const toast = document.getElementById('toast-poruka');
                 toast.classList.add('prikazi');
-                setTimeout(() => {
-                    toast.classList.remove('prikazi');
-                }, 2000);
+                setTimeout(() => toast.classList.remove('prikazi'), 2000);
             });
         }
 
-        // Skrolovanje i traka
+        // Scroll progress i top dugme
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -705,14 +725,11 @@
             document.getElementById('scroll-progress').style.width = scrolled + '%';
 
             const btnTop = document.getElementById('btn-top');
-            if (winScroll > 400) {
-                btnTop.style.display = 'flex';
-            } else {
-                btnTop.style.display = 'none';
-            }
+            if (winScroll > 400) btnTop.style.display = 'flex';
+            else btnTop.style.display = 'none';
         });
 
-        // Interaktivni kalkulator cena
+        // Kalkulator
         function izracunajCenu() {
             const tip = parseInt(document.getElementById('tipSajta').value);
             const brzina = parseInt(document.getElementById('brzinaIzrade').value);
@@ -721,18 +738,15 @@
             document.getElementById('ukupnaCena').innerText = '€' + ukupno;
         }
 
-        // Modal (popup) kontrole
-        function otvoriModal() {
-            document.getElementById('kontaktModal').style.display = 'flex';
-        }
-        function zatvoriModal() {
-            document.getElementById('kontaktModal').style.display = 'none';
-        }
+        // Modal kontrole
+        function otvoriModal() { document.getElementById('kontaktModal').style.display = 'flex'; }
+        function zatvoriModal() { document.getElementById('kontaktModal').style.display = 'none'; }
 
-        // Filter radova
-        function filtriraj(kategorija, dugme) {
+        // Filter radova sa brojačem (5. funkcija)
+        function filtriraj(kategorija, dugme, broj) {
             document.querySelectorAll('#radovi .btn-filter').forEach(btn => btn.classList.remove('aktivno'));
             dugme.classList.add('aktivno');
+            document.getElementById('brojacProjekata').innerText = `(${broj})`;
 
             const projekti = document.querySelectorAll('.rad-item');
             projekti.forEach(projekat => {
@@ -744,17 +758,13 @@
             });
         }
 
-        // Animacije pri skrolovanju
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('prikazano');
-                }
+                if(entry.isIntersecting) entry.target.classList.add('prikazano');
             });
         }, { threshold: 0.1 });
 
-        const sakriveniElementi = document.querySelectorAll('.sakriveno');
-        sakriveniElementi.forEach(el => observer.observe(el));
+        document.querySelectorAll('.sakriveno').forEach(el => observer.observe(el));
     </script>
 
 </body>
