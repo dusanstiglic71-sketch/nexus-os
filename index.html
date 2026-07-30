@@ -12,7 +12,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: #050505; color: #ffffff; overflow-x: hidden; }
         
-        /* --- 1. ZLATNA SCROLL TRAKA NA VRHU --- */
+        /* --- SCROLL PROGRESS TRAKA --- */
         #scroll-progress {
             position: fixed; top: 0; left: 0; width: 0%; height: 3px;
             background: linear-gradient(90deg, #BF953F, #FCF6BA); z-index: 9999;
@@ -22,24 +22,26 @@
         /* --- NAVIGACIJA --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
-            background: rgba(5, 5, 5, 0.75); backdrop-filter: blur(15px);
+            padding: 15px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
+            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-grupa { display: flex; flex-direction: column; }
-        .logo {
-            font-size: 26px; font-weight: 900; text-decoration: none; letter-spacing: -1px;
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; text-shadow: 0px 4px 15px rgba(191, 149, 63, 0.2);
-            transition: all 0.4s ease;
-        }
-        .logo:hover { transform: scale(1.05); text-shadow: 0px 4px 25px rgba(252, 246, 186, 0.4); }
         
-        /* 4. LIVE POZDRAV U NAVIGACIJI */
-        .live-pozdrav { font-size: 11px; color: #71717a; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        /* --- LOGO SLIKA U NAVIGACIJI --- */
+        .nav-logo-img {
+            height: 45px;
+            width: auto;
+            border-radius: 8px;
+            border: 1px solid rgba(191, 149, 63, 0.4);
+            box-shadow: 0 4px 15px rgba(191, 149, 63, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .nav-logo-img:hover {
+            transform: scale(1.05);
+            border-color: #BF953F;
+        }
 
-        .nav-links { display: flex; gap: 40px; }
+        .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a {
             color: #a1a1aa; text-decoration: none; font-size: 14px; font-weight: 500;
             text-transform: uppercase; letter-spacing: 1px; transition: 0.4s ease;
@@ -61,20 +63,36 @@
 
         /* --- HERO SEKCIJA --- */
         .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 0 20px;
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 140px 20px 80px 20px;
         }
         .hero h1 {
-            font-size: 80px; font-weight: 900; line-height: 1.1; letter-spacing: -3px;
-            margin-bottom: 30px; max-width: 1000px;
+            font-size: 65px; font-weight: 900; line-height: 1.1; letter-spacing: -2px;
+            margin-bottom: 20px; max-width: 1000px;
         }
         .text-gradient {
             background: linear-gradient(90deg, #a1a1aa, #ffffff, #a1a1aa);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .hero p {
-            font-size: 22px; color: #71717a; font-weight: 300; max-width: 600px; margin-bottom: 50px; line-height: 1.5;
+            font-size: 20px; color: #71717a; font-weight: 300; max-width: 600px; margin-bottom: 40px; line-height: 1.5;
         }
+        
+        /* --- GLAVNA SLIKA IDENTITETA --- */
+        .hero-identitet-slika {
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid rgba(191, 149, 63, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(191, 149, 63, 0.15);
+            margin-bottom: 40px;
+            transition: transform 0.5s ease;
+        }
+        .hero-identitet-slika:hover {
+            transform: scale(1.02);
+            border-color: rgba(191, 149, 63, 0.6);
+        }
+
         .btn-primary {
             background-color: #ffffff; color: #000000; padding: 18px 40px; text-decoration: none;
             font-size: 16px; font-weight: 700; border-radius: 50px; text-transform: uppercase;
@@ -114,7 +132,7 @@
         .premium-kartica h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
         .premium-kartica p { color: #71717a; font-size: 16px; line-height: 1.6; }
 
-        /* --- PAKETI (CENOVNIK) --- */
+        /* --- PAKETI --- */
         .paketi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         .paket {
             background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
@@ -155,7 +173,7 @@
         }
         .tech-item:hover { border-color: #BF953F; color: #BF953F; transform: translateY(-5px); background: rgba(191, 149, 63, 0.05); }
 
-        /* --- 3. SEKCIJA: ZAŠTO BAŠ MI (POREĐENJE) --- */
+        /* --- POREĐENJE --- */
         .poredjenje-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
         .poredjenje-kartica {
             background: #0c0c0c; border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 20px;
@@ -167,7 +185,7 @@
         .poredjenje-kartica.drugi li::before { content: '✕'; color: #ef4444; margin-right: 12px; font-size: 16px; }
         .poredjenje-kartica.stg { border-color: rgba(191, 149, 63, 0.4); background: rgba(191, 149, 63, 0.02); }
 
-        /* --- 2. INTERAKTIVNI PORTFOLIO FILTER --- */
+        /* --- PORTFOLIO FILTER --- */
         .filter-dugmad { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
         .btn-filter {
             background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #a1a1aa;
@@ -273,7 +291,7 @@
 
         @media (max-width: 900px) { .paket-istaknut { transform: scale(1); } }
         @media (max-width: 768px) {
-            .hero h1 { font-size: 45px; }
+            .hero h1 { font-size: 40px; }
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
             .sekcija-naslov { font-size: 36px; }
@@ -287,16 +305,15 @@
 </head>
 <body>
 
-    <!-- 1. SCROLL PROGRESS TRAKA -->
     <div id="scroll-progress"></div>
     <div class="glow-orb"></div>
 
     <nav>
-        <div class="logo-grupa">
-            <a href="#" class="logo">STIGLIC.</a>
-            <!-- 4. LIVE POZDRAV U NAVIGACIJI -->
-            <span class="live-pozdrav" id="pozdrav-tekst">Dobar dan</span>
-        </div>
+        <!-- UMESTO TEKSTA, SADA JE SLIKA IDENTITETA KAO LOGO GORE LEVO -->
+        <a href="#">
+            <img src="identitet.jpg" alt="Stiglic Studio Logo" class="nav-logo-img">
+        </a>
+        
         <div class="nav-links">
             <a href="#usluge">Ekspertiza</a>
             <a href="#paketi">Paketi</a>
@@ -309,6 +326,10 @@
     <section class="hero sakriveno">
         <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem, privlače pažnju i donose profit.</p>
+        
+        <!-- GLAVNA SLIKA IDENTITETA U HERO SEKCIJI -->
+        <img src="identitet.jpg" alt="Stiglic Studio Identitet" class="hero-identitet-slika">
+
         <a href="#paketi" class="btn-primary">Pogledaj Cene</a>
     </section>
 
@@ -332,7 +353,6 @@
         </div>
     </section>
 
-    <!-- 3. SEKCIJA: ZAŠTO BAŠ MI (POREĐENJE) -->
     <section class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ZAŠTO MI?</h2>
         <p class="sekcija-opis">Uporedi naš pristup sa standardnim agencijama i ponudama na tržištu.</p>
@@ -397,7 +417,6 @@
         </div>
     </section>
 
-    <!-- 2. PORTFOLIO SA FILTERIMA -->
     <section id="radovi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ISTAKNUTI RADOVI</h2>
         <p class="sekcija-opis">Zavirite u naš portfolio i uverite se u kvalitet koji isporučujemo.</p>
@@ -472,9 +491,7 @@
         </a>
     </div>
 
-    <!-- JAVASCRIPT LOGIKA ZA NOVE FUNKCIJE -->
     <script>
-        // 1. Skrol progres traka
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -482,25 +499,10 @@
             document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
 
-        // 4. Live pozdrav na osnovu sata
-        const sat = new Date().getHours();
-        const pozdravEl = document.getElementById('pozdrav-tekst');
-        if (sat < 12) {
-            pozdravEl.innerText = "Dobro jutro";
-        } else if (sat < 18) {
-            pozdravEl.innerText = "Dobar dan";
-        } else {
-            pozdravEl.innerText = "Dobro veče";
-        }
-
-        // 2. Interaktivni Portfolio Filter
         function filtriraj(kategorija, dugme) {
-            // Skini aktivnu klasu sa svih dugmadi
             document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('aktivno'));
-            // Dodaj na kliknuto
             dugme.classList.add('aktivno');
 
-            // Filtriraj kartice
             const projekti = document.querySelectorAll('.rad-item');
             projekti.forEach(projekat => {
                 if (kategorija === 'sve' || projekat.getAttribute('data-kategorija') === kategorija) {
@@ -511,7 +513,6 @@
             });
         }
 
-        // Animacije na skrol
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
