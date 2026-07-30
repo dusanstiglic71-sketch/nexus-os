@@ -24,20 +24,20 @@
         /* --- NAVIGACIJA --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
+            padding: 12px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
             background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* --- LOGO PTICA GORE U NAVIGACIJI --- */
+        /* --- UVEĆANA PTICA GORE U NAVIGACIJI --- */
         .nav-logo-kontejner { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img {
-            height: 45px;
-            width: 45px;
+            height: 65px;
+            width: 65px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .nav-logo-img:hover { transform: scale(1.1); }
+        .nav-logo-img:hover { transform: scale(1.08); }
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a {
@@ -325,6 +325,7 @@
     <div class="glow-orb"></div>
 
     <nav>
+        <!-- UVEĆANA PTICA U NAVIGACIJI (65px) -->
         <a href="#" class="nav-logo-kontejner">
             <img src="ptica-logo.png" alt="Stiglic Studio Logo" class="nav-logo-img">
         </a>
@@ -508,8 +509,9 @@
     </section>
 
     <footer class="sakriveno">
+        <!-- UVEĆANA PTICA U FOTERU (65px) -->
         <div style="margin-bottom: 20px;">
-            <img src="ptica-logo.png" alt="Stiglic Studio Logo" style="height: 35px; width: auto;">
+            <img src="ptica-logo.png" alt="Stiglic Studio Logo" style="height: 65px; width: 65px; object-fit: contain;">
         </div>
         <span class="footer-logo">STIGLIC STUDIO.</span>
         <div class="mreze">
