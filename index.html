@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stiglic Studio | Premium Web Design</title>
-    <!-- Importovanje vrhunskog fonta -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
     
     <style>
@@ -19,12 +18,48 @@
         html { scroll-behavior: smooth; }
 
         body {
-            background-color: #050505; /* Totalno crna luksuzna pozadina */
+            background-color: #050505; 
             color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* --- STAKLENA NAVIGACIJA --- */
+        /* --- CUSTOM KURSOR (Samo za kompjutere) --- */
+        @media (pointer: fine) {
+            body, a, button, input, textarea { cursor: none; }
+        }
+        
+        .cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 8px; height: 8px;
+            background: #BF953F;
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            top: 0; left: 0;
+            width: 40px; height: 40px;
+            border: 1px solid rgba(191, 149, 63, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            transition: top 0.1s, left 0.1s, width 0.3s, height 0.3s, background 0.3s;
+        }
+
+        .cursor-follower.active {
+            width: 60px;
+            height: 60px;
+            background: rgba(191, 149, 63, 0.1);
+            border-color: #BF953F;
+        }
+
+        /* --- NAVIGACIJA --- */
         nav {
             display: flex;
             justify-content: space-between;
@@ -39,13 +74,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* --- ZLATNI LOGO --- */
         .logo {
             font-size: 26px;
             font-weight: 900;
             text-decoration: none;
             letter-spacing: -1px;
-            /* Zlatni preliv (Premium Gold Gradient) */
             background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -59,11 +92,7 @@
             text-shadow: 0px 4px 25px rgba(252, 246, 186, 0.4);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
+        .nav-links { display: flex; gap: 40px; }
         .nav-links a {
             color: #a1a1aa;
             text-decoration: none;
@@ -73,24 +102,19 @@
             letter-spacing: 1px;
             transition: 0.4s ease;
         }
+        .nav-links a:hover { color: #BF953F; }
 
-        .nav-links a:hover {
-            color: #ffffff;
-        }
-
-        /* --- EFEKAT SJAJA U POZADINI --- */
+        /* --- SJAJ --- */
         .glow-orb {
             position: absolute;
-            top: -20%;
-            left: 50%;
+            top: -20%; left: 50%;
             transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(191, 149, 63, 0.05) 0%, rgba(0,0,0,0) 70%);
             z-index: -1;
         }
 
-        /* --- HERO SEKCIJA --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
             display: flex;
@@ -99,16 +123,12 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            animation: fadeUp 1.5s ease forwards;
         }
 
         .hero h1 {
-            font-size: 80px;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -3px;
-            margin-bottom: 30px;
-            max-width: 1000px;
+            font-size: 80px; font-weight: 900;
+            line-height: 1.1; letter-spacing: -3px;
+            margin-bottom: 30px; max-width: 1000px;
         }
 
         .text-gradient {
@@ -118,147 +138,128 @@
         }
 
         .hero p {
-            font-size: 22px;
-            color: #71717a;
-            font-weight: 300;
-            max-width: 600px;
-            margin-bottom: 50px;
-            line-height: 1.5;
+            font-size: 22px; color: #71717a;
+            font-weight: 300; max-width: 600px;
+            margin-bottom: 50px; line-height: 1.5;
         }
 
         .btn-primary {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 18px 40px;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.4s ease;
+            background-color: #ffffff; color: #000000;
+            padding: 18px 40px; text-decoration: none;
+            font-size: 16px; font-weight: 700;
+            border-radius: 50px; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.4s ease;
         }
-
         .btn-primary:hover {
-            background-color: #a1a1aa;
+            background-color: #BF953F;
+            color: #ffffff;
             transform: scale(1.05);
         }
 
-        /* --- ZAJEDNIČKI NASLOVI SEKCIJA --- */
+        /* --- SEKCIJE --- */
         .sekcija {
             padding: 120px 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .sekcija-naslov {
-            font-size: 48px;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 60px;
-            text-align: center;
+            font-size: 48px; font-weight: 900;
+            letter-spacing: -2px; margin-bottom: 60px; text-align: center;
         }
 
-        /* --- KARTICE --- */
+        /* --- SCROLL ANIMACIJE --- */
+        .sakriveno {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+        .prikazano {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- KARTICE (USLUGE) --- */
         .grid-kontejner {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
         }
-
         .premium-kartica {
             background: rgba(25, 25, 25, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 50px 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            padding: 50px 40px; border-radius: 20px;
+            backdrop-filter: blur(10px); transition: all 0.4s ease;
         }
-
         .premium-kartica:hover {
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(191, 149, 63, 0.5);
             transform: translateY(-10px);
             background: rgba(25, 25, 25, 0.6);
         }
+        .broj { font-size: 14px; font-weight: 900; color: #BF953F; margin-bottom: 20px; display: block; }
+        .premium-kartica h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
+        .premium-kartica p { color: #71717a; font-size: 16px; line-height: 1.6; }
 
-        .premium-kartica h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+        /* --- RADOVI (PORTFOLIO) --- */
+        .radovi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
-
-        .premium-kartica p {
-            color: #71717a;
-            font-size: 16px;
-            line-height: 1.6;
+        .rad-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            aspect-ratio: 16/10;
         }
-
-        .broj {
-            font-size: 14px;
-            font-weight: 900;
-            color: #3f3f46;
-            margin-bottom: 20px;
-            display: block;
+        .rad-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(80%);
+            transition: all 0.5s ease;
         }
+        .rad-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+        .rad-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            display: flex; flex-direction: column;
+            justify-content: flex-end; padding: 30px;
+        }
+        .rad-overlay h3 { font-size: 22px; margin-bottom: 5px; }
+        .rad-overlay span { color: #BF953F; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
         /* --- KONTAKT FORMA --- */
-        .kontakt-forma {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .input-grupa {
-            margin-bottom: 30px;
-        }
-
+        .kontakt-forma { max-width: 700px; margin: 0 auto; }
+        .input-grupa { margin-bottom: 30px; }
         .kontakt-forma input, .kontakt-forma textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
+            width: 100%; background: transparent; border: none;
             border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 15px 0;
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 300;
-            outline: none;
-            transition: 0.3s;
+            padding: 15px 0; color: #ffffff; font-size: 20px;
+            font-weight: 300; outline: none; transition: 0.3s;
         }
-
-        .kontakt-forma input:focus, .kontakt-forma textarea:focus {
-            border-bottom: 1px solid #ffffff;
-        }
-
-        .kontakt-forma textarea {
-            min-height: 100px;
-            resize: none;
-        }
-
+        .kontakt-forma input:focus, .kontakt-forma textarea:focus { border-bottom: 1px solid #BF953F; }
+        .kontakt-forma textarea { min-height: 100px; resize: none; }
         .btn-submit {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid #ffffff;
-            padding: 18px 50px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: 0.4s;
-            width: 100%;
+            background: transparent; color: #ffffff;
+            border: 1px solid #ffffff; padding: 18px 50px;
+            border-radius: 50px; font-size: 16px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: 0.4s; width: 100%;
         }
+        .btn-submit:hover { background: #BF953F; color: #000000; border-color: #BF953F; }
 
-        .btn-submit:hover {
-            background: #ffffff;
-            color: #000000;
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 20px; text-align: center;
         }
-
-        /* --- ANIMACIJA --- */
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; display: block; color: #ffffff; }
+        .mreze { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+        .mreze a { color: #71717a; text-decoration: none; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .mreze a:hover { color: #BF953F; }
+        .copyright { color: #3f3f46; font-size: 12px; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 50px; }
@@ -269,10 +270,12 @@
 </head>
 <body>
 
-    <!-- Pozadinski sjaj -->
+    <!-- Custom Kursor elementi -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <div class="glow-orb"></div>
 
-    <!-- Navigacija -->
     <nav>
         <a href="#" class="logo">STIGLIC.</a>
         <div class="nav-links">
@@ -282,15 +285,13 @@
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero">
+    <section class="hero sakriveno">
         <h1>MI GRADIMO <br><span class="text-gradient">DIGITALNO NASLEĐE.</span></h1>
         <p>Ne pravimo samo sajtove. Kreiramo premium digitalna iskustva koja dominiraju tržištem i donose profit.</p>
         <a href="#kontakt" class="btn-primary">Započnimo projekat</a>
     </section>
 
-    <!-- Usluge -->
-    <section id="usluge" class="sekcija">
+    <section id="usluge" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">EKSPERTIZA</h2>
         <div class="grid-kontejner">
             <div class="premium-kartica">
@@ -311,15 +312,42 @@
         </div>
     </section>
 
-    <!-- Kontakt -->
-    <section id="kontakt" class="sekcija">
+    <!-- NOVA SEKCIJA: RADOVI -->
+    <section id="radovi" class="sekcija sakriveno">
+        <h2 class="sekcija-naslov">RADOVI</h2>
+        <div class="radovi-grid">
+            <div class="rad-item">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Restoran Sajt">
+                <div class="rad-overlay">
+                    <h3>Restoran "Gourmet"</h3>
+                    <span>Web Dizajn / Rezervacije</span>
+                </div>
+            </div>
+            <div class="rad-item">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800" alt="Fashion Shop">
+                <div class="rad-overlay">
+                    <h3>Premium Brand</h3>
+                    <span>E-Commerce Platforma</span>
+                </div>
+            </div>
+            <div class="rad-item">
+                <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?auto=format&fit=crop&q=80&w=800" alt="Corporate Site">
+                <div class="rad-overlay">
+                    <h3>Konsalting Agencija</h3>
+                    <span>Prezentacioni Sajt / SEO</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">BUDIMO U KONTAKTU</h2>
         <form class="kontakt-forma">
             <div class="input-grupa">
                 <input type="text" placeholder="Kako se zovete?" required>
             </div>
             <div class="input-grupa">
-                <input type="email" placeholder="Vaš email naslov" required>
+                <input type="email" placeholder="Vaš email" required>
             </div>
             <div class="input-grupa">
                 <textarea placeholder="Opišite nam vaš projekat..." required></textarea>
@@ -327,6 +355,52 @@
             <button type="submit" class="btn-submit">Pošalji Upit</button>
         </form>
     </section>
+
+    <!-- NOVI FOOTER -->
+    <footer class="sakriveno">
+        <span class="footer-logo">STIGLIC STUDIO.</span>
+        <div class="mreze">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">TikTok</a>
+        </div>
+        <div class="copyright">© 2026 Stiglic Studio. Sva prava zadržana.</div>
+    </footer>
+
+    <!-- JAVASCRIPT ZA KURSOR I ANIMACIJE -->
+    <script>
+        // Custom Kursor Logika
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const interaktivniElementi = document.querySelectorAll('a, button, input, textarea');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            // Malo kašnjenje za pratilac kursora daje glatak efekat
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        interaktivniElementi.forEach(el => {
+            el.addEventListener('mouseenter', () => follower.classList.add('active'));
+            el.addEventListener('mouseleave', () => follower.classList.remove('active'));
+        });
+
+        // Scroll Reveal Logika (pojavljivanje elemenata iz mraka)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('prikazano');
+                }
+            });
+        }, { threshold: 0.1 }); // Aktivira se kad se vidi 10% elementa
+
+        const sakriveniElementi = document.querySelectorAll('.sakriveno');
+        sakriveniElementi.forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
