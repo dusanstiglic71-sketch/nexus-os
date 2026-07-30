@@ -269,13 +269,12 @@
         </div>
     </section>
 
-    <!-- PAKETI (NOVO!) -->
+    <!-- PAKETI -->
     <section id="paketi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">IZABERI SVOJ PAKET</h2>
         <p class="sekcija-opis">Transparentne cene, bez skrivenih troškova. Investicija koja se vraća.</p>
         
         <div class="paketi-grid">
-            <!-- Paket 1 -->
             <div class="paket">
                 <div class="paket-ime">START</div>
                 <div class="paket-cena">€299<span>/jednokratno</span></div>
@@ -289,7 +288,6 @@
                 <a href="#kontakt" class="btn-paket">Izaberi Start</a>
             </div>
 
-            <!-- Paket 2 (Istaknut) -->
             <div class="paket paket-istaknut">
                 <div class="paket-badge">Najpopularnije</div>
                 <div class="paket-ime">BIZNIS</div>
@@ -304,7 +302,6 @@
                 <a href="#kontakt" class="btn-paket">Izaberi Biznis</a>
             </div>
 
-            <!-- Paket 3 -->
             <div class="paket">
                 <div class="paket-ime">E-COMMERCE</div>
                 <div class="paket-cena">€999+<span>/jednokratno</span></div>
@@ -349,7 +346,7 @@
         </div>
     </section>
 
-    <!-- FAQ (NOVO!) -->
+    <!-- FAQ -->
     <section id="faq" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ČESTA PITANJA</h2>
         <p class="sekcija-opis">Sve što treba da znate pre početka saradnje.</p>
@@ -373,18 +370,18 @@
         </div>
     </section>
 
-    <!-- KONTAKT -->
+    <!-- KONTAKT FORMA (Formspree povezan) -->
     <section id="kontakt" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ZAPOČNIMO PROJEKAT</h2>
-        <form class="kontakt-forma">
+        <form class="kontakt-forma" action="https://formspree.io/f/xzdnwlvl" method="POST">
             <div class="input-grupa">
-                <input type="text" placeholder="Kako se zovete?" required>
+                <input type="text" name="Ime" placeholder="Kako se zovete?" required>
             </div>
             <div class="input-grupa">
-                <input type="email" placeholder="Vaš email" required>
+                <input type="email" name="Email" placeholder="Vaš email" required>
             </div>
             <div class="input-grupa">
-                <textarea placeholder="Opišite nam vaš projekat i koji paket vas zanima..." required></textarea>
+                <textarea name="Poruka" placeholder="Opišite nam vaš projekat i koji paket vas zanima..." required></textarea>
             </div>
             <button type="submit" class="btn-submit">Pošalji Upit</button>
         </form>
