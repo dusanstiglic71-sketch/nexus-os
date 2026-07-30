@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stiglic Studio | Premium Web Design</title>
-    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="ptica-logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     
@@ -24,20 +23,17 @@
         /* --- NAVIGACIJA --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
+            padding: 15px 60px; position: fixed; width: 100%; top: 3px; z-index: 1000;
             background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        /* --- UVEĆANA PTICA GORE U NAVIGACIJI --- */
         .nav-logo-kontejner { display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img {
-            height: 65px;
-            width: 65px;
-            object-fit: contain;
+            height: 90px; width: 90px; object-fit: contain;
             transition: transform 0.3s ease;
         }
-        .nav-logo-img:hover { transform: scale(1.08); }
+        .nav-logo-img:hover { transform: scale(1.05); }
 
         .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a {
@@ -49,6 +45,7 @@
         .btn-nav {
             background: transparent; color: #BF953F; border: 1px solid #BF953F;
             padding: 10px 20px; border-radius: 50px; text-decoration: none; font-size: 13px; font-weight: 700; transition: 0.3s;
+            cursor: pointer;
         }
         .btn-nav:hover { background: #BF953F; color: #000; }
 
@@ -76,36 +73,25 @@
             font-size: 20px; color: #71717a; font-weight: 300; max-width: 600px; margin-bottom: 40px; line-height: 1.5;
         }
         
-        /* --- SLIKA PTICE U HERO SEKCIJI --- */
         .hero-identitet-slika {
-            max-width: 400px;
-            width: 100%;
-            border-radius: 20px;
+            max-width: 400px; width: 100%; border-radius: 20px;
             border: 1px solid rgba(191, 149, 63, 0.3);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(191, 149, 63, 0.15);
-            margin-bottom: 40px;
-            transition: transform 0.5s ease;
+            margin-bottom: 40px; transition: transform 0.5s ease;
         }
-        .hero-identitet-slika:hover {
-            transform: scale(1.02);
-            border-color: rgba(191, 149, 63, 0.6);
-        }
+        .hero-identitet-slika:hover { transform: scale(1.02); border-color: rgba(191, 149, 63, 0.6); }
 
         .btn-primary {
             background-color: #ffffff; color: #000000; padding: 18px 40px; text-decoration: none;
             font-size: 16px; font-weight: 700; border-radius: 50px; text-transform: uppercase;
-            letter-spacing: 1px; transition: all 0.4s ease;
+            letter-spacing: 1px; transition: all 0.4s ease; display: inline-block; cursor: pointer; border: none;
         }
         .btn-primary:hover { background-color: #BF953F; color: #ffffff; transform: scale(1.05); }
 
         /* --- ZAJEDNIČKI STILOVI SEKCIJA --- */
         .sekcija { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
-        .sekcija-naslov {
-            font-size: 48px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; text-align: center;
-        }
-        .sekcija-opis {
-            text-align: center; color: #71717a; font-size: 18px; max-width: 600px; margin: 0 auto 60px auto;
-        }
+        .sekcija-naslov { font-size: 48px; font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; text-align: center; }
+        .sekcija-opis { text-align: center; color: #71717a; font-size: 18px; max-width: 600px; margin: 0 auto 60px auto; }
 
         /* --- SCROLL ANIMACIJE --- */
         .sakriveno { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
@@ -123,12 +109,73 @@
             background: rgba(25, 25, 25, 0.3); border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 50px 40px; border-radius: 20px; backdrop-filter: blur(10px); transition: all 0.4s ease;
         }
-        .premium-kartica:hover {
-            border-color: rgba(191, 149, 63, 0.5); transform: translateY(-10px); background: rgba(25, 25, 25, 0.6);
-        }
+        .premium-kartica:hover { border-color: rgba(191, 149, 63, 0.5); transform: translateY(-10px); background: rgba(25, 25, 25, 0.6); }
         .broj { font-size: 14px; font-weight: 900; color: #BF953F; margin-bottom: 20px; display: block; }
         .premium-kartica h3 { font-size: 24px; font-weight: 700; margin-bottom: 15px; letter-spacing: -1px; }
         .premium-kartica p { color: #71717a; font-size: 16px; line-height: 1.6; }
+
+        /* --- INTERAKTIVNI KALKULATOR CENA --- */
+        .kalkulator-box {
+            background: #0c0c0c; border: 1px solid rgba(191, 149, 63, 0.3); border-radius: 25px;
+            padding: 50px; max-width: 800px; margin: 0 auto; box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        .kalkulator-grupa { margin-bottom: 25px; }
+        .kalkulator-grupa label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 10px; color: #d4d4d8; }
+        .kalkulator-grupa select {
+            width: 100%; background: #161616; border: 1px solid rgba(255,255,255,0.1); color: #ffffff;
+            padding: 15px; border-radius: 12px; font-size: 16px; outline: none; transition: 0.3s;
+        }
+        .kalkulator-grupa select:focus { border-color: #BF953F; }
+        .kalkulator-rezultat {
+            margin-top: 30px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+        }
+        .cena-prikaz { font-size: 36px; font-weight: 900; color: #BF953F; }
+
+        /* --- PAKETI --- */
+        .paketi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .paket {
+            background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+            padding: 50px 40px; text-align: left; transition: 0.4s; position: relative;
+        }
+        .paket-istaknut { border-color: #BF953F; box-shadow: 0 15px 50px rgba(191, 149, 63, 0.15); transform: scale(1.05); z-index: 2; }
+        .paket:hover { border-color: #BF953F; box-shadow: 0 10px 30px rgba(191, 149, 63, 0.1); }
+        .paket-badge {
+            position: absolute; top: -15px; right: 30px; background: #BF953F; color: #000;
+            padding: 5px 15px; font-size: 12px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
+        }
+        .paket-ime { font-size: 20px; color: #a1a1aa; margin-bottom: 15px; }
+        .paket-istaknut .paket-ime { color: #BF953F; }
+        .paket-cena { font-size: 45px; font-weight: 900; margin-bottom: 20px; }
+        .paket-cena span { font-size: 18px; color: #71717a; font-weight: 400; }
+        .paket-lista { list-style: none; margin-bottom: 40px; }
+        .paket-lista li { margin-bottom: 15px; color: #d4d4d8; font-size: 16px; display: flex; align-items: center; }
+        .paket-lista li::before { content: '✓'; color: #BF953F; font-weight: bold; margin-right: 15px; font-size: 18px; }
+        .btn-paket {
+            display: block; width: 100%; text-align: center; padding: 15px; border-radius: 50px;
+            background: transparent; border: 1px solid #ffffff; color: #ffffff; text-decoration: none;
+            font-weight: 700; transition: 0.3s; cursor: pointer;
+        }
+        .paket-istaknut .btn-paket, .btn-paket:hover { background: #ffffff; color: #000; border-color: #ffffff; }
+
+        /* --- TECH STACK & STATUS --- */
+        .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .tech-item {
+            background: rgba(25, 25, 25, 0.4); border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 15px 30px; border-radius: 50px; font-size: 15px; font-weight: 600;
+            color: #d4d4d8; letter-spacing: 1px; backdrop-filter: blur(5px); transition: all 0.3s ease;
+        }
+        .tech-item:hover { border-color: #BF953F; color: #BF953F; transform: translateY(-5px); background: rgba(191, 149, 63, 0.05); }
+
+        .server-status-bar {
+            display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px;
+            color: #71717a; font-size: 14px; font-weight: 500;
+        }
+        .status-dot {
+            width: 10px; height: 10px; background-color: #22c55e; border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e; animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
         /* --- RECENZIJE --- */
         .recenzije-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
@@ -142,59 +189,6 @@
         .autor-ime { font-weight: 700; font-size: 16px; color: #ffffff; }
         .autor-firma { font-size: 13px; color: #71717a; }
 
-        /* --- PAKETI --- */
-        .paketi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .paket {
-            background: #0a0a0a; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
-            padding: 50px 40px; text-align: left; transition: 0.4s; position: relative;
-        }
-        .paket-istaknut {
-            border-color: #BF953F; box-shadow: 0 15px 50px rgba(191, 149, 63, 0.15); transform: scale(1.05); z-index: 2;
-        }
-        .paket:hover { border-color: #BF953F; box-shadow: 0 10px 30px rgba(191, 149, 63, 0.1); }
-        .paket-badge {
-            position: absolute; top: -15px; right: 30px; background: #BF953F; color: #000;
-            padding: 5px 15px; font-size: 12px; font-weight: 800; border-radius: 20px; text-transform: uppercase;
-        }
-        .paket-ime { font-size: 20px; color: #a1a1aa; margin-bottom: 15px; }
-        .paket-istaknut .paket-ime { color: #BF953F; }
-        .paket-cena { font-size: 45px; font-weight: 900; margin-bottom: 20px; }
-        .paket-cena span { font-size: 18px; color: #71717a; font-weight: 400; }
-        .paket-lista { list-style: none; margin-bottom: 40px; }
-        .paket-lista li {
-            margin-bottom: 15px; color: #d4d4d8; font-size: 16px; display: flex; align-items: center;
-        }
-        .paket-lista li::before {
-            content: '✓'; color: #BF953F; font-weight: bold; margin-right: 15px; font-size: 18px;
-        }
-        .btn-paket {
-            display: block; width: 100%; text-align: center; padding: 15px; border-radius: 50px;
-            background: transparent; border: 1px solid #ffffff; color: #ffffff; text-decoration: none;
-            font-weight: 700; transition: 0.3s;
-        }
-        .paket-istaknut .btn-paket, .btn-paket:hover { background: #ffffff; color: #000; border-color: #ffffff; }
-
-        /* --- TECH STACK --- */
-        .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
-        .tech-item {
-            background: rgba(25, 25, 25, 0.4); border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 15px 30px; border-radius: 50px; font-size: 15px; font-weight: 600;
-            color: #d4d4d8; letter-spacing: 1px; backdrop-filter: blur(5px); transition: all 0.3s ease;
-        }
-        .tech-item:hover { border-color: #BF953F; color: #BF953F; transform: translateY(-5px); background: rgba(191, 149, 63, 0.05); }
-
-        /* --- POREĐENJE --- */
-        .poredjenje-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 50px; }
-        .poredjenje-kartica {
-            background: #0c0c0c; border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 20px;
-        }
-        .poredjenje-kartica h3 { font-size: 22px; margin-bottom: 20px; color: #ffffff; }
-        .poredjenje-kartica ul { list-style: none; }
-        .poredjenje-kartica li { margin-bottom: 15px; color: #a1a1aa; font-size: 15px; display: flex; align-items: center; }
-        .poredjenje-kartica.stg li::before { content: '★'; color: #BF953F; margin-right: 12px; font-size: 16px; }
-        .poredjenje-kartica.drugi li::before { content: '✕'; color: #ef4444; margin-right: 12px; font-size: 16px; }
-        .poredjenje-kartica.stg { border-color: rgba(191, 149, 63, 0.4); background: rgba(191, 149, 63, 0.02); }
-
         /* --- PORTFOLIO FILTER --- */
         .filter-dugmad { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
         .btn-filter {
@@ -206,17 +200,13 @@
             background: #BF953F; color: #000; border-color: #BF953F; box-shadow: 0 4px 15px rgba(191, 149, 63, 0.3);
         }
 
-        /* --- RADOVI --- */
         .radovi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
         .rad-item {
             position: relative; border-radius: 15px; overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05); aspect-ratio: 16/10;
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05); aspect-ratio: 16/10; transition: all 0.4s ease;
         }
         .rad-item.sakriven-projekt { display: none; }
-        .rad-item img {
-            width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%); transition: all 0.5s ease;
-        }
+        .rad-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%); transition: all 0.5s ease; }
         .rad-item:hover img { filter: grayscale(0%); transform: scale(1.05); }
         .rad-overlay {
             position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
@@ -239,9 +229,7 @@
         summary::-webkit-details-marker { display: none; }
         summary::after { content: '+'; font-size: 24px; color: #BF953F; font-weight: 300; transition: 0.3s; }
         details[open] summary::after { content: '−'; }
-        .faq-odgovor {
-            margin-top: 15px; color: #a1a1aa; line-height: 1.6; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;
-        }
+        .faq-odgovor { margin-top: 15px; color: #a1a1aa; line-height: 1.6; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
         /* --- CTA BANER --- */
         .cta-baner {
@@ -251,6 +239,21 @@
         }
         .cta-baner h2 { font-size: 40px; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; }
         .cta-baner p { color: #a1a1aa; font-size: 18px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* --- MODAL (POPUP) ZA KONTAKT --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+            z-index: 99999; display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .modal-sadrzaj {
+            background: #0f0f0f; border: 1px solid rgba(191, 149, 63, 0.4); border-radius: 25px;
+            padding: 40px; max-width: 600px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+        .modal-zatvori {
+            position: absolute; top: 20px; right: 25px; background: transparent; border: none;
+            color: #fff; font-size: 28px; cursor: pointer; transition: 0.3s;
+        }
+        .modal-zatvori:hover { color: #BF953F; }
 
         /* --- KONTAKT FORMA --- */
         .kontakt-forma { max-width: 700px; margin: 0 auto; }
@@ -277,26 +280,17 @@
         .copyright { color: #3f3f46; font-size: 12px; }
 
         /* --- PLUTAJUĆA DUGMAD --- */
-        .plutajuci-kontejner {
-            position: fixed; bottom: 30px; right: 30px;
-            display: flex; flex-direction: column; gap: 15px; z-index: 1000;
-        }
+        .plutajuci-kontejner { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1000; }
         .plutajuce-dugme {
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; justify-content: center; align-items: center;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; text-decoration: none;
         }
         .plutajuce-dugme:hover { transform: scale(1.1); }
         .plutajuce-dugme svg { width: 28px; height: 28px; fill: white; }
         .call-dugme { background-color: #007AFF; box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4); }
-        .call-dugme:hover { background-color: #0062cc; }
         .whatsapp-dugme { background-color: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); animation: pulse-wa 2s infinite; }
-        .whatsapp-dugme:hover { background-color: #1ebe57; }
         
-        .top-dugme {
-            background-color: #1a160d; border: 1px solid #BF953F; color: #BF953F;
-            font-size: 20px; font-weight: bold; display: none;
-        }
+        .top-dugme { background-color: #1a160d; border: 1px solid #BF953F; color: #BF953F; font-size: 20px; font-weight: bold; display: none; }
         .top-dugme:hover { background-color: #BF953F; color: #000; }
 
         @keyframes pulse-wa {
@@ -313,9 +307,7 @@
             .sekcija-naslov { font-size: 36px; }
             .cta-baner { padding: 50px 20px; }
             .cta-baner h2 { font-size: 30px; }
-            .plutajuci-kontejner { bottom: 20px; right: 20px; gap: 10px; }
-            .plutajuce-dugme { width: 50px; height: 50px; }
-            .plutajuce-dugme svg { width: 22px; height: 22px; }
+            .kalkulator-box { padding: 25px; }
         }
     </style>
 </head>
@@ -324,20 +316,34 @@
     <div id="scroll-progress"></div>
     <div class="glow-orb"></div>
 
+    <!-- MODAL POPUP ZA KONTAKT -->
+    <div class="modal-overlay" id="kontaktModal">
+        <div class="modal-sadrzaj">
+            <button class="modal-zatvori" onclick="zatvoriModal()">&times;</button>
+            <h2 class="sekcija-naslov" style="font-size: 32px; margin-bottom: 20px;">POKRENI PROJEKAT</h2>
+            <form class="kontakt-forma" action="https://formspree.io/f/xzdnwlvl" method="POST">
+                <div class="input-grupa"><input type="text" name="Ime" placeholder="Kako se zovete?" required></div>
+                <div class="input-grupa"><input type="email" name="Email" placeholder="Vaš email" required></div>
+                <div class="input-grupa"><textarea name="Poruka" placeholder="Koji projekat planiramo?" required></textarea></div>
+                <button type="submit" class="btn-submit">Pošalji Upit</button>
+            </form>
+        </div>
+    </div>
+
     <nav>
-        <!-- UVEĆANA PTICA U NAVIGACIJI (65px) -->
         <a href="#" class="nav-logo-kontejner">
             <img src="ptica-logo.png" alt="Stiglic Studio Logo" class="nav-logo-img">
         </a>
         
         <div class="nav-links">
             <a href="#usluge">Ekspertiza</a>
+            <a href="#kalkulator">Kalkulator</a>
             <a href="#paketi">Paketi</a>
             <a href="#radovi">Radovi</a>
             <a href="#recenzije">Utisci</a>
             <a href="#faq">FAQ</a>
         </div>
-        <a href="#kontakt" class="btn-nav">Započni Projekat</a>
+        <button class="btn-nav" onclick="otvoriModal()">Započni Projekat</button>
     </nav>
 
     <section class="hero sakriveno">
@@ -346,7 +352,48 @@
         
         <img src="ptica-logo.png" alt="Stiglic Studio Ptica" class="hero-identitet-slika">
 
-        <a href="#paketi" class="btn-primary">Pogledaj Cene</a>
+        <button class="btn-primary" onclick="otvoriModal()">Započni Saradnju</button>
+    </section>
+
+    <!-- INTERAKTIVNI KALKULATOR CENA -->
+    <section id="kalkulator" class="sekcija sakriveno">
+        <h2 class="sekcija-naslov">KALKULATOR PROJEKTA</h2>
+        <p class="sekcija-opis">Izaberi opcije i saznaj okvirnu cenu izrade u realnom vremenu.</p>
+        
+        <div class="kalkulator-box">
+            <div class="kalkulator-grupa">
+                <label>Tip Sajta:</label>
+                <select id="tipSajta" onchange="izracunajCenu()">
+                    <option value="299">Prezentacioni sajt (Start) - €299</option>
+                    <option value="599">Biznis sajt sa CMS-om - €599</option>
+                    <option value="999">E-Commerce Web Prodavnica - €999</option>
+                </select>
+            </div>
+
+            <div class="kalkulator-grupa">
+                <label>Brzina izrade:</label>
+                <select id="brzinaIzrade" onchange="izracunajCenu()">
+                    <option value="0">Standardno (7 do 14 dana)</option>
+                    <option value="150">Hitno u toku nedelje (+€150)</option>
+                </select>
+            </div>
+
+            <div class="kalkulator-grupa">
+                <label>Napredni SEO i Marketing podešavanja:</label>
+                <select id="seoOpcija" onchange="izracunajCenu()">
+                    <option value="0">Osnovni SEO</option>
+                    <option value="200">Napredna Google optimizacija (+€200)</option>
+                </select>
+            </div>
+
+            <div class="kalkulator-rezultat">
+                <div>
+                    <span style="color: #71717a; font-size: 14px; text-transform: uppercase; display: block;">Procenjena investicija:</span>
+                    <div class="cena-prikaz" id="ukupnaCena">€299</div>
+                </div>
+                <button class="btn-primary" onclick="otvoriModal()">Zakaži po ovoj ceni</button>
+            </div>
+        </div>
     </section>
 
     <section class="sekcija sakriveno">
@@ -369,31 +416,6 @@
         </div>
     </section>
 
-    <section class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">ZAŠTO MI?</h2>
-        <p class="sekcija-opis">Uporedi naš pristup sa standardnim agencijama i ponudama na tržištu.</p>
-        <div class="poredjenje-grid">
-            <div class="poredjenje-kartica stg">
-                <h3>Stiglic Studio</h3>
-                <ul>
-                    <li>Direktna saradnja sa dizajnerom</li>
-                    <li>Ekstremna brzina i moderni kod</li>
-                    <li>Sajt gotov za 7 do 14 dana</li>
-                    <li>Transparentne cene bez skrivenih troškova</li>
-                </ul>
-            </div>
-            <div class="poredjenje-kartica drugi">
-                <h3>Klasične Agencije</h3>
-                <ul>
-                    <li>Komunikacija preko posrednika i sekretarica</li>
-                    <li>Spori i pretrpani CMS sistemi</li>
-                    <li>Čekanje od po nekoliko meseci</li>
-                    <li>Skriveni troškovi i doplate</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <section id="paketi" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">IZABERI SVOJ PAKET</h2>
         <p class="sekcija-opis">Transparentne cene, bez skrivenih troškova. Investicija koja se vraća.</p>
@@ -402,20 +424,20 @@
                 <div class="paket-ime">START</div>
                 <div class="paket-cena">€299<span>/jednokratno</span></div>
                 <ul class="paket-lista"><li>Prezentacioni sajt (do 3 strane)</li><li>Mobilna optimizacija</li><li>Kontakt forma</li><li>Osnovni SEO</li><li>1 mesec besplatne podrške</li></ul>
-                <a href="#kontakt" class="btn-paket">Izaberi Start</a>
+                <button class="btn-paket" onclick="otvoriModal()">Izaberi Start</button>
             </div>
             <div class="paket paket-istaknut">
                 <div class="paket-badge">Najpopularnije</div>
                 <div class="paket-ime">BIZNIS</div>
                 <div class="paket-cena">€599<span>/jednokratno</span></div>
                 <ul class="paket-lista"><li>Premium dizajn (do 8 strana)</li><li>CMS sistem (samostalno menjanje)</li><li>Povezivanje društvenih mreža</li><li>Napredni SEO i brzina</li><li>3 meseca besplatne podrške</li></ul>
-                <a href="#kontakt" class="btn-paket">Izaberi Biznis</a>
+                <button class="btn-paket" onclick="otvoriModal()">Izaberi Biznis</button>
             </div>
             <div class="paket">
                 <div class="paket-ime">E-COMMERCE</div>
                 <div class="paket-cena">€999+<span>/jednokratno</span></div>
                 <ul class="paket-lista"><li>Kompletna online prodavnica</li><li>Neograničen broj proizvoda</li><li>Sistemi za online plaćanje</li><li>Napredna analitika prodaje</li><li>6 meseci besplatne podrške</li></ul>
-                <a href="#kontakt" class="btn-paket">Zatraži Ponudu</a>
+                <button class="btn-paket" onclick="otvoriModal()">Zatraži Ponudu</button>
             </div>
         </div>
     </section>
@@ -430,6 +452,10 @@
             <div class="tech-item">SEO OPTIMIZACIJA</div>
             <div class="tech-item">UI/UX DIZAJN</div>
             <div class="tech-item">GITHUB DEPLOY</div>
+        </div>
+        <div class="server-status-bar">
+            <div class="status-dot"></div>
+            <span>Stiglic Studio Server Status: 100% Online & Stable</span>
         </div>
     </section>
 
@@ -494,24 +520,13 @@
         <div class="cta-baner">
             <h2>Spreman da podigneš svoj biznis na viši nivo?</h2>
             <p>Javi nam se danas i obezbedi sajt koji će izdvojiti tvoj brend iz mase.</p>
-            <a href="#kontakt" class="btn-primary">Započni Saradnju</a>
+            <button class="btn-primary" onclick="otvoriModal()">Započni Saradnju</button>
         </div>
     </div>
 
-    <section id="kontakt" class="sekcija sakriveno">
-        <h2 class="sekcija-naslov">ZAPOČNIMO PROJEKAT</h2>
-        <form class="kontakt-forma" action="https://formspree.io/f/xzdnwlvl" method="POST">
-            <div class="input-grupa"><input type="text" name="Ime" placeholder="Kako se zovete?" required></div>
-            <div class="input-grupa"><input type="email" name="Email" placeholder="Vaš email" required></div>
-            <div class="input-grupa"><textarea name="Poruka" placeholder="Opišite nam vaš projekat i koji paket vas zanima..." required></textarea></div>
-            <button type="submit" class="btn-submit">Pošalji Upit</button>
-        </form>
-    </section>
-
     <footer class="sakriveno">
-        <!-- UVEĆANA PTICA U FOTERU (65px) -->
         <div style="margin-bottom: 20px;">
-            <img src="ptica-logo.png" alt="Stiglic Studio Logo" style="height: 65px; width: 65px; object-fit: contain;">
+            <img src="ptica-logo.png" alt="Stiglic Studio Logo" style="height: 130px; width: 130px; object-fit: contain;">
         </div>
         <span class="footer-logo">STIGLIC STUDIO.</span>
         <div class="mreze">
@@ -532,6 +547,7 @@
     </div>
 
     <script>
+        // Skrolovanje i traka
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -546,6 +562,24 @@
             }
         });
 
+        // Interaktivni kalkulator cena
+        function izracunajCenu() {
+            const tip = parseInt(document.getElementById('tipSajta').value);
+            const brzina = parseInt(document.getElementById('brzinaIzrade').value);
+            const seo = parseInt(document.getElementById('seoOpcija').value);
+            const ukupno = tip + brzina + seo;
+            document.getElementById('ukupnaCena').innerText = '€' + ukupno;
+        }
+
+        // Modal (popup) kontrole
+        function otvoriModal() {
+            document.getElementById('kontaktModal').style.display = 'flex';
+        }
+        function zatvoriModal() {
+            document.getElementById('kontaktModal').style.display = 'none';
+        }
+
+        // Filter radova
         function filtriraj(kategorija, dugme) {
             document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('aktivno'));
             dugme.classList.add('aktivno');
@@ -560,6 +594,7 @@
             });
         }
 
+        // Animacije pri skrolovanju
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if(entry.isIntersecting) {
