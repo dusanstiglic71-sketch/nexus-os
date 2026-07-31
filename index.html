@@ -20,7 +20,16 @@
             --border-color: rgba(191, 149, 63, 0.3);
         }
 
-        /* Teme za ADHD fokus i promenu vajba */
+        [data-theme="light"] {
+            --bg-color: #f4f4f5;
+            --card-bg: #ffffff;
+            --accent-color: #93732b;
+            --accent-gradient: linear-gradient(90deg, #93732b, #c5a059, #93732b);
+            --text-color: #09090b;
+            --text-muted: #52525b;
+            --border-color: rgba(147, 115, 43, 0.3);
+        }
+
         [data-theme="matrix"] {
             --bg-color: #000802;
             --card-bg: #001405;
@@ -63,7 +72,6 @@
             transition: width 0.1s ease;
         }
 
-        /* ADHD Kontrolna traka za Teme i Zen režim */
         .adhd-bar {
             position: fixed; top: 45px; right: 20px; z-index: 1002; display: flex; gap: 8px; align-items: center;
         }
@@ -83,8 +91,8 @@
         nav {
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 60px; position: fixed; width: 100%; top: 33px; z-index: 1000;
-            background: rgba(5, 5, 5, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--bg-color); opacity: 0.95; backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .nav-logo-kontejner { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
@@ -149,7 +157,6 @@
         .sakriveno { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
         .prikazano { opacity: 1; transform: translateY(0); }
 
-        /* VIP TERMINAL */
         .vip-terminal {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 25px;
             padding: 50px; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
@@ -160,7 +167,6 @@
             margin-top: 25px; line-height: 1.6; position: relative; overflow: hidden;
         }
 
-        /* BEFORE & AFTER SLIDER */
         .comparis-kontejner {
             position: relative; width: 100%; max-width: 850px; height: 450px; margin: 0 auto;
             border-radius: 20px; overflow: hidden; border: 1px solid var(--border-color);
@@ -227,10 +233,10 @@
         .paket-lista li::before { content: '✓'; color: var(--accent-color); font-weight: bold; margin-right: 15px; font-size: 18px; }
         .btn-paket {
             display: block; width: 100%; text-align: center; padding: 15px; border-radius: 50px;
-            background: transparent; border: 1px solid #ffffff; color: #ffffff; text-decoration: none;
+            background: transparent; border: 1px solid var(--text-color); color: var(--text-color); text-decoration: none;
             font-weight: 700; transition: 0.3s; cursor: pointer;
         }
-        .paket-istaknut .btn-paket, .btn-paket:hover { background: #ffffff; color: #000; border-color: #ffffff; }
+        .paket-istaknut .btn-paket, .btn-paket:hover { background: var(--text-color); color: var(--bg-color); border-color: var(--text-color); }
 
         .tech-stack { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
         .tech-item {
@@ -250,16 +256,16 @@
         }
         @keyframes pulse-dot { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
 
-        .recenzije-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        /* Slajder recenzija */
+        .recenzije-slider { max-width: 800px; margin: 0 auto; overflow: hidden; position: relative; }
         .recenzija-kartica {
             background: var(--card-bg); border: 1px solid var(--border-color); padding: 40px; border-radius: 20px;
-            position: relative; transition: 0.3s;
+            display: none; text-align: center; animation: fadeIn 0.6s ease;
         }
-        .recenzija-kartica:hover { border-color: var(--accent-color); transform: translateY(-5px); }
-        .zvezdice { color: var(--accent-color); font-size: 18px; margin-bottom: 15px; }
-        .recenzija-tekst { color: var(--text-color); font-size: 16px; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
-        .autor-ime { font-weight: 700; font-size: 16px; color: #ffffff; }
-        .autor-firma { font-size: 13px; color: var(--text-muted); }
+        .recenzija-kartica.aktivna-recenzija { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .zvezdice { color: var(--accent-color); font-size: 20px; margin-bottom: 15px; }
+        .recenzija-tekst { color: var(--text-color); font-size: 18px; line-height: 1.6; margin-bottom: 20px; font-style: italic; }
 
         .filter-dugmad { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
         .btn-filter {
@@ -286,10 +292,14 @@
             position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; pointer-events: none;
         }
-        .rad-overlay h3 { font-size: 22px; margin-bottom: 5px; }
+        .rad-overlay h3 { font-size: 22px; margin-bottom: 5px; color: #fff; }
         .rad-overlay span { color: var(--accent-color); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
 
         .faq-kontejner { max-width: 800px; margin: 0 auto; }
+        .faq-search {
+            width: 100%; background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color);
+            padding: 15px 20px; border-radius: 50px; font-size: 16px; margin-bottom: 30px; outline: none;
+        }
         details {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px;
             margin-bottom: 15px; padding: 20px; transition: 0.3s; cursor: pointer;
@@ -304,22 +314,32 @@
         details[open] summary::after { content: '−'; }
         .faq-odgovor { margin-top: 15px; color: var(--text-muted); line-height: 1.6; font-size: 16px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
 
-        /* ADHD Live Whiteboard & Notes */
+        /* Whiteboard */
         .whiteboard-box {
             background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px;
             padding: 30px; max-width: 800px; margin: 50px auto; text-align: center;
         }
         .whiteboard-box textarea {
-            width: 100%; background: #000; border: 1px solid var(--border-color); color: #fff;
+            width: 100%; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-color);
             padding: 15px; border-radius: 12px; margin-top: 15px; resize: none; min-height: 80px; outline: none;
         }
+
+        /* Lažni WhatsApp Chat popap (Simulacija) */
+        .wa-popap {
+            position: fixed; bottom: 100px; right: 30px; background: var(--card-bg); border: 1px solid #25D366;
+            border-radius: 20px; padding: 20px; width: 300px; z-index: 9999; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none; animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .wa-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+        .wa-msg { background: #25D366; color: #fff; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; margin-bottom: 10px; }
 
         .cta-baner {
             background: linear-gradient(135deg, #111111, #1a160d);
             border: 1px solid var(--border-color); border-radius: 30px;
             padding: 80px 40px; text-align: center; max-width: 1200px; margin: 0 auto 100px auto;
         }
-        .cta-baner h2 { font-size: 40px; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; }
+        .cta-baner h2 { font-size: 40px; font-weight: 900; margin-bottom: 20px; letter-spacing: -1px; color: #fff; }
         .cta-baner p { color: var(--text-muted); font-size: 18px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
 
         .modal-overlay {
@@ -332,7 +352,7 @@
         }
         .modal-zatvori {
             position: absolute; top: 20px; right: 25px; background: transparent; border: none;
-            color: #fff; font-size: 28px; cursor: pointer; transition: 0.3s;
+            color: var(--text-color); font-size: 28px; cursor: pointer; transition: 0.3s;
         }
         .modal-zatvori:hover { color: var(--accent-color); }
 
@@ -347,19 +367,19 @@
         .input-grupa { margin-bottom: 30px; }
         .kontakt-forma input, .kontakt-forma textarea {
             width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding: 15px 0; color: #ffffff; font-size: 20px; font-weight: 300; outline: none; transition: 0.3s;
+            padding: 15px 0; color: var(--text-color); font-size: 20px; font-weight: 300; outline: none; transition: 0.3s;
         }
         .kontakt-forma input:focus, .kontakt-forma textarea:focus { border-bottom: 1px solid var(--accent-color); }
         .kontakt-forma textarea { min-height: 100px; resize: none; }
         .btn-submit {
-            background: transparent; color: #ffffff; border: 1px solid #ffffff; padding: 18px 50px;
+            background: transparent; color: var(--text-color); border: 1px solid var(--text-color); padding: 18px 50px;
             border-radius: 50px; font-size: 16px; font-weight: 700; text-transform: uppercase;
             letter-spacing: 1px; cursor: pointer; transition: 0.4s; width: 100%;
         }
         .btn-submit:hover { background: var(--accent-color); color: #000000; border-color: var(--accent-color); }
 
         footer { border-top: 1px solid rgba(255, 255, 255, 0.05); padding: 50px 20px; text-align: center; }
-        .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; display: block; color: #ffffff; }
+        .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: 1px; margin-bottom: 20px; display: block; color: var(--text-color); }
         .mreze { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
         .mreze a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; cursor: pointer; }
         .mreze a:hover { color: var(--accent-color); }
@@ -396,7 +416,7 @@
             .kalkulator-box { padding: 25px; }
             .audio-toggle { right: 20px; top: 85px; }
             .live-korisnici { display: none; }
-            .adhd-bar { top: 85px; right: 10px; flex-direction: column; }
+            .adhd-bar { top: 85px; right: 10px; flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -406,12 +426,24 @@
         ⚡ VIP AKCIJA: Osvoji besplatnu SEO optimizaciju! Ističe za: <span id="tajmerCountdown">12:00:00</span> ⚡
     </div>
 
-    <!-- ADHD Kontrolna traka za Teme i Zen mod -->
+    <!-- ADHD & Tema Kontrolna traka -->
     <div class="adhd-bar">
         <button class="adhd-btn" onclick="promeniTemu('gold')">Gold</button>
+        <button class="adhd-btn" onclick="promeniTemu('light')">Light</button>
         <button class="adhd-btn" onclick="promeniTemu('matrix')">Matrix</button>
         <button class="adhd-btn" onclick="promeniTemu('cyber')">Cyber</button>
         <button class="adhd-btn" onclick="toggleZenMod()">Zen Mod</button>
+    </div>
+
+    <!-- Lažni WhatsApp Popup koji iskače posle 5s -->
+    <div class="wa-popap" id="waPopap">
+        <div class="wa-header">
+            <span style="width: 10px; height: 10px; background: #25D366; border-radius: 50%; display:inline-block;"></span>
+            <strong style="font-size: 13px; color: var(--text-color);">Stiglic Studio Podrška</strong>
+            <span style="margin-left:auto; cursor:pointer; color:var(--text-muted);" onclick="zatvoriWa()">&times;</span>
+        </div>
+        <div class="wa-msg">Zdravo! 👋 Treba li ti pomoć oko izrade novog sajta? Tu sam za sva pitanja!</div>
+        <a href="https://wa.me/381628324011" target="_blank" style="display:block; text-align:center; background:#25D366; color:#fff; padding:8px; border-radius:10px; font-size:12px; font-weight:700; text-decoration:none;">Otvori WhatsApp Chat</a>
     </div>
 
     <div class="live-korisnici">
@@ -472,7 +504,7 @@
         <button class="btn-primary" onclick="otvoriModal(); playClick();">Započni Saradnju</button>
     </section>
 
-    <!-- ADHD Mini Whiteboard za brze ideje -->
+    <!-- ADHD Mini Whiteboard -->
     <div class="sekcija sakriveno" style="padding-top: 0; padding-bottom: 0;">
         <div class="whiteboard-box">
             <h3 style="font-size: 20px; margin-bottom: 10px; color: var(--accent-color);">💡 ADHD Brza Beleška (Zapiši ideju u hodu)</h3>
@@ -554,6 +586,33 @@
                     <button class="btn-primary" onclick="preuzmiPDF()" style="padding: 18px 25px; font-size: 13px; background: var(--accent-color); color: #000;" title="Preuzmi PDF ponudu">📄 Preuzmi PDF</button>
                     <button class="btn-primary" onclick="otvoriModal(); playClick();">Zakaži izradu</button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slajder Recenzija (Utisci klijenata) -->
+    <section class="sekcija sakriveno">
+        <h2 class="sekcija-naslov">ŠTA KAŽU KLIJENTI</h2>
+        <p class="sekcija-opis">Iskustva ljudi čije smo poslovanje podigli na viši nivo.</p>
+        
+        <div class="recenzije-slider">
+            <div class="recenzija-kartica aktivna-recenzija">
+                <div class="zvezdice">★★★★★</div>
+                <div class="recenzija-tekst">"Stiglic Studio nam je napravio sajt koji izgleda svetski! Prodaja je skočila 40% već u prvom mesecu."</div>
+                <div class="autor-ime">Stefan Marković</div>
+                <div class="autor-firma">Restoran Gourmet</div>
+            </div>
+            <div class="recenzija-kartica">
+                <div class="zvezdice">★★★★★</div>
+                <div class="recenzija-tekst">"Brzina izrade i profesionalnost na nivou agencija od 5.000 evra. Svaka preporuka!"</div>
+                <div class="autor-ime">Nikola Jovanović</div>
+                <div class="autor-firma">E-Commerce Fashion Shop</div>
+            </div>
+            <div class="recenzija-kartica">
+                <div class="zvezdice">★★★★★</div>
+                <div class="recenzija-tekst">"Sajt se učitava u trenu, klijenti stalno hvale dizajn. Vrhunski posao!"</div>
+                <div class="autor-ime">Marko Stojanović</div>
+                <div class="autor-firma">Konsalting Agencija</div>
             </div>
         </div>
     </section>
@@ -648,14 +707,20 @@
         </div>
     </section>
 
+    <!-- Česta pitanja sa Live Pretragom -->
     <section id="faq" class="sekcija sakriveno">
         <h2 class="sekcija-naslov">ČESTA PITANJA</h2>
         <p class="sekcija-opis">Sve što treba da znate pre početka saradnje.</p>
+        
         <div class="faq-kontejner">
-            <details onclick="playClick()"><summary>Koliko traje izrada sajta?</summary><div class="faq-odgovor">Za osnovne (Start) pakete potrebno je između 5 i 7 dana. Biznis sajtovi se završavaju za 2 nedelje, dok kompleksnije online prodavnice zahtevaju od 3 do 4 nedelje rada.</div></details>
-            <details onclick="playClick()"><summary>Da li dobijam podršku nakon izrade?</summary><div class="faq-odgovor">Apsolutno. Svaki naš paket uključuje period besplatnog tehničkog održavanja i podrške.</div></details>
-            <details onclick="playClick()"><summary>Šta je potrebno da pripremim od materijala?</summary><div class="faq-odgovor">Potreban nam je vaš logo, tekstovi o vašem biznisu i usluge, a slike možemo obezbediti mi.</div></details>
-            <details onclick="playClick()"><summary>Da li sajtovi rade dobro na mobilnim telefonima?</summary><div class="faq-odgovor">Da! Svi naši sajtovi su strogo "Mobile-First" i savršeno rade na svim ekranima.</div></details>
+            <input type="text" class="faq-search" id="faqSearchInput" placeholder="🔍 Pretraži česta pitanja u hodu..." oninput="pretraziFaq()">
+            
+            <div id="faqLista">
+                <details onclick="playClick()"><summary>Koliko traje izrada sajta?</summary><div class="faq-odgovor">Za osnovne (Start) pakete potrebno je između 5 i 7 dana. Biznis sajtovi se završavaju za 2 nedelje, dok kompleksnije online prodavnice zahtevaju od 3 do 4 nedelje rada.</div></details>
+                <details onclick="playClick()"><summary>Da li dobijam podršku nakon izrade?</summary><div class="faq-odgovor">Apsolutno. Svaki naš paket uključuje period besplatnog tehničkog održavanja i podrške.</div></details>
+                <details onclick="playClick()"><summary>Šta je potrebno da pripremim od materijala?</summary><div class="faq-odgovor">Potreban nam je vaš logo, tekstovi o vašem biznisu i usluge, a slike možemo obezbediti mi.</div></details>
+                <details onclick="playClick()"><summary>Da li sajtovi rade dobro na mobilnim telefonima?</summary><div class="faq-odgovor">Da! Svi naši sajtovi su strogo "Mobile-First" i savršeno rade na svim ekranima.</div></details>
+            </div>
         </div>
     </section>
 
@@ -720,6 +785,20 @@
                 document.getElementById('brojKorisnikaLive').innerText = r;
             }, 8000);
 
+            // Automatski WhatsApp popap posle 5 sekundi
+            setTimeout(() => {
+                document.getElementById('waPopap').style.display = 'block';
+            }, 5000);
+
+            // Rotacija recenzija svakih 4 sekunde
+            let trenutnaRecenzija = 0;
+            const recenzije = document.querySelectorAll('.recenzija-kartica');
+            setInterval(() => {
+                recenzije[trenutnaRecenzija].classList.remove('aktivna-recenzija');
+                trenutnaRecenzija = (trenutnaRecenzija + 1) % recenzije.length;
+                recenzije[trenutnaRecenzija].classList.add('aktivna-recenzija');
+            }, 4000);
+
             if(localStorage.getItem('stiglicPoruka')) {
                 document.getElementById('inputPoruka').value = localStorage.getItem('stiglicPoruka');
             }
@@ -730,13 +809,29 @@
             izracunajCenu();
         });
 
-        // ADHD Funkcije: Promena tema (Gold, Matrix, Cyber)
+        function zatvoriWa() {
+            document.getElementById('waPopap').style.display = 'none';
+        }
+
+        // Live pretraga FAQ-a u hodu
+        function pretraziFaq() {
+            const pojam = document.getElementById('faqSearchInput').value.toLowerCase();
+            const stavke = document.querySelectorAll('#faqLista details');
+            stavke.forEach(item => {
+                const tekst = item.innerText.toLowerCase();
+                if(tekst.includes(pojam)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
         function promeniTemu(tema) {
             document.body.setAttribute('data-theme', tema);
             playClick();
         }
 
-        // ADHD Zen / Minimalist Mod
         let zenAktivan = false;
         function toggleZenMod() {
             zenAktivan = !zenAktivan;
@@ -798,7 +893,7 @@
         }
 
         function easterEggZvuk() {
-            alert('🐦 Stiglic Studio Secret ADHD Masterpiece: Fokus je ključ uspeha!');
+            alert('🐦 Stiglic Studio Secret Masterpiece: Fokus je ključ uspeha!');
         }
 
         function matrixMod() {
